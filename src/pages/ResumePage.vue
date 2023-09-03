@@ -171,7 +171,7 @@ const projects = [
     id: 1,
     title: 'Сайт ИП Сидоров',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/smaip.png',
+    image: '/images/1.png',
     link: ['Design', 'Frontend'],
     badges: [
       'HTML5',
@@ -183,7 +183,7 @@ const projects = [
     id: 2,
     title: 'Личный кабинет ИП Сидоров',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/lk.png',
+    image: '/images/1.png',
     link: ['Design', 'Frontend'],
     badges: [
       'Vue3',
@@ -199,7 +199,7 @@ const projects = [
     id: 3,
     title: 'ISA - Информационная система академии',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/isa.png',
+    image: '/images/1.png',
     link: ['Design', 'Main-frontend'],
     badges: [
       'Vue3',
@@ -216,7 +216,7 @@ const projects = [
     id: 4,
     title: 'Quantum - платформа для курсов',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/quantum.png',
+    image: '/images/1.png',
     link: ['Design', 'Main-frontend'],
     badges: [
       'Vue3',
@@ -233,7 +233,7 @@ const projects = [
     id: 5,
     title: 'Мерч для компании "ООО Intech"',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/intech.png',
+    image: '/images/1.png',
     link: ['Design'],
     badges: [
       'Figma'
@@ -243,7 +243,7 @@ const projects = [
     id: 6,
     title: 'HR CRM - Кабинет заказчика',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/hr.png',
+    image: '/images/1.png',
     link: ['Frontend'],
     badges: [
       'Vue3',
@@ -259,7 +259,7 @@ const projects = [
     id: 7,
     title: 'Telemilk - Рекламная биржа Telegram',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/telemilk.png',
+    image: '/images/1.png',
     link: ['Frontend'],
     badges: [
       'Vue3',
@@ -273,7 +273,7 @@ const projects = [
     id: 8,
     title: 'Space Bonus - система лояльности',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/sb.png',
+    image: '/images/1.png',
     link: ['Main-frontend'],
     badges: [
       'Vue3',

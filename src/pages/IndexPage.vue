@@ -5,10 +5,10 @@
         <source type="video/mp4" src="/images/1.mp4">
       </video>
     </template>
-    <div style="background: rgba(0,0,0,.5)" class="full-width full-height flex flex-center">
-      <div class="text-center" style="max-width: 830px">
-        <div class="text-white text-h3">Добро пожаловать!</div>
-        <p class="text-white q-pa-lg">
+    <div class="parallax-inner">
+      <div>
+        <h1 class="text-h3">Добро пожаловать!</h1>
+        <p class="q-pa-lg">
           Здесь я представляю свои работы, которые выполняла в течение своего пути как фронтенд разработчик. Моё портфолио включает в себя разнообразные проекты, которые создавала для клиентов и личных проектов. Для меня очень важно, чтобы каждый проект, над которым я работаю, был уникальным и отвечал потребностям клиента. Надеюсь, что вы оцените мои работы и найдёте здесь что-то интересное для себя!
         </p>
         <div class="flex q-gutter-md justify-center">
@@ -26,25 +26,24 @@
       </div>
     </div>
   </q-parallax>
-  <q-page class="q-pa-lg bg-dark">
+  <q-page class="q-pa-lg bg-dark text-white">
     <div class="flex items-center q-my-lg">
-      <PhImages color="white" :size="24" class="q-mr-sm"/>
-      <div class="text-h5 text-white">Портфолио</div>
+      <PhImages :size="24" class="q-mr-sm"/>
+      <h5>Портфолио</h5>
       <q-space/>
       <q-select
-        disable
         hide-dropdown-icon
-        style="width: 170px"
         dark
-        input-class="rounded-borders"
-        class="search-field"
+        class="gradient-field"
         standout
         dense
-        :model-value="'По умолчанию'"
-        :options="['По умолчанию']"
+        v-model="sort"
+        :options="options"
+        emit-value
+        map-options
       >
         <template v-slot:prepend>
-          <PhFunnel color="white" :size="18"/>
+          <PhFunnel :size="18"/>
         </template>
       </q-select>
     </div>
@@ -54,10 +53,7 @@
         v-for="card in projects"
         :key="card"
       >
-        <ProjectPreviewCard
-          :card="card"
-          style="height: 100%"
-        />
+        <ProjectPreviewCard :card="card"/>
       </div>
     </div>
   </q-page>
@@ -66,6 +62,8 @@
 <script setup>
 import ProjectPreviewCard from "components/ProjectPreviewCard.vue";
 import { PhFunnel, PhImages } from "@phosphor-icons/vue";
+import { data } from "boot/api"
+import { computed, ref } from "vue";
 
 const tags = [
   {
@@ -88,123 +86,33 @@ const tags = [
   }
 ]
 
-const projects = [
+const options = [
   {
-    id: 1,
-    title: 'Сайт ИП Сидоров',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/smaip.png',
-    link: ['Design', 'Frontend'],
-    badges: [
-      'HTML5',
-      'CSS3',
-      'Bootstrap 5.1'
-    ]
+    label: 'По умолчанию',
+    value: 0
   },
   {
-    id: 2,
-    title: 'Личный кабинет ИП Сидоров',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/lk.png',
-    link: ['Design', 'Frontend'],
-    badges: [
-      'Vue3',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Bootstrap 5.1',
-      'Figma'
-    ]
-  },
-  {
-    id: 3,
-    title: 'ISA - Информационная система академии',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/isa.png',
-    link: ['Design', 'Main-frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Websocket',
-      'Figma'
-    ]
-  },
-  {
-    id: 4,
-    title: 'Quantum - платформа для курсов',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/quantum.png',
-    link: ['Design', 'Main-frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Websocket',
-      'Figma'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Мерч для компании "ООО Intech"',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/intech.png',
-    link: ['Design'],
-    badges: [
-      'Figma'
-    ]
-  },
-  {
-    id: 6,
-    title: 'HR CRM - Кабинет заказчика',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/hr.png',
-    link: ['Frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Websocket'
-    ]
-  },
-  {
-    id: 7,
-    title: 'Telemilk - Рекламная биржа Telegram',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/telemilk.png',
-    link: ['Frontend'],
-    badges: [
-      'Vue3',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'TS'
-    ]
-  },
-  {
-    id: 8,
-    title: 'Space Bonus - система лояльности',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/sb.png',
-    link: ['Main-frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'TS'
-    ]
+    label: 'По названию',
+    value: 1
   }
 ]
+
+const sort = ref(0)
+
+const sortByTitle = (a,b) => {
+  if(a.title[0] > b.title[0]) return 1;
+  else if(a.title[0] < b.title[0]) return -1;
+  return 0;
+}
+
+const sortByID = (a,b) => {
+  if(a.id > b.id) return 1;
+  else if(a.id < b.id) return -1;
+  return 0;
+}
+
+const projects = computed(() => {
+  if (sort.value === 1) return data.sort(sortByTitle)
+  else return data.sort(sortByID)
+})
 </script>

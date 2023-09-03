@@ -1,12 +1,11 @@
 <template>
   <q-page class="bg-dark text-center" @mousemove="eyeMovement">
       <div class="box__ghost">
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
+        <div
+          class="symbol"
+          v-for="n in [1,2,3,4,5,6]"
+          :key="n"
+        />
         <div class="box__ghost-container">
           <svg width="100" height="110" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 50C0 22.3858 22.3858 0 50 0V0C77.6142 0 100 22.3858 100 50V88H0V50Z" fill="white"/>
@@ -52,7 +51,6 @@ const eyeMovement = (e) => {
   mouseX = e.pageX / -pageX;
   let xAxis = -mouseX * 100 - 100;
   style.value=`transform:translate(${xAxis}%,${yAxis*-1}%)`;
-  console.log((pageY/3+mouseY)/pageY*300);
 }
 </script>
 

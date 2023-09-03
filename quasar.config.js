@@ -19,54 +19,18 @@ module.exports = configure(function (/* ctx */) {
         node: 'node16'
       },
       vueRouterMode: 'history',
-      // vueRouterBase,
-      // vueDevtools,
-      // vueOptionsAPI: false,
-      // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
-      // publicPath: '/',
-      // analyze: true,
-      // env: {},
-      // rawDefine: {}
-      // ignorePublicFolder: true,
-      // minify: false,
-      // polyfillModulePreload: true,
-      // distDir
-      // extendViteConf (viteConf) {},
-      // viteVuePluginOptions: {},
-      // vitePlugins: [
-      //   [ 'package-name', { ..options.. } ]
-      // ]
     },
     devServer: {
-      // https: true
       open: true
     },
     framework: {
       config: {},
       lang: 'ru',
-      // components: [],
-      // directives: [],
       plugins: []
     },
-    // animations: 'all', // --- includes all animations
     animations: [],
-    // sourceFiles: {
-    //   rootComponent: 'src/App.vue',
-    //   router: 'src/router/index',
-    //   store: 'src/store/index',
-    //   registerServiceWorker: 'src-pwa/register-service-worker',
-    //   serviceWorker: 'src-pwa/custom-service-worker',
-    //   pwaManifestFile: 'src-pwa/manifest.json',
-    //   electronMain: 'src-electron/electron-main',
-    //   electronPreload: 'src-electron/electron-preload'
-    // },
     ssr: {
-      // ssrPwaHtmlFilename: 'offline.html',
-      // extendSSRWebserverConf (esbuildConf) {},
-      // extendPackageJson (json) {},
       pwa: false,
-      // manualStoreHydration: true,
-      // manualPostHydrationTrigger: true,
       prodPort: 3000,
       middlewares: [
         'render'
@@ -77,31 +41,16 @@ module.exports = configure(function (/* ctx */) {
       injectPwaMetaTags: true,
       swFilename: 'sw.js',
       manifestFilename: 'manifest.json',
-      useCredentialsForManifestTag: false,
-      // useFilenameHashes: true,
-      // extendGenerateSWOptions (cfg) {}
-      // extendInjectManifestOptions (cfg) {},
-      // extendManifestJson (json) {}
-      // extendPWACustomSWConf (esbuildConf) {}
+      useCredentialsForManifestTag: false
     },
-    cordova: {
-      // noIosLegacyBuildFlag: true,
-    },
+    cordova: {},
     capacitor: {
       hideSplashscreen: true
     },
     electron: {
-      // extendElectronMainConf (esbuildConf)
-      // extendElectronPreloadConf (esbuildConf)
       inspectPort: 5858,
       bundler: 'packager',
-      packager: {
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-        // win32metadata: { ... }
-      },
+      packager: {},
       builder: {
         appId: 'portfolio'
       }
@@ -109,9 +58,7 @@ module.exports = configure(function (/* ctx */) {
     bex: {
       contentScripts: [
         'my-content-script'
-      ],
-      // extendBexScriptsConf (esbuildConf) {}
-      // extendBexManifestJson (json) {}
+      ]
     }
   }
 });

@@ -21,6 +21,10 @@
   color: white;
 }
 
+h1,h2,h3,h4,h5,h6,h7 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 
 .q-btn:not(.q-btn--round) {
   border-radius: 10px;
@@ -66,8 +70,11 @@
   &.f {
     background: $gradient2;
   }
-  & .q-tab {
+  & .q-tab,
+  & .q-item {
+    height: 67px;
     padding: 0 32px;
+    align-items: center;
   }
 }
 
@@ -99,9 +106,6 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
     & svg {
       transition: all 0.5s ease;
-      //box-shadow: 0 0 5px white;
-      //fill: #2FA9F9 !important;
-      //transform: translate(5px,5px);
     }
     & .hover {
       & .hover-inner {
@@ -134,11 +138,6 @@
   background: $bg !important;
 }
 
-.q-footer .q-toolbar {
-  background: #1B2038 !important;
-  padding: 32px;
-}
-
 .q-menu {
   min-width: 280px;
   background: $menu;
@@ -149,6 +148,13 @@
     min-height: 34px;
     height: 34px;
     font-size: 12px;
+  }
+  & > .menu-btn {
+    height: 34px;
+    color: $dark;
+    & .q-btn {
+      font-size: 12px;
+    }
   }
   & .q-list {
     & .q-item {
@@ -162,6 +168,60 @@
         padding: 0;
         align-items: center;
       }
+    }
+  }
+}
+
+.q-parallax__content > .parallax-inner {
+  background: rgba(0,0,0,.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > div {
+    max-width: 830px;
+    text-align: center;
+    color: $white;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.gradient-field {
+  & .q-field__control {
+    background: #493C67 !important;
+    border-radius: 10px;
+  }
+  & .q-field__prepend {
+    color: $white !important;
+  }
+  &.q-field--highlighted {
+    & .q-field__control {
+      box-shadow: none;
+    }
+    & .q-field__native {
+      color: $white !important;
+    }
+  }
+}
+
+.q-carousel {
+  border-radius: 10px;
+  & .q-carousel__thumbnail {
+    position: relative;
+    &:before {
+      display: inline-block;
+      background: black;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
     }
   }
 }

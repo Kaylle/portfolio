@@ -1,5 +1,5 @@
 <template>
-  <q-card dark>
+  <q-card dark class="full-height">
     <q-card-section class="column full-height">
       <q-img
         :ratio="16/9"
@@ -14,11 +14,15 @@
           </div>
         </div>
       </q-img>
-      <div class="text-h6 q-my-md">{{ card.title }}</div>
-      <p class="text-grey" style="min-height: 80px">{{ card.description }}</p>
+      <h6 class="q-my-md">
+        {{ card.title }}
+      </h6>
+      <p class="text-grey text-description">
+        {{ card.description.slice(0,100) }}<span v-if="card.description.length > 100">...</span>
+      </p>
       <q-space/>
-      <div class="flex items-center" style="height: 56px">
-        <div class="column" style="gap: 8px">
+      <div class="flex items-center">
+        <div class="column q-gutter-y-sm">
           <q-btn
             v-for="pos in card.link"
             :key="pos"
@@ -36,7 +40,7 @@
         <q-btn
           color="primary"
           no-caps
-          :to="'/project/'+card.id"
+          :to="'/project/'+card.slug"
         >
           <PhHandPointing :size="18" color="white" weight="regular" />
           <span class="q-ml-sm">Подробнее</span>
@@ -46,18 +50,14 @@
   </q-card>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
 import { PhHandPointing, PhUserCircle } from "@phosphor-icons/vue";
 
-export default defineComponent({
-  name: 'ProjectPreviewCard',
-  components: { PhUserCircle, PhHandPointing },
-  props: {
-    card: {
-      type: Object,
-      required: true
-    }
-  }
-})
+const props = defineProps(['card'])
 </script>
+
+<style lang="scss" scoped>
+.text-description {
+  min-height: 80px;
+}
+</style>

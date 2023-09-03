@@ -11,7 +11,7 @@ const routes = [
     path: '/project/:id',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('pages/DetailPage.vue') }
     ]
   },
   {
