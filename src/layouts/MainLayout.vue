@@ -7,25 +7,27 @@
       <template v-if="$q.screen.width>1024">
         <q-tabs
           indicator-color="transparent"
+          active-color="primary"
           no-caps
           class="f"
         >
           <q-route-tab
             v-for="item in menuLinks"
             :key="item"
-            :href="item.link"
-            :target="item.outer?'_blank':''"
+            :to="item.link"
             :label="item.label"
           />
         </q-tabs>
         <q-space/>
       </template>
-      <div class="column" :class="$q.screen.width>1024?'items-center':''">
-        <h5>Екатерина Куркина</h5>
-        <div class="text-caption text-grey">
-          Портфолио фронтенд разработчика
+      <router-link to="/">
+        <div class="column" :class="$q.screen.width>1024?'items-center':''">
+          <h5>Екатерина Куркина</h5>
+          <div class="text-caption text-grey">
+            Портфолио фронтенд разработчика
+          </div>
         </div>
-      </div>
+      </router-link>
       <q-space/>
       <q-tabs
         indicator-color="transparent"
@@ -60,8 +62,7 @@
               v-for="item in menuLinks"
               :key="item"
               clickable
-              :href="item.link"
-              :target="item.outer?'_blank':''"
+              :to="item.link"
             >
               <q-item-section>{{ item.label }}</q-item-section>
               <q-item-section side class="bg-accent">
@@ -86,28 +87,34 @@
     </q-toolbar>
     <q-footer>
       <q-toolbar
-        :class="$q.screen.width<=600?'column justify-center':''"
+        :class="$q.screen.width<=600?'column':''"
       >
-        <q-avatar
-          size="60px"
-          :class="$q.screen.width<=600?'q-mb-sm':'q-mr-md'"
+        <router-link
+          to="/"
+          class="items-center"
+          :class="$q.screen.width<=600?'column justify-center':'flex'"
         >
-          <PhTerminalWindow/>
-        </q-avatar>
-        <div
-          class="column"
-          :class="$q.screen.width>600?'':'items-center q-gutter-y-sm'"
-        >
-          <h5>Екатерина Куркина</h5>
-          <div class="text-caption text-grey">
-            Портфолио фронтенд разработчика
+          <q-avatar
+            size="60px"
+            :class="$q.screen.width<=600?'q-mb-sm':'q-mr-md'"
+          >
+            <PhTerminalWindow/>
+          </q-avatar>
+          <div
+            class="column"
+            :class="$q.screen.width>600?'':'items-center q-gutter-y-sm'"
+          >
+            <h5>Екатерина Куркина</h5>
+            <div class="text-caption text-grey">
+              Портфолио фронтенд разработчика
+            </div>
           </div>
-        </div>
+        </router-link>
         <q-space/>
         <span
           :class="$q.screen.width<=600?'q-mt-sm':''"
         >
-          © 2023 Kaylle
+          © {{ new Date().getFullYear() }} Kaylle
         </span>
       </q-toolbar>
     </q-footer>
@@ -141,13 +148,11 @@ const links = [
 const menuLinks = [
   {
     label: 'Портфолио',
-    outer: false,
     link: '/'
   },
   {
     label: 'Резюме',
-    outer: true,
-    link: 'https://spb.hh.ru/applicant/resumes/view?resume=83ff72eeff09b6e22f0039ed1f374148427970'
+    link: '/resume'
   }
 ]
 </script>

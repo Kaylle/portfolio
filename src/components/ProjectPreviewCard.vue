@@ -38,6 +38,7 @@
         </div>
         <q-space/>
         <q-btn
+          class="q-my-sm"
           color="primary"
           no-caps
           :to="'/project/'+card.slug"
@@ -53,7 +54,7 @@
 <script setup>
 import { PhHandPointing, PhUserCircle } from "@phosphor-icons/vue";
 
-const props = defineProps(['card'])
+defineProps(['card'])
 </script>
 
 <style lang="scss" scoped>

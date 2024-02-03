@@ -41,11 +41,12 @@ import { useQuasar } from "quasar";
 
 const style = ref('')
 const $q = useQuasar()
+
 const eyeMovement = (e) => {
   let pageX = $q.screen.width;
   let pageY = $q.screen.height;
-  let mouseY=0;
-  let mouseX=0;
+  let mouseY
+  let mouseX
   mouseY = e.pageY;
   let yAxis = (pageY/3-mouseY)/pageY*300;
   mouseX = e.pageX / -pageX;
@@ -55,6 +56,8 @@ const eyeMovement = (e) => {
 </script>
 
 <style lang="scss">
+@import "src/css/quasar.variables";
+
 .error {
   background: $avatar;
   -webkit-background-clip: text;
@@ -99,9 +102,8 @@ const eyeMovement = (e) => {
       top: 30px;
       height: 18px;
       width: 18px;
-      border: 4px solid;
+      border: 4px solid $white;
       border-radius: 50%;
-      border-color: $white;
       opacity: .2;
       animation: shine 4s ease-in-out 1.3s infinite;
     }
@@ -153,9 +155,8 @@ const eyeMovement = (e) => {
       top: 40px;
       height: 12px;
       width: 12px;
-      border: 3px solid;
+      border: 3px solid $white;
       border-radius: 50%;
-      border-color: $white;
       opacity: .2;
       animation: shine 1.7s ease-in-out 7s infinite;
     }
@@ -188,7 +189,7 @@ const eyeMovement = (e) => {
     border-radius: 100px 100px 0 0;
     position: relative;
     margin: 0 auto;
-    animation: upndown 3s ease-in-out infinite;
+    animation: up_down 3s ease-in-out infinite;
     .box__ghost-eyes {
       position: absolute;
       left: 50%;
@@ -220,16 +221,16 @@ const eyeMovement = (e) => {
     box-shadow: 0 50px 15px 5px #3B3769;
     border-radius: 50%;
     margin: 0 auto;
-    animation: smallnbig 3s ease-in-out infinite;
+    animation: small_big 3s ease-in-out infinite;
   }
 }
 
-@keyframes upndown {
+@keyframes up_down {
   0% {transform: translateY(5px);}
   50% {transform: translateY(15px);}
   100% {transform: translateY(5px);}
 }
-@keyframes smallnbig {
+@keyframes small_big {
   0% {width: 90px;}
   50% {width: 100px;}
   100% {width: 90px;}

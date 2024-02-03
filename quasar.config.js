@@ -26,7 +26,7 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {},
       lang: 'ru',
-      plugins: []
+      plugins: ["Notify"]
     },
     animations: [],
     ssr: {

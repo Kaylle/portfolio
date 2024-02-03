@@ -1,288 +1,133 @@
 <template>
-  <q-page class="q-pa-lg bg-dark">
-    <div class="flex items-center q-my-lg">
-      <PhUserCircle color="white" :size="24" class="q-mr-sm"/>
-      <div class="text-h5 text-white">Резюме</div>
-      <q-space/>
-      <q-btn
-        label="hh.ru"
-        no-caps
-        color="primary"
-        target="_blank"
-        href="https://spb.hh.ru/applicant/resumes/view?resume=83ff72eeff09b6e22f0039ed1f374148427970"
-      />
+  <q-img src="/images/arts/image1.png" height="200px">
+    <div class="absolute-full flex items-center">
+      <div class="flex justify-between text-white" style="width: 100%">
+        <div class="column items-start q-gutter-y-md">
+          <h4 class="text-bold">{{ resume.fio }}</h4>
+          <h5>{{ resume.position }}</h5>
+        </div>
+        <div class="items-end column q-gutter-y-sm">
+          <span>{{ resume.city }}</span>
+          <span>Телефон: {{ resume.phone }}</span>
+          <span>Эмайл: {{ resume.email }}</span>
+        </div>
+      </div>
     </div>
-    <div class="row q-col-gutter-md">
-      <q-intersection
-        sstyle="height: 446px"
-        transition="scale"
-        class="col-lg-3 col-md-4 col-sm-6 col-12"
-      >
-        <q-card dark class="q-pa-md">
-          <q-img src="https://img.hhcdn.ru/photo/645507564.jpeg?t=1692257862&amp;h=Z9BSIyry9fmFLoz2crBrEw" width="100px" />
-          Куркина Екатерина Евгеньевна
-          Женщина, 23 года, родилась  9 января 2000
-
-          Контакты
-          +7 (996) 590-14-45
-          kaylle@yandex.ru
-          Сыктывкар, готова к переезду (Санкт-Петербург), готова к редким командировкам
-        </q-card>
-        <q-card dark class="q-pa-md">
-          Frontend-разработчик
-          Специализации: Программист, разработчик
-          Занятость: полная занятость
-
-          График работы: полный день, удаленная работа
-        </q-card>
-        <q-card dark class="q-pa-md">
-          Опыт работы 3 года 1 месяц
-          Май 2022 — по настоящее время
-          <q-separator color="white" class="q-my-md"/>
-          <div>
+  </q-img>
+  <q-page class="q-pa-lg bg-dark text-white">
+    <div class="row q-col-gutter-xl">
+      <div class="col-12 col-md-3">
+        <h5>Биография</h5>
+      </div>
+      <div class="col-12 col-md-9">
+        <p>Женщина, {{ getAge() }}, родилась {{ resume.birthday }}</p>
+        <p>{{ resume.about }}</p>
+        <q-btn
+          label="Ссылка на резюме на hh.ru"
+          no-caps
+          color="primary"
+          target="_blank"
+          :href="resume.resumeLink"
+        />
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Опыт работы - {{totalJobExperience}}</h5>
+      </div>
+      <div class="col-12 col-md-9 column q-gutter-y-lg">
+        <div
+          class="column"
+          v-for="job in resume.experience"
+          :key="job"
+        >
+          <div class="flex items-center">
+            <span class="q-mr-md">{{ job.period }}</span>
             <q-chip
               no-caps
               unelevated
               color="white"
               text-color="primary"
               class="cursor-pointer"
-              label="1 год 4 месяца"
+              :label="job.totalPeriod ? job.totalPeriod : currentJobExperience"
             />
           </div>
-          <div class="text-h5 q-mt-sm">ООО Информационные Технологии</div>
-          <div class="text-grey q-mb-md">Сыктывкар, it-rkomi.ru</div>
-          <div class="text-bold q-mt-sm">Frontend-разработчик</div>
-          <p>
-            На моем текущем месте работы у меня есть множество задач и проектов, над которыми я активно тружусь. В настоящее время я веду четыре проекта, в трёх я выступаю ведущим фронтенд-разработчиком.
-          </p>
-          <p>
-            Кроме этого, я также курирую стажера по фронтенду, помогая ему развиваться в своей работе. Мой стек технологий включает в себя такие популярные инструменты, как Vue, Vuex, Vue-router, Quasar-framework, Docker и Node. Я также работаю с такими программами и приложениями, как WebStorm, Figma, Postman и Notion.
-          </p>
-          <p>
-            В прошлом я проявляла инициативу в отрисовке и вёрстке дизайна для двух смежных проектов. Все шаблоны и вёрстку обязательно делаю адаптивными. Так же занималась вёрсткой по шаблонам других дизайнеров из фигмы.
-          </p>
-          <p>
-            В рамках своей работы, я разрабатывала внутренний мерч для компании. Это включало в себя создание концепции дизайна худи и футболки в белой и чёрной вариациях.
-          </p>
-
-
-          <q-separator color="white" class="q-my-md"/>
-          <div>
-            Август 2020 — Май 2022
-            <q-chip
-              no-caps
-              unelevated
-              color="white"
-              text-color="primary"
-              class="cursor-pointer"
-              label="1 год 10 месяцев"
-            />
+          <div class="text-h5 q-mt-sm">{{ job.company.name }}</div>
+          <div class="text-grey q-mb-md">
+            {{ job.company.city }}, {{ job.company.website }}
           </div>
-          <div class="text-h5 q-mt-sm">ООО Информационные Технологии</div>
-          <div class="text-grey q-mb-md">Сыктывкар, it-rkomi.ru</div>
-          <div class="text-bold q-mt-sm">Frontend-разработчик</div>
-
-
-
-          ИП Сидоров МА
-          Сыктывкар, www.smaip.ru
-
-          IT-специалист
-          Мои обязанности на предыдущей работе включали работу с бизнес-процессами Bitrix24, в том числе написание кастомных активностей. Я также занималась выгрузкой и загрузкой данных из Битрикса с помощью CREST API на PHP и JavaScript, что помогало мне автоматизировать рутинные задачи и сокращать время их выполнения.
-
-          Кроме того, я работала с загрузкой статистики в таблицы SQL и выводом данных из Битрикса и таблиц SQL на свёрстанные HTML страницы. Это требовало от меня знаний HTML5, CSS3, JavaScript(ES6+) и умения работать с различными типами данных.
-
-          Мне также приходилось создавать инструменты (веб-приложения) для менеджеров, которые позволяли им эффективно справляться с задачами, что повышало производительность. Это требовало от меня умения разрабатывать интуитивно понятный интерфейс и учитывать потребности конечного пользователя.
-
-          Наконец, я работала над созданием личного кабинета для клиентов с собственным дизайном и адаптивной вёрсткой на Vue3. Это позволяло моим клиентам управлять своими аккаунтами и более удобно взаимодействовать с нашими услугами(продажа вторсырья для фермеров). Работа над этим проектом требовала от меня глубоких знаний в области фронтенд-разработки и умения создавать сложные интерфейсы.
-
-        </q-card>
-        <q-card dark class="q-pa-md">
-          <div class="text-h5 q-mb-md">Ключевые навыки</div>
-          <div class="flex q-gutter-sm">
-            <q-chip
-              v-for="n in tags"
-              :key="n"
-              :label="n"
-              no-caps
-              unelevated
-              color="white"
-              text-color="primary"
-              class="cursor-pointer"
-            />
-          </div>
-        </q-card>
-        <q-card dark class="q-pa-md">
-          <div class="text-h5 q-mb-md">Обо мне</div>
-          <p>
-            Я обожаю играть в компьютерные игры, и этот хобби приносит мне не только удовольствие, но и помогает развивать навыки, которые могу использовать в профессиональной сфере. Кроме того, я регулярно занимаюсь физическими упражнениями в спортзале, чтобы поддерживать свою форму и здоровье.
-          </p>
-          <p>
-            Я также имею некоторый опыт работы с нейронными сетями и даже использовала Midjorney для создания дизайна своего портфолио-сайта. Это должно позволить мне продемонстрировать свои навыки в области веб-дизайна и улучшить свои шансы на рынке труда.
-          </p>
-          <p>
-            Моей большой мечтой является переезд в Санкт-Петербург и работа в крупной и прогрессивной компании. Я стремлюсь стать активным участником жизни компании и принимать участие в различных проектах. Это, в свою очередь, будет мотивировать меня искать новые знакомства и расширять свой круг общения в большом городе. Я уверена, что это поможет мне расти как профессионал и как личность.
-          </p>
-        </q-card>
-        <q-card dark class="q-pa-md">
-          <!--      <p>-->
-          Среднее специальное образование
-          2020
-          Сыктывкарский кооперативный техникум
-          Прикладная информатика, Техник-программист
-
-        </q-card>
-      </q-intersection>
+          <div class="text-bold q-mt-sm">{{ job.position }}</div>
+          <p>{{ job.description }}</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Ключевые навыки</h5>
+      </div>
+      <div class="col-12 col-md-9">
+        <div class="flex q-gutter-sm">
+          <q-chip
+            v-for="n in resume.tags"
+            :key="n"
+            :label="n"
+            no-caps
+            unelevated
+            color="white"
+            text-color="primary"
+            class="cursor-pointer"
+          />
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Образование</h5>
+      </div>
+      <div class="col-12 col-md-9 column">
+        <span>{{ resume.education.type }}</span>
+        <span>{{ resume.education.organization }}</span>
+        <span>{{ resume.education.qualification }}</span>
+      </div>
     </div>
   </q-page>
 </template>
 
 <script setup>
-import ProjectPreviewCard from "components/ProjectPreviewCard.vue";
-import { PhFunnel, PhImages, PhUserCircle } from "@phosphor-icons/vue";
+import { onMounted, ref } from "vue";
+import { resume } from "boot/api";
 
-const tags = [
-  'HTML5',
-  'CSS3',
-  'SQL',
-  'Git',
-  'PHP',
-  'Sass',
-  'VueJS',
-  'JavaScript',
-  'server-side rendering',
-  'Vuex',
-  'Figma',
-  'SCSS',
-  'Vue-Router',
-  'Webpack',
-  'Vite',
-  'Websocket',
-  'Bitrix Rest Api',
-  'Bitrix24 Бизнес-процессы',
-  'Node.js',
-  'Nginx',
-  'TypeScript',
-  'Docker'
-]
+const currentJobExperience = ref('')
+const totalJobExperience = ref('')
 
-const projects = [
-  {
-    id: 1,
-    title: 'Сайт ИП Сидоров',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Design', 'Frontend'],
-    badges: [
-      'HTML5',
-      'CSS3',
-      'Bootstrap 5.1'
-    ]
-  },
-  {
-    id: 2,
-    title: 'Личный кабинет ИП Сидоров',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Design', 'Frontend'],
-    badges: [
-      'Vue3',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Bootstrap 5.1',
-      'Figma'
-    ]
-  },
-  {
-    id: 3,
-    title: 'ISA - Информационная система академии',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Design', 'Main-frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Websocket',
-      'Figma'
-    ]
-  },
-  {
-    id: 4,
-    title: 'Quantum - платформа для курсов',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Design', 'Main-frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Websocket',
-      'Figma'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Мерч для компании "ООО Intech"',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Design'],
-    badges: [
-      'Figma'
-    ]
-  },
-  {
-    id: 6,
-    title: 'HR CRM - Кабинет заказчика',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'JS',
-      'Websocket'
-    ]
-  },
-  {
-    id: 7,
-    title: 'Telemilk - Рекламная биржа Telegram',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Frontend'],
-    badges: [
-      'Vue3',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'TS'
-    ]
-  },
-  {
-    id: 8,
-    title: 'Space Bonus - система лояльности',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: '/images/1.png',
-    link: ['Main-frontend'],
-    badges: [
-      'Vue3',
-      'Quasar',
-      'Vue-router',
-      'VUEX',
-      'SCCS',
-      'TS'
-    ]
-  }
-]
+const getExperience = () => {
+  const currentDate = new Date()
+  const currentJobDate = new Date('05.12.2022')
+  let months = (currentDate.getFullYear() - currentJobDate.getFullYear()) * 12
+  months -= currentJobDate.getMonth()
+  months += currentDate.getMonth()
+  const currentJobYears = Math.floor(months / 12)
+  const totalJobYears = Math.floor((months + 22) / 12)
+  const currentJobMonths = months - currentJobYears * 12
+  const totalJobMonths = (months + 22) - totalJobYears * 12
+  currentJobExperience.value = `${currentJobYears} ${getYearName(currentJobYears)} ${currentJobMonths} месяц${getMonthName(currentJobMonths)}`
+  totalJobExperience.value = `${totalJobYears} ${getYearName(totalJobYears)} ${totalJobMonths} месяц${getMonthName(totalJobMonths)}`
+}
+
+const getAge = () => {
+  let year = Number(new Date().getFullYear())-2000
+  return `${year} ${getYearName(year)}`
+}
+
+const getYearName = (number) => {
+  let localYear = number.toString()
+  let year = localYear.substr(localYear.length - 1)
+  if (Number(year) === 1) return 'год'
+  if (Number(year) > 1 && year < 5) return 'года'
+  if (Number(year) > 4) return 'лет'
+}
+
+const getMonthName = (month) => {
+  if (month === 1) return ''
+  if (month > 1 && month < 5) return 'а'
+  if (month > 4) return 'ев'
+}
+
+onMounted(()=>{
+  getExperience()
+})
 </script>
