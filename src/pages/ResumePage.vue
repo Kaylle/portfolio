@@ -1,12 +1,23 @@
 <template>
-  <q-img src="/images/arts/image1.png" height="200px">
+  <q-img
+    src="/images/arts/image1.png"
+    :height="$q.screen.width >= 700?'200px':'300px'"
+  >
     <div class="absolute-full flex items-center">
-      <div class="flex justify-between text-white" style="width: 100%">
+      <div
+        class="text-white"
+        :class="$q.screen.width >= 800?'flex':'column'"
+        style="width: 100%"
+      >
         <div class="column items-start q-gutter-y-md">
           <h4 class="text-bold">{{ resume.fio }}</h4>
           <h5>{{ resume.position }}</h5>
         </div>
-        <div class="items-end column q-gutter-y-sm">
+        <q-space v-if="$q.screen.width >= 800"/>
+        <div
+          class="column q-gutter-y-sm"
+          :class="$q.screen.width >= 800?'items-end':''"
+        >
           <span>{{ resume.city }}</span>
           <span>Телефон: {{ resume.phone }}</span>
           <span>Эмайл: {{ resume.email }}</span>
@@ -115,7 +126,7 @@ const getAge = () => {
 
 const getYearName = (number) => {
   let localYear = number.toString()
-  let year = localYear.substr(localYear.length - 1)
+  let year = localYear.substring(localYear.length - 1)
   if (Number(year) === 1) return 'год'
   if (Number(year) > 1 && year < 5) return 'года'
   if (Number(year) > 4) return 'лет'

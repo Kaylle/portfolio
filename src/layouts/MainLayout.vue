@@ -1,9 +1,11 @@
 <template>
   <q-layout view="lHh Lpr lff">
     <q-toolbar class="q-pa-md">
-      <q-avatar size="60px" class="q-mr-md">
-        <PhTerminalWindow/>
-      </q-avatar>
+      <router-link to="/">
+        <q-avatar size="60px" class="q-mr-md">
+          <PhTerminalWindow/>
+        </q-avatar>
+      </router-link>
       <template v-if="$q.screen.width>1024">
         <q-tabs
           indicator-color="transparent"

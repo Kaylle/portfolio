@@ -126,6 +126,7 @@
     </q-card>
   </q-dialog>
   <q-page class="q-pa-lg bg-dark text-white">
+    <span class="hidden">{{id}}</span>
     <div class="container">
       <div class="flex items-center q-my-lg no-wrap">
         <h5 class="text-h5">{{card.title}}</h5>
@@ -205,7 +206,7 @@ import {
   PhWhatsappLogo,
   PhX
 } from "@phosphor-icons/vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { data } from "boot/api"
 import { useRoute, useRouter } from "vue-router";
 import { copyToClipboard, useQuasar } from "quasar";
@@ -213,15 +214,19 @@ import { copyToClipboard, useQuasar } from "quasar";
 const $q = useQuasar()
 const route = useRoute()
 const router = useRouter()
-const id = route.params.id
 const projects = data
-const card = data.find(e=>e.slug === id)
 const slide = ref(0)
 const sharePopup = ref(false)
 const showPhoto = ref(false)
+const card = ref({
+  images: [],
+  id: 0,
+  description: '',
+  title: ''
+})
 const preview = ref({
   currentIndex: 1,
-  total: card.images.length,
+  total: 0,
   image: ''
 })
 
@@ -243,15 +248,29 @@ const copyLink = (link) => {
 const isBtnDisabled = (type) => {
   let searchId
   type === 'prev' ? searchId = -1 : searchId = 1
-  return !projects.find(e=>e.id === card.id + searchId)
+  return !projects.find(e=>e.id === card.value.id + searchId)
 }
 
 const getSlug = (type) => {
   let searchId
   type === 'prev' ? searchId = -1 : searchId = 1
-  let item = projects.find(e=>e.id === card.id + searchId)
+  let item = projects.find(e=>e.id === card.value.id + searchId)
   if (item)
     router.push(`/project/${item.slug}`)
+}
+
+const id = computed(()=>{
+  getData(route.params.id)
+  return route.params.id
+})
+
+const getData = (slug) => {
+  card.value = data.find(e=>e.slug === slug)
+  preview.value = {
+    currentIndex: 1,
+    total: card.value.images.length,
+    image: ''
+  }
 }
 
 const openImage = (image, index) => {
@@ -269,14 +288,14 @@ const switchPreview = (type) => {
     preview.value.currentIndex = preview.value.total
   else
     preview.value.currentIndex += searchId
-  preview.value.image = card.images[preview.value.currentIndex-1]
+  preview.value.image = card.value.images[preview.value.currentIndex-1]
 }
 
 const share = () => {
   let data = {
     url: window.location.href,
-    text: card.description,
-    title: card.title
+    text: card.value.description,
+    title: card.value.title
   }
   try {
     if ($q.screen.width < 500)
@@ -290,9 +309,9 @@ const share = () => {
 }
 
 const shareSocialMedia = (type) => {
-  let vkLink = `https://vk.com/share.php?url=${window.location}&title=${card.title}&image=https://${window.location.hostname}/icons/favicon-32x32.png`
-  let telegramLink = `https://t.me/share/url?url=${window.location}&text=${card.title}`
-  let whatsAppLink = `https://wa.me/?text=${card.title} - ${window.location}`
+  let vkLink = `https://vk.com/share.php?url=${window.location}&title=${card.value.title}&image=https://${window.location.hostname}/icons/favicon-32x32.png`
+  let telegramLink = `https://t.me/share/url?url=${window.location}&text=${card.value.title}`
+  let whatsAppLink = `https://wa.me/?text=${card.value.title} - ${window.location}`
   let link
   if (type === 'vk') link = vkLink
   if (type === 'telegram') link = telegramLink
