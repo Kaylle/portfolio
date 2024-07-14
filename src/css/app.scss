@@ -1,7 +1,8 @@
 @import "quasar.variables";
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -9,18 +10,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #1B2038;
+  background-color: $black;
 }
 
 ::-moz-selection {
   background: $primary;
-  color: white;
+  color: $white;
 }
 
 ::selection {
   background: $primary;
-  color: white;
+  color: $white;
 }
 
 a {
@@ -31,6 +31,14 @@ a {
 h1,h2,h3,h4,h5,h6 {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+.on-right {
+  margin-left: 8px;
+}
+
+.on-left {
+  margin-right: 8px;
 }
 
 .q-btn {
@@ -57,21 +65,13 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
-.on-right {
-  margin-left: 8px;
-}
-
-.on-left {
-  margin-right: 8px;
-}
-
 .q-avatar {
   background: $avatar;
   box-shadow: $card-shadow;
 }
 
 .q-toolbar {
-  color: white;
+  color: $white;
   background: $bg !important;
 }
 
