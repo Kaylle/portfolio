@@ -14,9 +14,41 @@
     </span>
     <div class="container">
       <div class="flex items-center q-my-lg no-wrap">
-        <h5 class="text-h5">
-          {{ card.title }}
-        </h5>
+        <div class="column">
+          <h5 class="text-h5">
+            {{ card.title }}
+          </h5>
+          <q-btn
+            v-if="card.linkToSite"
+            :href="card.linkToSite"
+            target="_blank"
+            label="Ссылка на действующий сайт"
+            no-caps
+            no-wrap
+            color="primary"
+            class="q-mt-md"
+          />
+          <q-btn
+            v-if="card.linkToGit"
+            :href="card.linkToGit"
+            target="_blank"
+            label="Ссылка на репозиторий"
+            no-caps
+            no-wrap
+            color="primary"
+            class="q-mt-md"
+          />
+          <q-btn
+            v-if="card.linkToFigma"
+            :href="card.linkToFigma"
+            target="_blank"
+            label="Ссылка на Figma"
+            no-caps
+            no-wrap
+            color="primary"
+            class="q-mt-md"
+          />
+        </div>
         <q-space/>
         <q-btn
           round

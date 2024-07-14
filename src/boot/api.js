@@ -10,8 +10,8 @@ const data = [
       '/images/projects/smaip/2.png',
       '/images/projects/smaip/3.png'
     ],
-    link2: 'link to site or git',
     link: ['Design', 'Frontend'],
+    linkToGit: 'https://github.com/Kaylle/smaip',
     badges: [
       'HTML5',
       'CSS3',
@@ -30,6 +30,8 @@ const data = [
       '/images/projects/lk/3.png'
     ],
     link: ['Design', 'Frontend'],
+    linkToGit: 'https://github.com/Kaylle/smaip_lk',
+    linkToFigma: 'https://www.figma.com/design/E4B8g1TTJcOvg5n8kQLNvP/LK_SMAIP?node-id=0-1&t=ffRVmb26cyzkcsza-0',
     badges: [
       'Vue3',
       'Vue-router',
@@ -162,6 +164,7 @@ const data = [
       '/images/projects/intech/3.png',
     ],
     link: ['Design','Main-frontend'],
+    linkToSite: 'https://intech.global/',
     badges: [
       'Figma',
       'Vue3',
