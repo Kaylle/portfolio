@@ -146,15 +146,15 @@ const share = () => {
   }
 }
 
-const metaData = {
-  title: 'Портфолио фронт-енд разработчика - Екатерина Куркина | Страница проекта',
-  meta: {
-    description: {
-      name: 'description',
-      content: 'Страница проекта'
+useMeta(() => {
+  return {
+    title: `Портфолио фронт-енд разработчика - Екатерина Куркина | ${card.value.title}`,
+    meta: {
+      description: {
+        name: 'description',
+        content: card.value.description
+      }
     }
   }
-}
-
-useMeta(metaData)
+})
 </script>
