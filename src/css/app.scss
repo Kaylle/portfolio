@@ -33,29 +33,36 @@ h1,h2,h3,h4,h5,h6 {
   margin-block-end: 0;
 }
 
-.q-btn:not(.q-btn--round) {
-  border-radius: 10px;
-  font-weight: 400;
-  padding: 8px 22px;
-  &:before {
-    box-shadow: $card-shadow;
+.q-btn {
+  &:not(.q-btn--round) {
+    border-radius: 10px;
+    font-weight: 400;
+    padding: 8px 22px;
+    &:before {
+      box-shadow: $card-shadow;
+    }
   }
-  & i {
+  & i{
     font-size: 18px !important;
-    margin-right: 8px;
+  }
+  &--flat {
+    &:before {
+      box-shadow: none !important;
+    }
+  }
+  &--round {
+    &:before {
+      box-shadow: $card-shadow;
+    }
   }
 }
 
-.q-btn--flat {
-  &:before {
-    box-shadow: none !important;
-  }
+.on-right {
+  margin-left: 8px;
 }
 
-.q-btn--round {
-  &:before {
-    box-shadow: $card-shadow;
-  }
+.on-left {
+  margin-right: 8px;
 }
 
 .q-avatar {
@@ -74,7 +81,7 @@ h1,h2,h3,h4,h5,h6 {
   border-radius: 10px;
   box-shadow: $card-shadow;
   border: 1px solid rgba(255,255,255,0.1);
-  &.f {
+  &.first-tabs {
     background: $gradient2;
   }
   & .q-tab,
@@ -123,6 +130,7 @@ h1,h2,h3,h4,h5,h6 {
     }
   }
 }
+
 .rounded-borders {
   border-radius: 10px !important;
 }
@@ -223,6 +231,8 @@ h1,h2,h3,h4,h5,h6 {
 
 .q-carousel {
   border-radius: 10px;
+  background: transparent;
+  height: 530px;
   & .q-carousel__thumbnail {
     position: relative;
     &:before {

@@ -1,16 +1,23 @@
 <template>
-  <q-card dark class="full-height">
+  <q-card
+    dark
+    class="full-height"
+  >
     <q-card-section class="column full-height">
       <q-img
+        @click="$router.push('/project/'+card.slug)"
         :ratio="16/9"
         class="rounded-borders hover"
         :src="card.image"
       >
         <div class="full-height full-width flex items-end hover-inner">
           <div class="q-gutter-sm flex reverse-wrap">
-            <q-badge v-for="badge in card.badges" :key="badge" rounded>
-              {{badge}}
-            </q-badge>
+            <q-badge
+              v-for="badge in card.badges"
+              :key="badge"
+              rounded
+              :label="badge"
+            />
           </div>
         </div>
       </q-img>
@@ -18,7 +25,10 @@
         {{ card.title }}
       </h6>
       <p class="text-grey text-description">
-        {{ card.description.slice(0,100) }}<span v-if="card.description.length > 100">...</span>
+        {{ card.description.slice(0,100) }}
+        <span v-if="card.description.length > 100">
+          ...
+        </span>
       </p>
       <q-space/>
       <div class="flex items-center">
@@ -29,12 +39,11 @@
             flat
             color="white"
             class="self-start"
-            padding="0"
+            padding="0 4px"
             no-caps
-          >
-            <PhUserCircle :size="19" color="white" weight="regular" />
-            <span class="q-ml-sm">{{ pos }}</span>
-          </q-btn>
+            icon="eva-person-outline"
+            :label="pos"
+          />
         </div>
         <q-space/>
         <q-btn
@@ -42,18 +51,15 @@
           color="primary"
           no-caps
           :to="'/project/'+card.slug"
-        >
-          <PhHandPointing :size="18" color="white" weight="regular" />
-          <span class="q-ml-sm">Подробнее</span>
-        </q-btn>
+          icon-right="eva-chevron-right-outline"
+          label="Подробнее"
+        />
       </div>
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-import { PhHandPointing, PhUserCircle } from "@phosphor-icons/vue";
-
 defineProps(['card'])
 </script>
 

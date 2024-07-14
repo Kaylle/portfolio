@@ -1,26 +1,28 @@
 <template>
   <q-img
     src="/images/arts/image1.png"
-    :height="$q.screen.width >= 700?'200px':'300px'"
+    class="resume-hero"
   >
     <div class="absolute-full flex items-center">
-      <div
-        class="text-white"
-        :class="$q.screen.width >= 800?'flex':'column'"
-        style="width: 100%"
-      >
+      <div class="resume-hero__wrapper">
         <div class="column items-start q-gutter-y-md">
-          <h4 class="text-bold">{{ resume.fio }}</h4>
-          <h5>{{ resume.position }}</h5>
+          <h4 class="text-bold">
+            {{ resume.fio }}
+          </h4>
+          <h5>
+            {{ resume.position }}
+          </h5>
         </div>
-        <q-space v-if="$q.screen.width >= 800"/>
-        <div
-          class="column q-gutter-y-sm"
-          :class="$q.screen.width >= 800?'items-end':''"
-        >
-          <span>{{ resume.city }}</span>
-          <span>Телефон: {{ resume.phone }}</span>
-          <span>Эмайл: {{ resume.email }}</span>
+        <div class="column q-gutter-y-sm">
+          <span>
+            {{ resume.city }}
+          </span>
+          <span>
+            Телефон: {{ resume.phone }}
+          </span>
+          <span>
+            Эл. почта: {{ resume.email }}
+          </span>
         </div>
       </div>
     </div>
@@ -31,8 +33,12 @@
         <h5>Биография</h5>
       </div>
       <div class="col-12 col-md-9">
-        <p>Женщина, {{ getAge() }}, родилась {{ resume.birthday }}</p>
-        <p>{{ resume.about }}</p>
+        <p>
+          Женщина, {{ getAge() }}, родилась {{ resume.birthday }}
+        </p>
+        <p>
+          {{ resume.about }}
+        </p>
         <q-btn
           label="Ссылка на резюме на hh.ru"
           no-caps
@@ -42,7 +48,9 @@
         />
       </div>
       <div class="col-12 col-md-3">
-        <h5>Опыт работы - {{totalJobExperience}}</h5>
+        <h5>
+          Опыт работы - {{totalJobExperience}}
+        </h5>
       </div>
       <div class="col-12 col-md-9 column q-gutter-y-lg">
         <div
@@ -51,7 +59,9 @@
           :key="job"
         >
           <div class="flex items-center">
-            <span class="q-mr-md">{{ job.period }}</span>
+            <span class="q-mr-md">
+              {{ job.period }}
+            </span>
             <q-chip
               no-caps
               unelevated
@@ -61,16 +71,24 @@
               :label="job.totalPeriod ? job.totalPeriod : currentJobExperience"
             />
           </div>
-          <div class="text-h5 q-mt-sm">{{ job.company.name }}</div>
+          <div class="text-h5 q-mt-sm">
+            {{ job.company.name }}
+          </div>
           <div class="text-grey q-mb-md">
             {{ job.company.city }}, {{ job.company.website }}
           </div>
-          <div class="text-bold q-mt-sm">{{ job.position }}</div>
-          <p>{{ job.description }}</p>
+          <div class="text-bold q-mt-sm">
+            {{ job.position }}
+          </div>
+          <p>
+            {{ job.description }}
+          </p>
         </div>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Ключевые навыки</h5>
+        <h5>
+          Ключевые навыки
+        </h5>
       </div>
       <div class="col-12 col-md-9">
         <div class="flex q-gutter-sm">
@@ -87,12 +105,20 @@
         </div>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Образование</h5>
+        <h5>
+          Образование
+        </h5>
       </div>
       <div class="col-12 col-md-9 column">
-        <span>{{ resume.education.type }}</span>
-        <span>{{ resume.education.organization }}</span>
-        <span>{{ resume.education.qualification }}</span>
+        <span>
+          {{ resume.education.type }}
+        </span>
+        <span>
+          {{ resume.education.organization }}
+        </span>
+        <span>
+          {{ resume.education.qualification }}
+        </span>
       </div>
     </div>
   </q-page>
@@ -101,6 +127,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { resume } from "boot/api";
+import { useMeta } from "quasar";
 
 const currentJobExperience = ref('')
 const totalJobExperience = ref('')
@@ -138,7 +165,56 @@ const getMonthName = (month) => {
   if (month > 4) return 'ев'
 }
 
+const metaData = {
+  title: 'Портфолио фронт-енд разработчика - Екатерина Куркина | Резюме',
+  meta: {
+    description: {
+      name: 'description',
+      content: 'Подробная информация обо мне и о моем рабочем опыте'
+    }
+  }
+}
+
+useMeta(metaData)
+
 onMounted(()=>{
   getExperience()
 })
 </script>
+
+<style lang="scss" scoped>
+@import "src/css/quasar.variables";
+
+.resume-hero {
+  height: 200px;
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    color: $white;
+    width: 100%;
+    justify-content: space-between;
+    & > div:last-child {
+      align-items: flex-end;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .resume-hero {
+    &__wrapper {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 16px;
+      & > div:last-child {
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .resume-hero {
+    height: 300px;
+  }
+}
+</style>

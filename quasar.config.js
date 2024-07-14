@@ -12,7 +12,9 @@ module.exports = configure(function (/* ctx */) {
     css: [
       'app.scss'
     ],
-    extras: [],
+    extras: [
+      'eva-icons'
+    ],
     build: {
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
@@ -26,7 +28,10 @@ module.exports = configure(function (/* ctx */) {
     framework: {
       config: {},
       lang: 'ru',
-      plugins: ["Notify"]
+      plugins: [
+        "Notify",
+        "Meta"
+      ]
     },
     animations: [],
     ssr: {

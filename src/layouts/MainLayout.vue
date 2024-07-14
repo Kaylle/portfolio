@@ -2,8 +2,14 @@
   <q-layout view="lHh Lpr lff">
     <q-toolbar class="q-pa-md">
       <router-link to="/">
-        <q-avatar size="60px" class="q-mr-md">
-          <PhTerminalWindow/>
+        <q-avatar
+          size="60px"
+          class="q-mr-md"
+        >
+          <q-img
+            src="/svg/logo.svg"
+            width="30px"
+          />
         </q-avatar>
       </router-link>
       <template v-if="$q.screen.width>1024">
@@ -11,7 +17,7 @@
           indicator-color="transparent"
           active-color="primary"
           no-caps
-          class="f"
+          class="first-tabs"
         >
           <q-route-tab
             v-for="item in menuLinks"
@@ -23,10 +29,12 @@
         <q-space/>
       </template>
       <router-link to="/">
-        <div class="column" :class="$q.screen.width>1024?'items-center':''">
-          <h5>Екатерина Куркина</h5>
+        <div class="column header-heading">
+          <h5>
+            Екатерина Куркина
+          </h5>
           <div class="text-caption text-grey">
-            Портфолио фронтенд разработчика
+            Портфолио фронт-енд разработчика
           </div>
         </div>
       </router-link>
@@ -43,7 +51,9 @@
           target="_blank"
           :href="link.link"
         >
-          {{link.label}}
+          <span>
+            {{link.label}}
+          </span>
           <q-tooltip class="bg-primary">
             {{ link.tooltip }}
           </q-tooltip>
@@ -53,8 +63,8 @@
         v-else
         round
         color="primary"
+        icon="eva-menu"
       >
-        <PhList/>
         <q-menu dark>
           <q-item>
             Меню
@@ -66,9 +76,18 @@
               clickable
               :to="item.link"
             >
-              <q-item-section>{{ item.label }}</q-item-section>
-              <q-item-section side class="bg-accent">
-                <PhLink color="white" :size="18"/>
+              <q-item-section>
+                {{ item.label }}
+              </q-item-section>
+              <q-item-section
+                side
+                class="bg-accent"
+              >
+                <q-icon
+                  name="eva-link-2"
+                  color="white"
+                  size="16px"
+                />
               </q-item-section>
             </q-item>
           </q-list>
@@ -81,41 +100,37 @@
               flat
               no-caps
             >
-              <span>{{ link.label }}</span>
+              <span>
+                {{ link.label }}
+              </span>
             </q-btn>
           </div>
         </q-menu>
       </q-btn>
     </q-toolbar>
     <q-footer>
-      <q-toolbar
-        :class="$q.screen.width<=600?'column':''"
-      >
+      <q-toolbar>
         <router-link
           to="/"
-          class="items-center"
-          :class="$q.screen.width<=600?'column justify-center':'flex'"
+          class="items-center footer-heading"
         >
-          <q-avatar
-            size="60px"
-            :class="$q.screen.width<=600?'q-mb-sm':'q-mr-md'"
-          >
-            <PhTerminalWindow/>
+          <q-avatar size="60px">
+            <q-img
+              src="/svg/logo.svg"
+              width="30px"
+            />
           </q-avatar>
-          <div
-            class="column"
-            :class="$q.screen.width>600?'':'items-center q-gutter-y-sm'"
-          >
-            <h5>Екатерина Куркина</h5>
+          <div class="column footer-heading__text">
+            <h5>
+              Екатерина Куркина
+            </h5>
             <div class="text-caption text-grey">
-              Портфолио фронтенд разработчика
+              Портфолио фронт-енд разработчика
             </div>
           </div>
         </router-link>
         <q-space/>
-        <span
-          :class="$q.screen.width<=600?'q-mt-sm':''"
-        >
+        <span class="footer-copyright">
           © {{ new Date().getFullYear() }} Kaylle
         </span>
       </q-toolbar>
@@ -127,8 +142,6 @@
 </template>
 
 <script setup>
-import { PhLink, PhList, PhTerminalWindow } from "@phosphor-icons/vue";
-
 const links = [
   {
     label: 'Почта',
@@ -163,5 +176,44 @@ const menuLinks = [
 .q-footer .q-toolbar {
   background: #1B2038 !important;
   padding: 32px;
+}
+
+.header-heading {
+  align-items: center;
+}
+
+.footer-heading {
+  display: flex;
+  flex-direction: row;
+  & .q-avatar {
+    margin-right: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-heading {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .q-footer .q-toolbar {
+    flex-direction: column;
+  }
+  .footer-heading {
+    flex-direction: column;
+    justify-content: center;
+    & .q-avatar {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+    &__text {
+      align-items: center;
+      gap: 8px;
+    }
+  }
+  .footer-copyright {
+    margin-top: 8px;
+  }
 }
 </style>

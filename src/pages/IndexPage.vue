@@ -1,17 +1,29 @@
 <template>
   <q-parallax src="/images/image 18.png">
     <template v-slot:media>
-      <video autoplay loop muted>
-        <source type="video/mp4" src="/images/1.mp4">
+      <video
+        autoplay
+        loop
+        muted
+      >
+        <source
+          type="video/mp4"
+          src="/images/hero-video.mp4"
+        >
       </video>
     </template>
     <div class="parallax-inner">
       <div>
-        <h1 class="text-h3">Добро пожаловать!</h1>
+        <h1 class="text-h3">
+          Добро пожаловать!
+        </h1>
         <p class="q-pa-lg">
-          Здесь я представляю свои работы, которые выполняла в течение своего пути как фронтенд разработчик. Моё портфолио включает в себя разнообразные проекты, которые создавала для клиентов и личных проектов. Для меня очень важно, чтобы каждый проект, над которым я работаю, был уникальным и отвечал потребностям клиента. Надеюсь, что вы оцените мои работы и найдёте здесь что-то интересное для себя!
+          Здесь я представляю свои работы, которые выполняла в течение своего пути как фронт-енд разработчик.
+          Моё портфолио включает в себя разнообразные проекты, которые создавала для клиентов и личных проектов.
+          Для меня очень важно, чтобы каждый проект, над которым я работаю, был уникальным и отвечал потребностям клиента.
+          Надеюсь, что вы оцените мои работы и найдёте здесь что-то интересное для себя!
         </p>
-        <div class="flex q-gutter-md justify-center">
+        <div class="flex q-gutter-md justify-center q-mb-lg">
           <q-chip
             v-for="n in tags"
             :key="n"
@@ -23,13 +35,25 @@
             class="cursor-pointer"
           />
         </div>
+        <q-btn
+          label="Ссылка на страницу 404 :)"
+          no-caps
+          color="primary"
+          to="/404"
+        />
       </div>
     </div>
   </q-parallax>
   <q-page class="q-pa-lg bg-dark text-white">
     <div class="flex items-center q-my-lg">
-      <PhImages :size="24" class="q-mr-sm"/>
-      <h5>Портфолио</h5>
+      <q-icon
+        name="eva-image-outline"
+        size="24px"
+        class="q-mr-sm"
+      />
+      <h5>
+        Портфолио
+      </h5>
       <q-space/>
       <q-select
         hide-dropdown-icon
@@ -43,7 +67,10 @@
         map-options
       >
         <template v-slot:prepend>
-          <PhFunnel :size="18"/>
+          <q-icon
+            name="eva-funnel-outline"
+            size="18px"
+          />
         </template>
       </q-select>
     </div>
@@ -53,7 +80,9 @@
         v-for="card in projects"
         :key="card"
       >
-        <ProjectPreviewCard :card="card"/>
+        <ProjectPreviewCard
+          :card="card"
+        />
       </div>
     </div>
   </q-page>
@@ -61,9 +90,9 @@
 
 <script setup>
 import ProjectPreviewCard from "components/ProjectPreviewCard.vue";
-import { PhFunnel, PhImages } from "@phosphor-icons/vue";
 import { data } from "boot/api"
 import { computed, ref } from "vue";
+import { useMeta } from "quasar";
 
 const tags = [
   {
@@ -112,7 +141,21 @@ const sortByID = (a,b) => {
 }
 
 const projects = computed(() => {
-  if (sort.value === 1) return data.sort(sortByTitle)
-  else return data.sort(sortByID)
+  if (sort.value === 1)
+    return data.sort(sortByTitle)
+  else
+    return data.sort(sortByID)
 })
+
+const metaData = {
+  title: 'Портфолио фронт-енд разработчика - Екатерина Куркина',
+  meta: {
+    description: {
+      name: 'description',
+      content: 'Здесь я представляю свои работы, которые выполняла в течение своего пути как фронт-енд разработчик. Моё портфолио включает в себя разнообразные проекты, которые создавала для клиентов и личных проектов. Для меня очень важно, чтобы каждый проект, над которым я работаю, был уникальным и отвечал потребностям клиента. Надеюсь, что вы оцените мои работы и найдёте здесь что-то интересное для себя!'
+    }
+  }
+}
+
+useMeta(metaData)
 </script>
