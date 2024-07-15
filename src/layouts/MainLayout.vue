@@ -51,23 +51,28 @@
           target="_blank"
           :href="link.link"
         >
-          <span>
-            {{link.label}}
-          </span>
-          <q-tooltip class="bg-primary">
-            {{ link.tooltip }}
-          </q-tooltip>
+          <q-item-section>
+            <span>
+              {{link.label}}
+            </span>
+            <q-tooltip class="bg-primary">
+              {{ link.tooltip }}
+            </q-tooltip>
+          </q-item-section>
         </q-item>
       </q-tabs>
       <q-btn
         v-else
         round
+        padding="10px"
         color="primary"
         icon="eva-menu"
       >
-        <q-menu dark>
+        <q-menu>
           <q-item>
-            Меню
+            <q-item-section class="text-caption">
+              Меню
+            </q-item-section>
           </q-item>
           <q-list>
             <q-item
@@ -173,9 +178,15 @@ const menuLinks = [
 </script>
 
 <style lang="scss" scoped>
-.q-footer .q-toolbar {
-  background: #1B2038 !important;
-  padding: 32px;
+@import "src/css/quasar.variables";
+
+.q-footer {
+  background: $newWhite !important;
+  & .q-toolbar {
+    background: #3636361F !important;
+    padding: 32px;
+    color: $black;
+  }
 }
 
 .header-heading {

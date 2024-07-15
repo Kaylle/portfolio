@@ -1,10 +1,8 @@
 <template>
-  <q-card
-    dark
-    class="full-height"
-  >
+  <q-card class="full-height">
     <q-card-section class="column full-height">
       <q-img
+        position="left"
         @click="$router.push('/project/'+card.slug)"
         :ratio="16/9"
         class="rounded-borders hover"
@@ -37,7 +35,6 @@
             v-for="pos in card.link"
             :key="pos"
             flat
-            color="white"
             class="self-start"
             padding="0 4px"
             no-caps

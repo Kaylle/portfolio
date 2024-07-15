@@ -1,24 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-$typography-font-family : 'Inter', sans-serif !default;
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+$typography-font-family : 'Unbounded', sans-serif !default;
 
-$primary   : #AB55CD;
-$secondary : #212A46;
-$accent    : #EB35DE;
-
-$grey      : #71778C;
-$dark      : #7582B1;
-$dark-page : #212A46;
-$white     : #FFFFFF;
-$black     : #0e132a;
-$menu      : #2D3555;
-
+//$newWhite  : #171618;
+//$grey      : #7b7b80;
+//$black     : #E8E8E8;
+$newWhite  : #E8E8E8;//use
+$grey      : #818080;//use
+$black     : #363636;//use
+$dark      : #363636;
+$dark-page : #1e1d1d;
+$primary   : #d099e3;//use
+$secondary : #D0719A;
+$accent    : #F29D89;//use
 $positive  : #48A575;
 $negative  : #D8788A;
 $info      : #2FA9F9;
 $warning   : #F2C94C;
 
-$card-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-$gradient: linear-gradient(250deg, #2B2D4B 0%, #2B2D4B0A 100%);
-$gradient2: linear-gradient(90deg, #2B2D4B0A 0%, #4E3D5B 100%);
-$bg: linear-gradient(45deg, #1B2038 0%, #252D4A 25.52%, #3C354C 49.48%, #242B48 74.48%, #1E213F 100%) fixed;
-$avatar: linear-gradient(147deg, #E07653 0%, #BC524F 22.92%, #D25689 53.44%, #BB61F7 82.14%, #3C9FCC 100%);
+$avatar2: linear-gradient(147deg, #A36ADD50, #D0719A50, #F29D8950, #EDD4C350);
+$avatar3: linear-gradient(147deg, #A36ADD, #D0719A, #F29D89, #EDD4C3);
+
+

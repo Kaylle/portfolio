@@ -1,9 +1,10 @@
 <template>
   <q-img
-    src="/images/arts/image1.png"
+    src="/images/hero-image.png"
     class="resume-hero"
+    height="300px"
   >
-    <div class="absolute-full flex items-center">
+    <div class="absolute-full flex items-center bg-transparent">
       <div class="resume-hero__wrapper">
         <div class="column items-start q-gutter-y-md">
           <h4 class="text-bold">
@@ -27,98 +28,115 @@
       </div>
     </div>
   </q-img>
-  <q-page class="q-pa-lg bg-dark text-white">
-    <div class="row q-col-gutter-xl">
-      <div class="col-12 col-md-3">
-        <h5>Биография</h5>
+  <q-page class="q-mt-xl">
+    <div class="container">
+      <div class="row q-col-gutter-xl">
+        <div class="col-12 col-md-3">
+          <h5>Биография</h5>
+        </div>
+        <div class="col-12 col-md-9">
+          <p>
+            Женщина, {{ getAge() }}, родилась {{ resume.birthday }}
+          </p>
+          <p>
+            {{ resume.about }}
+          </p>
+          <q-btn
+            label="Ссылка на резюме на hh.ru"
+            no-caps
+            color="primary"
+            target="_blank"
+            :href="resume.resumeLink"
+          />
+        </div>
       </div>
-      <div class="col-12 col-md-9">
-        <p>
-          Женщина, {{ getAge() }}, родилась {{ resume.birthday }}
-        </p>
-        <p>
-          {{ resume.about }}
-        </p>
-        <q-btn
-          label="Ссылка на резюме на hh.ru"
-          no-caps
-          color="primary"
-          target="_blank"
-          :href="resume.resumeLink"
-        />
+    </div>
+    <q-separator class="bg-dark q-my-xl"/>
+    <div class="container">
+      <div class="row q-col-gutter-xl">
+        <div class="col-12 col-md-3">
+          <h5>
+            Опыт работы - {{totalJobExperience}}
+          </h5>
+        </div>
+        <div class="col-12 col-md-9 column q-gutter-y-lg">
+          <div
+            class="column"
+            v-for="job in resume.experience"
+            :key="job"
+          >
+            <div class="flex items-center">
+              <span class="q-mr-md">
+                {{ job.period }}
+              </span>
+              <q-chip
+                no-caps
+                unelevated
+                color="white"
+                text-color="primary"
+                class="cursor-pointer"
+                :label="job.totalPeriod ? job.totalPeriod : currentJobExperience"
+              />
+            </div>
+            <div class="text-h5 q-mt-sm">
+              {{ job.company.name }}
+            </div>
+            <div class="text-grey q-mb-md">
+              {{ job.company.city }}, {{ job.company.website }}
+            </div>
+            <div class="text-bold q-mt-sm">
+              {{ job.position }}
+            </div>
+            <p>
+              {{ job.description }}
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="col-12 col-md-3">
-        <h5>
-          Опыт работы - {{totalJobExperience}}
-        </h5>
-      </div>
-      <div class="col-12 col-md-9 column q-gutter-y-lg">
-        <div
-          class="column"
-          v-for="job in resume.experience"
-          :key="job"
-        >
-          <div class="flex items-center">
-            <span class="q-mr-md">
-              {{ job.period }}
-            </span>
+    </div>
+    <q-separator class="bg-dark q-my-xl"/>
+    <div class="container">
+      <div class="row q-col-gutter-xl">
+        <div class="col-12 col-md-3">
+          <h5>
+            Ключевые навыки
+          </h5>
+        </div>
+        <div class="col-12 col-md-9">
+          <div class="flex q-gutter-sm">
             <q-chip
+              v-for="n in resume.tags"
+              :key="n"
+              :label="n"
               no-caps
               unelevated
               color="white"
               text-color="primary"
               class="cursor-pointer"
-              :label="job.totalPeriod ? job.totalPeriod : currentJobExperience"
             />
           </div>
-          <div class="text-h5 q-mt-sm">
-            {{ job.company.name }}
-          </div>
-          <div class="text-grey q-mb-md">
-            {{ job.company.city }}, {{ job.company.website }}
-          </div>
-          <div class="text-bold q-mt-sm">
-            {{ job.position }}
-          </div>
-          <p>
-            {{ job.description }}
-          </p>
         </div>
       </div>
-      <div class="col-12 col-md-3">
-        <h5>
-          Ключевые навыки
-        </h5>
-      </div>
-      <div class="col-12 col-md-9">
-        <div class="flex q-gutter-sm">
-          <q-chip
-            v-for="n in resume.tags"
-            :key="n"
-            :label="n"
-            no-caps
-            unelevated
-            color="white"
-            text-color="primary"
-            class="cursor-pointer"
-          />
+    </div>
+    <q-separator class="bg-dark q-my-xl"/>
+    <div class="container" style="padding-bottom: 48px">
+      <div class="row q-col-gutter-xl">
+        <div class="col-12 col-md-3">
+          <h5>
+            Образование
+          </h5>
         </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <h5>
-          Образование
-        </h5>
-      </div>
-      <div class="col-12 col-md-9 column">
-        <span>
-          {{ resume.education.type }}
-        </span>
-        <span>
-          {{ resume.education.organization }}
-        </span>
-        <span>
-          {{ resume.education.qualification }}
-        </span>
+        <div class="col-12 col-md-9 column">
+          <span>
+            {{ resume.education.type }}
+          </span>
+          <span>
+            {{ resume.education.organization }}
+          </span>
+          <span>
+            {{ resume.education.qualification }}
+          </span>
+        </div>
       </div>
     </div>
   </q-page>
@@ -143,7 +161,7 @@ const getExperience = () => {
   const currentJobMonths = months - currentJobYears * 12
   const totalJobMonths = (months + 22) - totalJobYears * 12
   currentJobExperience.value = `${currentJobYears} ${getYearName(currentJobYears)} ${currentJobMonths} месяц${getMonthName(currentJobMonths)}`
-  totalJobExperience.value = `${totalJobYears} ${getYearName(totalJobYears)} ${totalJobMonths} месяц${getMonthName(totalJobMonths)}`
+  totalJobExperience.value = `${totalJobYears} ${getYearName(totalJobYears)} ${totalJobMonths<=0?'':totalJobMonths+'месяц'+getMonthName(totalJobMonths)}`
 }
 
 const getAge = () => {
@@ -190,7 +208,7 @@ onMounted(()=>{
   &__wrapper {
     display: flex;
     flex-direction: row;
-    color: $white;
+    color: $black;
     width: 100%;
     justify-content: space-between;
     & > div:last-child {

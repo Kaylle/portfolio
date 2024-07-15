@@ -1,80 +1,76 @@
 <template>
-  <q-parallax src="/images/image 18.png">
-    <template v-slot:media>
-      <video
-        autoplay
-        loop
-        muted
-      >
-        <source
-          type="video/mp4"
-          src="/images/hero-video.mp4"
-        >
-      </video>
-    </template>
-    <div class="parallax-inner">
-      <div>
-        <h1 class="text-h3">
-          Добро пожаловать!
-        </h1>
-        <p class="q-pa-lg">
-          Здесь я представляю свои работы, которые выполняла в течение своего пути как фронт-енд разработчик.
-          Моё портфолио включает в себя разнообразные проекты, которые создавала для клиентов и личных проектов.
-          Для меня очень важно, чтобы каждый проект, над которым я работаю, был уникальным и отвечал потребностям клиента.
-          Надеюсь, что вы оцените мои работы и найдёте здесь что-то интересное для себя!
-        </p>
-        <div class="flex q-gutter-md justify-center q-mb-lg">
-          <q-chip
-            v-for="n in tags"
-            :key="n"
-            :label="n.label"
-            no-caps
-            unelevated
-            color="white"
-            text-color="primary"
-            class="cursor-pointer"
-          />
-        </div>
-        <q-btn
-          label="Ссылка на страницу 404 :)"
+  <q-page>
+    <div
+      class="absolute-top-left"
+      style="
+        left: 50px;
+        width: 800px;
+        height: 800px;
+        background-image: url('/images/1.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      "
+    />
+    <div class="container q-py-xl" style="z-index: 1;position: relative">
+      <h1 class="text-h3">
+        Добро пожаловать!
+      </h1>
+      <p class="q-py-lg">
+        Здесь я представляю свои работы, которые выполняла в течение своего пути как фронт-енд разработчик.
+        Моё портфолио включает в себя разнообразные проекты, которые создавала для клиентов и личных проектов.
+        Для меня очень важно, чтобы каждый проект, над которым я работаю, был уникальным и отвечал потребностям клиента.
+        Надеюсь, что вы оцените мои работы и найдёте здесь что-то интересное для себя!
+      </p>
+      <div class="flex q-gutter-md q-mb-lg">
+        <q-chip
+          v-for="n in tags"
+          :key="n"
+          :label="n.label"
           no-caps
-          color="primary"
-          to="/404"
+          unelevated
+          color="white"
+          text-color="primary"
+          class="cursor-pointer"
         />
       </div>
-    </div>
-  </q-parallax>
-  <q-page class="q-pa-lg bg-dark text-white">
-    <div class="flex items-center q-my-lg">
-      <q-icon
-        name="eva-image-outline"
-        size="24px"
-        class="q-mr-sm"
-      />
-      <h5>
-        Портфолио
-      </h5>
-      <q-space/>
-      <q-select
-        hide-dropdown-icon
-        dark
-        class="gradient-field"
-        standout
-        dense
-        v-model="sort"
-        :options="options"
-        emit-value
-        map-options
-      >
-        <template v-slot:prepend>
-          <q-icon
-            name="eva-funnel-outline"
-            size="18px"
+      <q-btn
+            label="Ссылка на страницу 404 :)"
+            no-caps
+            color="white"
+            text-color="black"
+            to="/404"
           />
-        </template>
-      </q-select>
     </div>
-    <div class="row q-col-gutter-md">
+    <div class="container">
+      <div class="flex items-center q-py-lg">
+        <q-icon
+          name="eva-image-outline"
+          size="24px"
+          class="q-mr-sm"
+        />
+        <h5>
+          Портфолио
+        </h5>
+        <q-space/>
+        <q-select
+          hide-dropdown-icon
+          outlined
+          dense
+          v-model="sort"
+          :options="options"
+          emit-value
+          map-options
+        >
+          <template v-slot:prepend>
+            <q-icon
+              name="eva-funnel-outline"
+              size="18px"
+            />
+          </template>
+        </q-select>
+      </div>
+    </div>
+    <div class="row">
       <div
         class="col-lg-3 col-md-4 col-sm-6 col-12"
         v-for="card in projects"

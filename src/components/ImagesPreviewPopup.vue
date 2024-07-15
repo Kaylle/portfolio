@@ -6,7 +6,7 @@
     full-width
     full-height
   >
-    <q-card class="fullscreen bg-black">
+    <q-card class="fullscreen bg-black text-white">
       <q-toolbar>
         <span class="q-mr-md">
           {{ preview.currentIndex }}/{{ preview.total }}

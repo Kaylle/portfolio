@@ -6,21 +6,25 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: $dark-page;
+  background-color: $newWhite;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $black;
+  background-color: $grey;
 }
 
 ::-moz-selection {
   background: $primary;
-  color: $white;
+  color: $newWhite;
 }
 
 ::selection {
   background: $primary;
-  color: $white;
+  color: $newWhite;
+}
+
+body {
+  color: $black;
 }
 
 a {
@@ -42,71 +46,49 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .q-btn {
-  &:not(.q-btn--round) {
-    border-radius: 10px;
-    font-weight: 400;
-    padding: 8px 22px;
-    &:before {
-      box-shadow: $card-shadow;
-    }
+  border-radius: 200px;
+  font-weight: 400;
+  padding: 8px 22px;
+  &:before {
+    box-shadow: none;
   }
   & i{
     font-size: 18px !important;
   }
-  &--flat {
-    &:before {
-      box-shadow: none !important;
-    }
-  }
-  &--round {
-    &:before {
-      box-shadow: $card-shadow;
-    }
-  }
 }
 
 .q-avatar {
-  background: $avatar;
-  box-shadow: $card-shadow;
-}
-
-.q-toolbar {
-  color: $white;
-  background: $bg !important;
+  background: $avatar3;
+  outline: 1px solid $black;
 }
 
 .q-tabs {
-  height: 69px;
-  background: $gradient;
-  border-radius: 10px;
-  box-shadow: $card-shadow;
-  border: 1px solid rgba(255,255,255,0.1);
-  &.first-tabs {
-    background: $gradient2;
-  }
+  border-radius: 200px;
+  outline: 1px solid $black;
   & .q-tab,
   & .q-item {
     height: 67px;
     padding: 0 32px;
-    align-items: center;
   }
 }
 
 .q-card {
   cursor: default;
   transition: all 0.5s ease !important;
-  background: $gradient;
-  border-radius: 10px;
-  box-shadow: $card-shadow;
-  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  border-left: 1px solid $black;
+  border-top: 1px solid $black;
   & .q-card__section {
-    padding: 24px;
+    padding: 44px;
     & .q-img {
-      box-shadow: $card-shadow;
+      box-shadow: none;
     }
   }
   & .hover {
     cursor: pointer;
+    border: 1px solid $black;
     & .hover-inner {
       opacity: 0;
       transition: all .3s ease;
@@ -117,12 +99,12 @@ h1,h2,h3,h4,h5,h6 {
   }
   &:hover {
     transition: all 0.5s ease !important;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
     & svg {
       transition: all 0.5s ease;
     }
     & .hover {
       & .hover-inner {
+        background: $avatar2;
         opacity: 1;
         transition: all .3s ease;
       }
@@ -132,56 +114,74 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .rounded-borders {
-  border-radius: 10px !important;
+  border-radius: 18px !important;
+}
+
+.text-h3, h3 {
+  font-weight: 900;
 }
 
 .text-h5, h5 {
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
 }
 
 .text-h6, h6 {
   font-size: 16px;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 600;
   line-height: normal;
 }
 
-.bg-menu {
-  background: $menu;
+.text-black {
+  color: $black !important;
 }
 
-.q-page.bg-dark {
-  background: $bg !important;
+.q-page,
+.q-toolbar {
+  background-size: 400px;
+  background-color: $newWhite;
+  background-image: url("/images/Bitmap.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  animation: shimmer .3s step-start infinite;
+  background-position: center;
+}
+
+@keyframes shimmer {
+  0% {
+    background-size: 400px;
+  }
+  50% {
+    background-size: 350px;
+  }
+  100% {
+    background-size: 400px;
+  }
 }
 
 .q-menu {
   min-width: 280px;
-  background: $menu;
-  border-radius: 10px;
-  box-shadow: $card-shadow;
-  & > .q-item {
-    color: $dark;
-    min-height: 34px;
-    height: 34px;
-    font-size: 12px;
-  }
-  & > .menu-btn {
-    height: 34px;
-    color: $dark;
-    & .q-btn {
-      font-size: 12px;
-    }
-  }
+  border-radius: 20px;
+  box-shadow: none;
+  background: $newWhite;
+  border: 1px solid $black;
+  //& > .menu-btn {
+  //  height: 34px;
+  //  color: $black;
+  //  & .q-btn {
+  //    font-size: 12px;
+  //    font-weight: 500;
+  //  }
+  //}
 }
 
 .q-list {
+  border-top: 1px solid $black;
   & .q-item {
-    background: $dark-page;
-    font-weight: 300;
-    border-bottom: 1px solid $menu;
+    border-bottom: 1px solid $black;
     & .q-item__section--side {
       border-radius: 100px;
       width: 31px;
@@ -192,90 +192,26 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
-.q-parallax__content > .parallax-inner {
-  background: rgba(0,0,0,.5);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & > div {
-    max-width: 830px;
-    text-align: center;
-    color: $white;
-  }
-}
-
 .container {
   margin: 0 auto;
   max-width: 1024px;
 }
 
-.gradient-field {
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+    max-width: 700px;
+  }
+  .text-h3, h3 {
+    font-size: 38px;
+  }
+}
+
+.q-select {
   & .q-field__control {
-    background: #493C67 !important;
     border-radius: 10px;
   }
   & .q-field__prepend {
-    color: $white !important;
-  }
-  &.q-field--highlighted {
-    & .q-field__control {
-      box-shadow: none;
-    }
-    & .q-field__native {
-      color: $white !important;
-    }
-  }
-}
-
-.q-carousel {
-  border-radius: 10px;
-  background: transparent;
-  height: 530px;
-  & .q-carousel__thumbnail {
-    position: relative;
-    &:before {
-      display: inline-block;
-      background: black;
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: "";
-    }
-  }
-}
-
-.round-shadow {
-  position: relative;
-  width: 70px;
-  cursor: pointer;
-  transition: all .3s ease;
-  & svg {
-    z-index: 1;
-  }
-  &:hover {
-    & svg {
-      transition: all .3s ease;
-      fill: $white;
-    }
-    &:before {
-      background: $accent;
-      transition: all .3s ease;
-    }
-  }
-  &:before {
-    content: '';
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    filter: blur(14px);
-    background: $primary;
-    position: absolute;
-    top: 0;
-    left: 23px;
-    transition: all .3s ease;
+    color: $black !important;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="bg-dark text-center"
+    class="text-center"
     @mousemove="eyeMovement"
   >
     <div class="box__ghost">
@@ -78,7 +78,7 @@ useMeta(metaData)
 @import "src/css/quasar.variables";
 
 .error {
-  background: $avatar;
+  background: $avatar3;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
@@ -102,7 +102,7 @@ useMeta(metaData)
         content: '';
         width: 12px;
         height: 4px;
-        background: $white;
+        background: $black;
         position: absolute;
         border-radius: 5px;
         bottom: 65px;
@@ -121,7 +121,7 @@ useMeta(metaData)
       top: 30px;
       height: 18px;
       width: 18px;
-      border: 4px solid $white;
+      border: 4px solid $black;
       border-radius: 50%;
       opacity: .2;
       animation: shine 4s ease-in-out 1.3s infinite;
@@ -134,7 +134,7 @@ useMeta(metaData)
         content: '';
         width: 12px;
         height: 4px;
-        background: $white;
+        background: $newWhite;
         position: absolute;
         border-radius: 5px;
         top: 5px;
@@ -155,7 +155,7 @@ useMeta(metaData)
         content: '';
         width: 15px;
         height: 4px;
-        background: $white;
+        background: $newWhite;
         position: absolute;
         border-radius: 5px;
         top: 10px;
@@ -174,7 +174,7 @@ useMeta(metaData)
       top: 40px;
       height: 12px;
       width: 12px;
-      border: 3px solid $white;
+      border: 3px solid $black;
       border-radius: 50%;
       opacity: .2;
       animation: shine 1.7s ease-in-out 7s infinite;
@@ -187,7 +187,7 @@ useMeta(metaData)
         content: '';
         width: 15px;
         height: 4px;
-        background: $white;
+        background: $black;
         position: absolute;
         border-radius: 5px;
         bottom: 65px;
@@ -218,7 +218,7 @@ useMeta(metaData)
       .box__eye-left {
         width: 12px;
         height: 12px;
-        background: $bg;
+        background: $newWhite;
         border-radius: 50%;
         margin: 0 10px;
         position: absolute;
@@ -227,7 +227,7 @@ useMeta(metaData)
       .box__eye-right {
         width: 12px;
         height: 12px;
-        background: $bg;
+        background: $newWhite;
         border-radius: 50%;
         margin: 0 10px;
         position: absolute;
@@ -237,7 +237,7 @@ useMeta(metaData)
   }
   .box__ghost-shadow {
     height: 20px;
-    box-shadow: 0 50px 15px 5px #3B3769;
+    box-shadow: 0 50px 15px 5px rgb(196, 111, 169);
     border-radius: 50%;
     margin: 0 auto;
     animation: small_big 3s ease-in-out infinite;

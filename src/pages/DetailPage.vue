@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-lg bg-dark text-white">
+  <q-page class="q-pt-md q-pb-xl">
     <SharePopup
       v-model="sharePopup"
       :card="card"
@@ -18,36 +18,6 @@
           <h5 class="text-h5">
             {{ card.title }}
           </h5>
-          <q-btn
-            v-if="card.linkToSite"
-            :href="card.linkToSite"
-            target="_blank"
-            label="Ссылка на действующий сайт"
-            no-caps
-            no-wrap
-            color="primary"
-            class="q-mt-md"
-          />
-          <q-btn
-            v-if="card.linkToGit"
-            :href="card.linkToGit"
-            target="_blank"
-            label="Ссылка на репозиторий"
-            no-caps
-            no-wrap
-            color="primary"
-            class="q-mt-md"
-          />
-          <q-btn
-            v-if="card.linkToFigma"
-            :href="card.linkToFigma"
-            target="_blank"
-            label="Ссылка на Figma"
-            no-caps
-            no-wrap
-            color="primary"
-            class="q-mt-md"
-          />
         </div>
         <q-space/>
         <q-btn
@@ -59,27 +29,132 @@
           icon="eva-share-outline"
         />
       </div>
-      <q-carousel
-        swipeable
-        transition-prev="slide-right"
-        transition-next="slide-left"
-        animated
-        v-model="slide"
-        thumbnails
-        infinite
+      <div
+        class="q-pa-xs"
+        style="border-radius: 10px;background:linear-gradient(147deg, #A36ADD50, #D0719A50, #F29D8950, #EDD4C350)"
       >
-        <q-carousel-slide
-          v-for="(n,i) in card.images"
-          :key="i"
-          :name="i"
-          :img-src="n"
-          @click="openImage(i)"
+        <div class="full-width flex items-center q-mb-xs q-px-md no-wrap overflow-hidden">
+          <div
+            class="flex items-center no-wrap"
+            style="gap: 8px"
+          >
+            <div
+              v-for="n in 3"
+              :key="n"
+              class="bg-primary"
+              style="padding: 6px;border-radius: 100px"
+            />
+            <q-icon
+              size="16px"
+              name="eva-arrow-back-outline"
+            />
+            <q-icon
+              size="16px"
+              color="grey"
+              name="eva-arrow-forward-outline"
+            />
+          </div>
+          <q-space/>
+          <div
+            class="flex items-center q-pa-sm no-wrap"
+            style="border-radius: 10px;background: #2D303913;gap: 48px"
+          >
+            <q-icon
+              name="eva-lock-outline"
+            />
+            <span
+              v-if="$q.screen.width>1024"
+              class="text-caption"
+            >
+              {{ card.title }}
+            </span>
+            <span v-else class="text-caption">
+              link
+            </span>
+            <q-icon
+              name="eva-link-2-outline"
+            />
+          </div>
+          <q-space/>
+          <div
+            class="flex items-center no-wrap"
+            style="gap: 8px"
+          >
+            <q-icon
+              size="16px"
+              name="eva-sync-outline"
+            />
+            <q-icon
+              size="16px"
+              name="eva-download-outline"
+            />
+            <q-icon
+              size="16px"
+              name="eva-plus-outline"
+            />
+          </div>
+        </div>
+        <q-carousel
+          swipeable
+          transition-prev="slide-right"
+          transition-next="slide-left"
+          animated
+          v-model="slide"
+          arrows
+          navigation
+          navigation-icon="eva-radio-button-off"
+          navigation-active-icon="eva-radio-button-on"
+          next-icon="eva-arrow-right-outline"
+          prev-icon="eva-arrow-left-outline"
+          control-color="grey"
+          control-type="regular"
+          infinite
+        >
+          <q-carousel-slide
+            v-for="(n,i) in card.images"
+            :key="i"
+            :name="i"
+            :img-src="n"
+            @click="openImage(i)"
+          />
+        </q-carousel>
+      </div>
+      <div class="q-gutter-sm flex q-pt-lg">
+        <q-btn
+          v-if="card.linkToSite"
+          :href="card.linkToSite"
+          target="_blank"
+          label="Ссылка на действующий сайт"
+          no-caps
+          no-wrap
+          color="grey"
+          class="q-mt-md"
         />
-      </q-carousel>
+        <q-btn
+          v-if="card.linkToGit"
+          :href="card.linkToGit"
+          target="_blank"
+          label="Ссылка на репозиторий"
+          no-caps
+          no-wrap
+          color="grey"
+          class="q-mt-md"
+        />
+        <q-btn
+          v-if="card.linkToFigma"
+          :href="card.linkToFigma"
+          target="_blank"
+          label="Ссылка на Figma"
+          no-caps
+          no-wrap
+          color="grey"
+          class="q-mt-md"
+        />
+      </div>
       <p class=" q-mt-lg text-grey">
         {{ card.description }}
       </p>
-      <div class="q-gutter-sm flex reverse-wrap">
+      <div class="q-gutter-sm flex">
         <q-badge
           v-for="badge in card.badges"
           :key="badge"
@@ -149,6 +224,8 @@ const getSlug = (type) => {
 }
 
 const id = computed(()=>{
+  // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+  slide.value=0
   getData(route.params.id)
   return route.params.id
 })
@@ -190,3 +267,38 @@ useMeta(() => {
   }
 })
 </script>
+
+<style lang="scss">
+@import "src/css/quasar.variables";
+
+.q-carousel {
+  border-radius: 10px;
+  background: transparent;
+  height: 508px;
+  & .q-carousel__thumbnail {
+    position: relative;
+    &:before {
+      display: inline-block;
+      background: black;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .q-carousel {
+    height: 323px;
+  }
+}
+
+@media (max-width: 765px) {
+  .q-carousel {
+    height: 48vw;
+  }
+}
+</style>

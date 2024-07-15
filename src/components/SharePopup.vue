@@ -1,7 +1,7 @@
 <template>
   <q-dialog>
-    <q-card class="bg-menu text-white rounded-borders">
-      <div class="flex items-center q-px-md q-py-sm">
+    <q-card class="bg-accent text-black rounded-borders" style="border: 1px solid black">
+      <div class="flex items-center q-px-lg q-py-md">
         <span>
           Поделиться ссылкой
         </span>
@@ -15,7 +15,7 @@
           round
         />
       </div>
-      <q-list separator>
+      <q-list class="bg-white">
         <q-item>
           <q-item-section
             class="justify-between q-py-md row-direction"
@@ -122,5 +122,10 @@ const shareSocialMedia = (type) => {
 
 .row-direction {
   flex-direction: row;
+}
+
+.round-shadow {
+  width: 33.33%;
+  cursor: pointer;
 }
 </style>
