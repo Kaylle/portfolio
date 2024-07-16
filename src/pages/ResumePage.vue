@@ -119,7 +119,7 @@
       </div>
     </div>
     <q-separator class="bg-dark q-my-xl"/>
-    <div class="container" style="padding-bottom: 48px">
+    <div class="container">
       <div class="row q-col-gutter-xl">
         <div class="col-12 col-md-3">
           <h5>
@@ -215,6 +215,10 @@ onMounted(()=>{
       align-items: flex-end;
     }
   }
+}
+
+.container:last-child {
+  padding-bottom: 48px;
 }
 
 @media (max-width: 800px) {

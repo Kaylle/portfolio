@@ -61,6 +61,12 @@ defineProps(['card'])
 </script>
 
 <style lang="scss" scoped>
+
+
+.q-card {
+  box-shadow: 1px 1px 0 1px $black;
+}
+
 .text-description {
   min-height: 80px;
 }

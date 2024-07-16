@@ -29,20 +29,16 @@
           icon="eva-share-outline"
         />
       </div>
-      <div
-        class="q-pa-xs"
-        style="border-radius: 10px;background:linear-gradient(147deg, #A36ADD50, #D0719A50, #F29D8950, #EDD4C350)"
-      >
+      <div class="q-pa-xs browser-wrapper">
         <div class="full-width flex items-center q-mb-xs q-px-md no-wrap overflow-hidden">
           <div
-            class="flex items-center no-wrap"
-            style="gap: 8px"
+            class="flex items-center no-wrap gap"
+            v-if="$q.screen.width>1024"
           >
             <div
               v-for="n in 3"
               :key="n"
-              class="bg-primary"
-              style="padding: 6px;border-radius: 100px"
+              class="bg-primary dot"
             />
             <q-icon
               size="16px"
@@ -55,10 +51,7 @@
             />
           </div>
           <q-space/>
-          <div
-            class="flex items-center q-pa-sm no-wrap"
-            style="border-radius: 10px;background: #2D303913;gap: 48px"
-          >
+          <div class="flex items-center q-pa-sm no-wrap address-bar">
             <q-icon
               name="eva-lock-outline"
             />
@@ -66,10 +59,10 @@
               v-if="$q.screen.width>1024"
               class="text-caption"
             >
-              {{ card.title }}
+              {{ card.linkToGit ? card.linkToGit : card.linkToSite ? card.linkToSite : 'https://test.com' }}
             </span>
             <span v-else class="text-caption">
-              link
+              https://test.com
             </span>
             <q-icon
               name="eva-link-2-outline"
@@ -77,8 +70,8 @@
           </div>
           <q-space/>
           <div
-            class="flex items-center no-wrap"
-            style="gap: 8px"
+            v-if="$q.screen.width>1024"
+            class="flex items-center no-wrap gap"
           >
             <q-icon
               size="16px"
@@ -272,22 +265,27 @@ useMeta(() => {
 @import "src/css/quasar.variables";
 
 .q-carousel {
-  border-radius: 10px;
-  background: transparent;
   height: 508px;
-  & .q-carousel__thumbnail {
-    position: relative;
-    &:before {
-      display: inline-block;
-      background: black;
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: "";
-    }
-  }
+}
+
+.browser-wrapper {
+  border-radius: 10px;
+  background: $avatar2;
+}
+
+.gap {
+  gap: 8px;
+}
+
+.dot {
+  padding: 6px;
+  border-radius: 100px;
+}
+
+.address-bar {
+  border-radius: 10px;
+  background: #00000013;
+  gap: 48px;
 }
 
 @media (max-width: 1024px) {

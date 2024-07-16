@@ -1,17 +1,7 @@
 <template>
   <q-page>
-    <div
-      class="absolute-top-left"
-      style="
-        left: 50px;
-        width: 800px;
-        height: 800px;
-        background-image: url('/images/1.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-      "
-    />
-    <div class="container q-py-xl" style="z-index: 1;position: relative">
+    <div class="absolute-top-left element"/>
+    <div class="container q-py-xl relative-position">
       <h1 class="text-h3">
         Добро пожаловать!
       </h1>
@@ -34,12 +24,12 @@
         />
       </div>
       <q-btn
-            label="Ссылка на страницу 404 :)"
-            no-caps
-            color="white"
-            text-color="black"
-            to="/404"
-          />
+        label="Ссылка на страницу 404 :)"
+        no-caps
+        color="white"
+        text-color="black"
+        to="/404"
+      />
     </div>
     <div class="container">
       <div class="flex items-center q-py-lg">
@@ -70,7 +60,7 @@
         </q-select>
       </div>
     </div>
-    <div class="row">
+    <div class="row cards-wrapper">
       <div
         class="col-lg-3 col-md-4 col-sm-6 col-12"
         v-for="card in projects"
@@ -155,3 +145,20 @@ const metaData = {
 
 useMeta(metaData)
 </script>
+
+<style lang="scss" scoped>
+@import "src/css/quasar.variables";
+
+.element {
+  left: 50px;
+  width: 800px;
+  height: 800px;
+  background-image: url('/images/1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.cards-wrapper {
+  border-top: 2px solid $black;
+}
+</style>

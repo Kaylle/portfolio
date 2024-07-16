@@ -65,16 +65,17 @@
         v-else
         round
         padding="10px"
+        class="no-shrink"
         color="primary"
         icon="eva-menu"
       >
-        <q-menu>
-          <q-item>
-            <q-item-section class="text-caption">
-              Меню
-            </q-item-section>
-          </q-item>
-          <q-list>
+        <q-menu :offset="[0,8]">
+          <q-list separator>
+            <q-item>
+              <q-item-section class="text-bold">
+                Меню
+              </q-item-section>
+            </q-item>
             <q-item
               v-for="item in menuLinks"
               :key="item"
@@ -95,21 +96,19 @@
                 />
               </q-item-section>
             </q-item>
-          </q-list>
-          <div class="menu-btn flex no-wrap justify-between">
-            <q-btn
-              padding="0 16px"
+            <q-item
               v-for="link in links"
               :key="link"
+              clickable
               :href="link.link"
-              flat
-              no-caps
+              target="_blank"
             >
-              <span>
+              <q-item-section>
                 {{ link.label }}
-              </span>
-            </q-btn>
-          </div>
+              </q-item-section>
+            </q-item>
+            <q-item/>
+          </q-list>
         </q-menu>
       </q-btn>
     </q-toolbar>
