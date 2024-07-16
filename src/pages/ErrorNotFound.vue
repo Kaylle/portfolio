@@ -244,6 +244,12 @@ useMeta(metaData)
   }
 }
 
+@media (max-width: 600px) {
+  .error {
+    font-size: 100px;
+  }
+}
+
 @keyframes up_down {
   0% {transform: translateY(5px);}
   50% {transform: translateY(15px);}

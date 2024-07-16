@@ -32,8 +32,9 @@
       />
     </div>
     <div class="container">
-      <div class="flex items-center q-py-lg">
+      <div class="flex items-center q-py-lg no-wrap">
         <q-icon
+          v-if="$q.screen.width>400"
           name="eva-image-outline"
           size="24px"
           class="q-mr-sm"
