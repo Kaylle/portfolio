@@ -1,16 +1,21 @@
-const data = [
+const projectsData = [
   {
     id: 1,
-    title: 'Сайт ИП Сидоров',
+    title: 'Website "SP Sidorov"',
     slug: 'smaip',
-    description: 'Этот веб-сайт был специально создан для ИП Сидорова, для того чтобы привлечь внимание новых клиентов, которые заинтересованы в услугах, предоставляемых этой компанией. На сайте можно найти разделы, содержащие контактную информацию, вакансии и документы, которые помогут получить всю необходимую информацию о компании и ее деятельности. Сайт был создан с использованием фреймворка Bootstrap и оформлен в светлых тонах, которые придают ему современный и профессиональный вид.',
+    description: 'This website was specifically created for Sole Proprietor Sidorov to help attract \n' +
+      'new clients interested in the company\'s services. It includes sections with \n' +
+      'contact information, job vacancies, and important documents that provide detailed \n' +
+      'insights into the company\'s operations. The site was built using the Bootstrap \n' +
+      'framework and features a light color scheme, giving it a modern and professional \n' +
+      'appearance.',
     image: '/images/projects/smaip/1.png',
     images: [
       '/images/projects/smaip/1.png',
       '/images/projects/smaip/2.png',
       '/images/projects/smaip/3.png'
     ],
-    link: ['Design', 'Frontend'],
+    link: ['Design', 'Front-end'],
     linkToGit: 'https://github.com/Kaylle/smaip',
     badges: [
       'HTML5',
@@ -20,16 +25,24 @@ const data = [
   },
   {
     id: 2,
-    title: 'Личный кабинет ИП Сидоров',
+    title: 'Dashboard "SP Sidorov"',
     slug: 'lk',
-    description: 'ИП Сидоров предоставляет услуги по вывозу некондиционной продукции на корм животных. Во время сотрудничества клиенты ежедневно отправляют накладные и фото продукции, а менеджеры в свою очередь прикрепляют их в систему Битрикс24 к нужному магазину. Это отнимает много времени, и было принято решение об автоматизации этих процессов. В личном кабинете клиенты могут увидеть основную информацию о магазинах, в которых они забирают продукцию. Также существуют разделы для прикрепления фотографий и накладных к магазину и другой функционал. Это был мой первый серьезный проект, дизайн которого я разрабатывала сама, а также выбирала инструменты для разработки. После внедрения этого продукта я собирала обратную связь и дорабатывала функционал. Такой опыт очень сильно прокачал мои soft-skills.',
+    description: 'The company provides animal feed disposal services by collecting unsellable \n' +
+      'goods. During cooperation, clients used to send invoices and product photos \n' +
+      'daily, and managers would then manually attach them in Bitrix24 to the \n' +
+      'appropriate store. This process was time-consuming, so we decided to automate it. \n' +
+      'The client dashboard now allows users to view store details and upload photos and \n' +
+      'invoices directly. This was my first major project, for which I designed the UI \n' +
+      'entirely myself and chose the tech stack. After launch, I collected user feedback \n' +
+      'and continued to improve the functionality, which significantly enhanced my soft \n' +
+      'skills.',
     image: '/images/projects/lk/cover.png',
     images: [
       '/images/projects/lk/1.png',
       '/images/projects/lk/2.png',
       '/images/projects/lk/3.png'
     ],
-    link: ['Design', 'Frontend'],
+    link: ['Design', 'Front-end'],
     linkToGit: 'https://github.com/Kaylle/smaip_lk',
     linkToFigma: 'https://www.figma.com/design/E4B8g1TTJcOvg5n8kQLNvP/LK_SMAIP?node-id=0-1&t=ffRVmb26cyzkcsza-0',
     badges: [
@@ -44,9 +57,18 @@ const data = [
   },
   {
     id: 3,
-    title: 'ISA - Информационная система академии',
+    title: 'ISA - CRM System for the Academy',
     slug: 'isa',
-    description: 'Проект по разработке CRM Информационной системы академии. Компания “ООО Информационные технологии” предоставляет услуги по обучению детей курсам по программированию. Менеджеры и преподаватели столкнулись с тем, что им не подходят многие CRM системы для ведения учета. Для таких целей решили разработать свою систему ИСА. Этот проект начинался до моего прихода в компанию, но был задвинут в “дальний угол”. Мне он показался интересным, и по моей инициативе проект был возобновлен. Я разработала дизайн в Figma и приступила к переписыванию старых наработок. Мне пришлось обновлять проект с Vue2 на Vue3 и также обновлять версию с фреймворка Quasar. В ИСА есть такие разделы, как Расписание, Клиенты, Лиды, Задачи, Финансы и многие другие. На данный момент компания пытается подать документы на регистрацию ПО и стать вендором.',
+    description: 'The company LLC “Information Technologies” offers programming courses for \n' +
+      'children. Managers and teachers realized that most existing CRM systems did not \n' +
+      'meet their needs, so the company decided to build its own CRM — ISA (Information \n' +
+      'System of the Academy). Although the project had started before I joined the \n' +
+      'company, it was eventually shelved. I found it interesting and revived it on my \n' +
+      'own initiative. I created a new design in Figma and began rewriting the old \n' +
+      'codebase, upgrading the project from Vue 2 to Vue 3, and also updating the Quasar \n' +
+      'framework. ISA includes modules such as Schedule, Clients, Leads, Tasks, \n' +
+      'Finances, and more. The company is currently working on registering the software \n' +
+      'as an official product and becoming a vendor.',
     image: '/images/projects/isa/cover.png',
     images: [
       '/images/projects/isa/1.png',
@@ -56,7 +78,7 @@ const data = [
       '/images/projects/isa/5.png',
       '/images/projects/isa/6.png'
     ],
-    link: ['Design', 'Main-frontend'],
+    link: ['Design', 'Lead Front-end'],
     badges: [
       'Vue3',
       'Quasar',
@@ -70,9 +92,15 @@ const data = [
   },
   {
     id: 4,
-    title: 'Quantum - платформа для курсов',
+    title: 'Course Platform “Quantum”',
     slug: 'quantum',
-    description: 'Проект платформы для курсов Quantum был начат до моего прихода в компанию “ООО Информационные технологии”. Изначально этот проект был связан с другим (ИСА), и поэтому было принято решение оставить мой дизайн с предыдущего проекта, добавив небольшие правки. Я выбрала более теплую цветовую палитру и решила сменить круглые элементы на квадратные с небольшим скруглением. Я в этом проекте являюсь ведущим фронтенд-разработчиком, который ведет план разработки и помогает другому фронтенду-стажеру. Это мой первый опыт ведения проекта в качестве ведущего фронтенд-разработчика.',
+    description: 'This project was also started before I joined LLC “Information Technologies” and \n' +
+      'was initially connected to the ISA CRM. We decided to reuse and adapt my existing \n' +
+      'design with slight modifications. I chose a warmer color palette and changed \n' +
+      'rounded elements to squares with subtle corner rounding. On this project, I’m \n' +
+      'working as the lead front-end developer, responsible for project planning and \n' +
+      'mentoring a front-end intern. This is my first experience leading a front-end \n' +
+      'project.',
     image: '/images/projects/quantum/cover.png',
     images: [
       '/images/projects/quantum/1.png',
@@ -81,7 +109,7 @@ const data = [
       '/images/projects/quantum/4.png',
       '/images/projects/quantum/5.png'
     ],
-    link: ['Design', 'Main-frontend'],
+    link: ['Design', 'Lead Front-end'],
     badges: [
       'Vue3',
       'Quasar',
@@ -95,14 +123,18 @@ const data = [
   },
   {
     id: 5,
-    title: 'HR CRM - Кабинет заказчика',
+    title: 'Client Dashboard "HR CRM"',
     slug: 'hr',
-    description: '"Кабинет Заказчика" для HR CRM - это отдельный интерфейс для менеджеров, который должен дать возможность добавить заявку, увидеть свои встречи с кандидатами и оставить информацию о встрече по каждому кандидату. В нем есть разделы: "Календарь" с предстоящими собеседованиями, "Аккаунт" и "Заявки" - где заявки на подбор персонала представлены в табличном виде.',
+    description: 'This is a custom interface for HR managers, allowing them to submit new requests, \n' +
+      'view meetings with candidates, and record feedback for each candidate. The \n' +
+      'interface includes sections like “Calendar” (with upcoming interviews), \n' +
+      '“Account”, and “Requests”, where recruitment requests are organized in a tabular \n' +
+      'format.',
     image: '/images/projects/hr/1.png',
     images: [
       '/images/projects/hr/1.png'
     ],
-    link: ['Frontend'],
+    link: ['Front-end'],
     badges: [
       'Vue3',
       'Quasar',
@@ -115,9 +147,12 @@ const data = [
   },
   {
     id: 6,
-    title: 'Telemilk - Рекламная биржа Telegram',
+    title: 'Telegram Native Ad Marketplace',
     slug: 'telemilk',
-    description: 'Биржи покупки/продажи нативной рекламы в Телеграм позволяют владельцам каналов и рекламодателям находить друг друга и оформлять сделки в удобном интерфейсе. Именно таким проектом я и занималась. У нас была команда из пяти человек: Владелец поекта, Проект-менеджер, Бекенд разработчик, Дизайнер и Фронтенд разработчик (я).',
+    description: 'Telegram ad marketplaces allow channel owners and advertisers to connect and \n' +
+      'manage deals through a user-friendly interface. I worked on exactly such a \n' +
+      'project. Our team consisted of five members: a project owner, project manager, \n' +
+      'back-end developer, designer, and front-end developer (me).',
     image: '/images/projects/telemilk/1.png',
     images: [
       '/images/projects/telemilk/2.png',
@@ -125,7 +160,7 @@ const data = [
       '/images/projects/telemilk/4.png',
       '/images/projects/telemilk/5.png'
     ],
-    link: ['Frontend'],
+    link: ['Front-end'],
     badges: [
       'Vue3',
       'Vue-router',
@@ -136,12 +171,16 @@ const data = [
   },
   {
     id: 7,
-    title: 'Space Bonus - система лояльности',
+    title: 'Loyalty Program Module "Space Bonus"',
     slug: 'sb',
-    description: 'Программа лояльности — основной модуль экосистемы для стимулирования и поощрения постоянных клиентов, который основан на предоставлении скидки или бонусов за покупки в компании. Я работала над продуктом, идея которого - предоставлять возможность компаниям настраивать свою систему скидок и программы лояльности и отслеживать статистику по привлечению новых клиентов за счет такого маркетинга.',
+    description: 'A core module of a client ecosystem, this tool was designed to reward and retain \n' +
+      'customers through discounts or bonuses for purchases. I worked on a system that \n' +
+      'allows businesses to set up custom discount and loyalty rules and track marketing \n' +
+      'performance, especially in terms of new client acquisition through loyalty \n' +
+      'incentives.',
     image: '/images/projects/sb/1.png',
     images: ['/images/projects/sb/1.png'],
-    link: ['Main-frontend'],
+    link: ['Lead Front-end'],
     badges: [
       'Vue3',
       'Quasar',
@@ -153,16 +192,19 @@ const data = [
   },
   {
     id: 8,
-    title: 'Корпоративный сайт INTECH',
+    title: 'Corporate Website for LLC “Information Technologies”',
     slug: 'intech',
-    description: 'В нашей компании "ООО Информационные технологии" возникла потребность создать корпоративный сайт. Мне было поручено предоставить варианты дизайна лендинга и сверстать его. После представленных вариантов, был выбран тот, который в итоге и был реализован. Сайт выполнен в темной теме. Так же на сайте есть функционал, отправляющий данные из форм в CRM Bitrix24.',
+    description: 'Our company needed a new corporate landing page, and I was tasked with designing \n' +
+      'and developing it. I provided several design options, one of which was selected \n' +
+      'and implemented. The final version features a dark theme and includes integration \n' +
+      'with Bitrix24 CRM, sending form data directly to the system.',
     image: '/images/projects/intech/cover.png',
     images: [
       '/images/projects/intech/1.png',
       '/images/projects/intech/2.png',
       '/images/projects/intech/3.png',
     ],
-    link: ['Design','Main-frontend'],
+    link: ['Design','Lead Front-end'],
     linkToSite: 'https://intech.global/',
     badges: [
       'Figma',
@@ -176,67 +218,126 @@ const data = [
 ]
 
 const resume = {
-  fio: 'Куркина Екатерина Евгеньевна',
-  position: 'Frontend-разработчик',
-  city: 'Санкт-Петербург',
+  fio: 'Kurkina Ekaterina',
+  position: 'Front-end developer',
+  city: 'Saint-Petersburg, Russia | Open to relocation | Available for remote work',
   phone: '+7 (996) 590-14-45',
   email: 'kaylle@yandex.ru',
-  birthday: '9 января 2000 г.',
-  about: 'Я обожаю играть в компьютерные игры, и этот хобби приносит мне не только удовольствие, но и помогает развивать навыки, которые могу использовать в профессиональной сфере. Кроме того, я регулярно занимаюсь физическими упражнениями в спортзале, чтобы поддерживать свою форму и здоровье. Я также имею некоторый опыт работы с нейронными сетями и даже использовала Midjourney для создания дизайна своего портфолио-сайта. Это должно позволить мне продемонстрировать свои навыки в области веб-дизайна и улучшить свои шансы на рынке труда. Моей мечтой является работа в крупной и прогрессивной компании. Я стремлюсь стать активным участником жизни компании и принимать участие в различных проектах. Это, в свою очередь, будет мотивировать меня искать новые знакомства и расширять свой круг общения в большом городе. Я уверена, что это поможет мне расти как профессионал и как личность.',
-  resumeLink: 'https://spb.hh.ru/applicant/resumes/view?resume=83ff72eeff09b6e22f0039ed1f374148427970',
+  linkedin: 'https://www.linkedin.com/in/kaylle',
+  github: 'https://github.com/kaylle',
+  birthday: 'January 9, 2000',
+  about: 'I\'m passionate about <b>video games</b> — this hobby not only brings me joy ' +
+    'but also helps me develop skills that I apply in my professional work. I ' +
+    'also regularly practice <b>dancing</b> to stay in shape and maintain a ' +
+    'healthy lifestyle. In addition, I have some experience with <b>neural ' +
+    'networks</b> — for example, I used <b>Midjourney to design</b> this portfolio ' +
+    'website. My dream is to work in a <b>large and progressive company</b> ' +
+    'where I can be an <b>active contributor</b> to projects and team life. I’m ' +
+    'sure this will help me grow both <b>professionally and personally</b>.',
   experience: [
     {
-      period: 'Май 2022 — по настоящее время',
+      period: 'May 2022 — present',
       totalPeriod: null,
       company: {
-        name: 'ООО Информационные Технологии',
-        city: 'Сыктывкар',
+        name: 'LLS "Information Technologies"',
+        city: 'Syktyvkar',
         website: 'it-rkomi.ru'
       },
-      position: 'Frontend-разработчик',
-      description: 'На моем текущем месте работы у меня есть множество задач и проектов, над которыми я активно тружусь. В настоящее время я веду четыре проекта, в трёх я выступаю ведущим фронтенд-разработчиком. Кроме этого, я также курирую стажера по фронтенду, помогая ему развиваться в своей работе. Мой стек технологий включает в себя такие популярные инструменты, как Vue, Vuex, Vue-router, Quasar-framework, Docker и Node. Я также работаю с такими программами и приложениями, как WebStorm, Figma, Postman и Notion. В прошлом я проявляла инициативу в отрисовке и вёрстке дизайна для двух смежных проектов. Все шаблоны и вёрстку обязательно делаю адаптивными. Так же занималась вёрсткой по шаблонам других дизайнеров из фигмы. В рамках своей работы, я разрабатывала внутренний мерч для компании. Это включало в себя создание концепции дизайна худи и футболки в белой и чёрной вариациях.'
+      position: 'Front-end developer',
+      description: 'At my current job, I’m involved in multiple tasks and projects. Right now, I’m ' +
+        'leading <b>4 projects</b>, where I serve as the <b>lead front-end developer</b> on ' +
+        'three of them. I also <b>mentor a front-end intern</b>, helping them improve and ' +
+        'develop their skills. My <b>tech stack</b> includes widely used tools and ' +
+        'frameworks such as <b>Vue 3, Pinia, Vue Router, Quasar Framework, Docker</b>, and ' +
+        '<b>Node</b>. I work with <b>WebStorm, Figma, Postman</b>, and <b>Notion</b> on a ' +
+        'daily basis. Previously, I took the initiative to <b>design and code UI/UX</b> for ' +
+        'two related projects. All layouts I create are always <b>fully responsive</b>. I ' +
+        'also implement designs from other <b>Figma</b> files provided by designers.'
     },
     {
-      period: 'Август 2020 — Май 2022',
-      totalPeriod: '1 год 10 месяцев',
+      period: 'August 2020 — May 2022',
+      totalPeriod: '1 year 10 months',
       company: {
-        name: 'ИП Сидоров МА',
-        city: 'Сыктывкар',
+        name: 'SP "Sidorov MA"',
+        city: 'Syktyvkar',
         website: 'www.smaip.ru'
       },
-      position: 'IT-специалист',
-      description: 'Мои обязанности на предыдущей работе включали работу с бизнес-процессами Bitrix24, в том числе написание кастомных активностей. Я также занималась выгрузкой и загрузкой данных из Битрикса с помощью CREST API на PHP и JavaScript, что помогало мне автоматизировать рутинные задачи и сокращать время их выполнения. Кроме того, я работала с загрузкой статистики в таблицы SQL и выводом данных из Битрикса и таблиц SQL на свёрстанные HTML страницы. Это требовало от меня знаний HTML5, CSS3, JavaScript(ES6+) и умения работать с различными типами данных. Мне также приходилось создавать инструменты (веб-приложения) для менеджеров, которые позволяли им эффективно справляться с задачами, что повышало производительность. Это требовало от меня умения разрабатывать интуитивно понятный интерфейс и учитывать потребности конечного пользователя. Наконец, я работала над созданием личного кабинета для клиентов с собственным дизайном и адаптивной вёрсткой на Vue3. Это позволяло моим клиентам управлять своими аккаунтами и более удобно взаимодействовать с нашими услугами(продажа вторсырья для фермеров). Работа над этим проектом требовала от меня глубоких знаний в области фронтенд-разработки и умения создавать сложные интерфейсы.'
+      position: 'IT specialist',
+      description: 'In my <b>previous role</b>, I worked with <b>Bitrix24 business processes</b>, ' +
+        'including creating <b>custom activities</b>. I handled data import/export using ' +
+        'the <b>CREST API</b> with <b>PHP</b> and <b>JavaScript</b>, which helped automate ' +
+        'routine tasks and significantly reduce time spent on them. I also uploaded <b>' +
+        'statistics into SQL tables</b> and displayed data from Bitrix and SQL on custom ' +
+        'HTML pages. This required proficiency in <b>HTML5, CSS3</b>, and <b>JavaScript ' +
+        '(ES6+)</b>, as well as working with various data types. I developed <b>internal ' +
+        'tools</b> (web apps) for managers to help them complete tasks more efficiently — ' +
+        'improving overall productivity. This involved designing <b>user-friendly ' +
+        'interfaces</b> and understanding the needs of the <b>end user</b>. One of the key ' +
+        'projects I worked on was a <b>client dashboard</b>, built with <b>Vue 3</b>, ' +
+        'featuring a custom design and adaptive layout, allowing clients to manage their ' +
+        'accounts and interact with our recycling services for farmers. This project ' +
+        'required <b>deep front-end expertise</b> and the ability to create <b>complex UI ' +
+        'components</b>.'
     }
   ],
   tags: [
     'HTML5',
     'CSS3',
-    'SQL',
-    'Git',
-    'PHP',
     'Sass',
-    'VueJS',
-    'JavaScript',
-    'server-side rendering',
-    'Vuex',
-    'Figma',
     'SCSS',
+    'Git',
+    'SQL',
+    'JavaScript',
+    'TypeScript',
+    'Docker',
+    'Vue3',
     'Vue-Router',
+    'Pinia',
+    'SSR',
+    'Websockets',
     'Webpack',
     'Vite',
-    'Websocket',
-    'Bitrix Rest Api',
-    'Bitrix24 Бизнес-процессы',
     'Node.js',
     'Nginx',
-    'TypeScript',
-    'Docker'
+    'Figma',
+    'Jest'
   ],
   education: {
-    type: 'Среднее специальное образование',
-    organization: 'Сыктывкарский кооперативный техникум (2020г)',
-    qualification: 'Прикладная информатика, Техник-программист'
+    type: 'Vocational Secondary Education',
+    organization: 'Syktyvkar Cooperative College (2020)',
+    qualification: 'Applied Informatics, Software Technician'
   }
 }
 
-export { data, resume }
+const contactInfo = [
+  {
+    icon: 'eva-email-outline',
+    text: 'kaylle@yandex.ru',
+    link: 'mailto:kaylle@yandex.ru'
+  },
+  {
+    icon: 'eva-phone-outline',
+    text: '+7 (996) 590-14-45',
+    link: 'tel:79965901445'
+  },
+  {
+    icon: 'eva-linkedin-outline',
+    text: '@kaylle',
+    link: 'https://www.linkedin.com/in/kaylle'
+  },
+  {
+    icon: 'eva-github-outline',
+    text: 'github.com/kaylle',
+    link: 'https://github.com/kaylle'
+  },
+  {
+    icon: 'eva-pin-outline',
+    text: 'Saint-Petersburg, Russia'
+  },
+  {
+    icon: 'eva-pin-outline',
+    text: 'Open to relocation | remote work'
+  }
+]
+
+export { projectsData, resume, contactInfo }

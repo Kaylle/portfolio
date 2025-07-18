@@ -1,176 +1,140 @@
 <template>
-  <q-layout view="lHh Lpr lff">
-    <q-toolbar class="q-pa-md">
-      <router-link to="/">
-        <q-avatar
-          size="60px"
-          class="q-mr-md"
-        >
-          <q-img
-            src="/svg/logo.svg"
-            width="30px"
-          />
-        </q-avatar>
-      </router-link>
-      <template v-if="$q.screen.width>1024">
-        <q-tabs
-          indicator-color="transparent"
-          active-color="primary"
-          no-caps
-          class="first-tabs"
-        >
-          <q-route-tab
-            v-for="item in menuLinks"
-            :key="item"
-            :to="item.link"
-            :label="item.label"
-          />
-        </q-tabs>
-        <q-space/>
-      </template>
-      <router-link to="/">
-        <div class="column header-heading">
-          <h5>
-            Екатерина Куркина
-          </h5>
-          <div class="text-caption text-grey">
-            Портфолио фронт-енд разработчика
-          </div>
-        </div>
-      </router-link>
-      <q-space/>
-      <q-tabs
-        indicator-color="transparent"
-        no-caps
-        v-if="$q.screen.width>1024"
+  <div class="main-container">
+    <q-layout
+      view="hHh lpr fff"
+      container
+    >
+      <q-header
+        v-scroll="onScroll"
+        :class="isOnTop?'header-white':''"
       >
-        <q-item
-          clickable
-          v-for="link in links"
-          :key="link"
-          target="_blank"
-          :href="link.link"
-        >
-          <q-item-section>
-            <span>
-              {{link.label}}
-            </span>
-            <q-tooltip class="bg-primary">
-              {{ link.tooltip }}
-            </q-tooltip>
-          </q-item-section>
-        </q-item>
-      </q-tabs>
-      <q-btn
-        v-else
-        round
-        padding="10px"
-        class="no-shrink"
-        color="primary"
-        icon="eva-menu"
-      >
-        <q-menu :offset="[0,8]">
-          <q-list separator>
-            <q-item>
-              <q-item-section class="text-bold">
-                Меню
-              </q-item-section>
-            </q-item>
-            <q-item
+        <q-toolbar>
+          <router-link
+            to="/"
+            class="flex items-center"
+          >
+            <q-avatar size="60px">
+              <q-img src="/images/logo.png" />
+            </q-avatar>
+            <div class="column q-ml-md">
+              <h3>
+                Kate Kurkina
+              </h3>
+              <div>
+                Front-end developer
+              </div>
+            </div>
+          </router-link>
+          <q-space/>
+          <q-tabs
+            v-if="$q.screen.width>1024"
+            indicator-color="transparent"
+            no-caps
+          >
+            <q-route-tab
               v-for="item in menuLinks"
               :key="item"
-              clickable
               :to="item.link"
-            >
-              <q-item-section>
-                {{ item.label }}
-              </q-item-section>
-              <q-item-section
-                side
-                class="bg-accent"
-              >
-                <q-icon
-                  name="eva-link-2"
-                  color="white"
-                  size="16px"
-                />
-              </q-item-section>
-            </q-item>
-            <q-item
-              v-for="link in links"
-              :key="link"
-              clickable
-              :href="link.link"
-              target="_blank"
-            >
-              <q-item-section>
-                {{ link.label }}
-              </q-item-section>
-            </q-item>
-            <q-item/>
-          </q-list>
-        </q-menu>
-      </q-btn>
-    </q-toolbar>
-    <q-footer>
-      <q-toolbar>
-        <router-link
-          to="/"
-          class="items-center footer-heading"
-        >
-          <q-avatar size="60px">
-            <q-img
-              src="/svg/logo.svg"
-              width="30px"
+              :label="item.label"
+              exact
             />
-          </q-avatar>
-          <div class="column footer-heading__text">
-            <h5>
-              Екатерина Куркина
-            </h5>
-            <div class="text-caption text-grey">
-              Портфолио фронт-енд разработчика
+          </q-tabs>
+          <q-btn
+            v-else
+            padding="14px"
+            class="no-shrink border"
+            color="white"
+            text-color="black"
+            icon="eva-menu"
+          >
+            <q-menu :offset="[0,8]">
+              <q-list separator style="min-width: 280px">
+                <q-item>
+                  <q-item-section>
+                    <b>Menu</b>
+                  </q-item-section>
+                </q-item>
+                <q-item
+                  v-for="item in menuLinks"
+                  :key="item"
+                  clickable
+                  :to="item.link"
+                  active-class="text-dark bg-primary"
+                >
+                  <q-item-section>
+                    {{ item.label }}
+                  </q-item-section>
+                </q-item>
+                <q-item/>
+              </q-list>
+            </q-menu>
+          </q-btn>
+        </q-toolbar>
+      </q-header>
+      <q-footer>
+        <q-toolbar>
+          <router-link
+            to="/"
+            class="items-center footer-heading"
+          >
+            <q-avatar size="60px">
+              <q-img src="/images/logo.png" />
+            </q-avatar>
+            <div class="column footer-heading__text">
+              <h3>
+                Kate Kurkina
+              </h3>
+              <div>
+                Front-end developer
+              </div>
             </div>
-          </div>
-        </router-link>
-        <q-space/>
-        <span class="footer-copyright">
-          © {{ new Date().getFullYear() }} Kaylle
-        </span>
-      </q-toolbar>
-    </q-footer>
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+          </router-link>
+          <q-space/>
+          <span class="footer-copyright">
+            © {{ new Date().getFullYear() }} Kaylle
+          </span>
+        </q-toolbar>
+      </q-footer>
+      <q-page-container class="overflow-hidden">
+        <router-view />
+      </q-page-container>
+    </q-layout>
+  </div>
 </template>
 
 <script setup>
-const links = [
-  {
-    label: 'Почта',
-    tooltip: 'kaylle@yandex.ru',
-    link: 'mailto:kaylle@yandex.ru'
-  },
-  {
-    label: 'Телефон',
-    tooltip: '+7 (996) 590-14-45',
-    link: 'tel:79965901445'
-  },
-  {
-    label: 'Telegram',
-    tooltip: '@kaylle',
-    link: 'https://t.me/kaylle'
-  }
-]
+import { ref, watch } from "vue"
+import { useRoute } from "vue-router"
+import { scroll } from "quasar"
+
+const isOnTop = ref(false)
+const route = useRoute()
+const { setVerticalScrollPosition } = scroll
+
+const onScroll = (position) => {
+  isOnTop.value =  position > 50
+}
+
+const scrollToTop = () => {
+  const element = document.getElementsByClassName('scroll')
+  setVerticalScrollPosition(element[0], 0, 300)
+}
+
+watch(route,() => {
+  scrollToTop()
+})
 
 const menuLinks = [
   {
-    label: 'Портфолио',
+    label: 'Home',
     link: '/'
   },
   {
-    label: 'Резюме',
+    label: 'Portfolio',
+    link: '/portfolio'
+  },
+  {
+    label: 'Resume',
     link: '/resume'
   }
 ]
@@ -179,17 +143,48 @@ const menuLinks = [
 <style lang="scss" scoped>
 @import "src/css/quasar.variables";
 
-.q-footer {
-  background: $newWhite !important;
+.main-container {
+  background-color: #F6EFF7;
+  background-image: url('/images/bg.png');
+  background-position: center center;
+  background-size: cover;
+  padding: 48px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.header-white {
+  background: #FFFFFF70 !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 11px 20px #721E4210;
+}
+
+.q-layout-container {
+  box-shadow: 0 0 25px #44455210 !important;
+  max-width: 1300px !important;
+  margin: auto !important;
+  background: $white !important;
+  border-radius: 30px !important;
+}
+
+.q-header {
+  transition: all 0.5s ease !important;
+  background: transparent;
   & .q-toolbar {
-    background: #3636361F !important;
-    padding: 32px;
-    color: $black;
+    background: transparent;
   }
 }
 
-.header-heading {
-  align-items: center;
+.q-footer {
+  box-shadow: -5px -11px 20px #721E4210;
+  & .q-toolbar {
+    background: $white;
+  }
+}
+
+.q-toolbar {
+  padding: 32px;
+  color: $black;
 }
 
 .footer-heading {
@@ -200,13 +195,13 @@ const menuLinks = [
   }
 }
 
-@media (max-width: 1024px) {
-  .header-heading {
-    align-items: flex-start;
-  }
-}
-
 @media (max-width: 600px) {
+  .main-container {
+    padding: 0;
+  }
+  .q-layout-container {
+    border-radius: 0 !important;
+  }
   .q-footer .q-toolbar {
     flex-direction: column;
   }
@@ -219,7 +214,6 @@ const menuLinks = [
     }
     &__text {
       align-items: center;
-      gap: 8px;
     }
   }
   .footer-copyright {

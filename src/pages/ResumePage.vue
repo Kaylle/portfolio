@@ -1,141 +1,160 @@
 <template>
-  <q-img
-    src="/images/hero-image.png"
-    class="resume-hero"
-    height="300px"
-  >
-    <div class="absolute-full flex items-center bg-transparent">
-      <div class="resume-hero__wrapper">
-        <div class="column items-start q-gutter-y-md">
-          <h4 class="text-bold">
-            {{ resume.fio }}
-          </h4>
-          <h5>
-            {{ resume.position }}
-          </h5>
-        </div>
-        <div class="column q-gutter-y-sm">
-          <span>
-            {{ resume.city }}
-          </span>
-          <span>
-            Телефон: {{ resume.phone }}
-          </span>
-          <span>
-            Эл. почта: {{ resume.email }}
-          </span>
-        </div>
-      </div>
-    </div>
-  </q-img>
-  <q-page class="q-mt-xl">
+  <q-page>
+    <HeroSection :title="resume.fio">
+      <q-btn
+        class="self-start q-mb-lg"
+        label="Resume file"
+        no-caps
+        color="dark"
+        text-color="white"
+        target="_blank"
+      />
+      <!--file-->
+    </HeroSection>
     <div class="container">
-      <div class="row q-col-gutter-xl">
-        <div class="col-12 col-md-3">
-          <h5>Биография</h5>
-        </div>
-        <div class="col-12 col-md-9">
-          <p>
-            Женщина, {{ getAge() }}, родилась {{ resume.birthday }}
-          </p>
-          <p>
-            {{ resume.about }}
-          </p>
-          <q-btn
-            label="Ссылка на резюме на hh.ru"
-            no-caps
-            color="primary"
-            target="_blank"
-            :href="resume.resumeLink"
-          />
-        </div>
-      </div>
-    </div>
-    <q-separator class="bg-dark q-my-xl"/>
-    <div class="container">
-      <div class="row q-col-gutter-xl">
-        <div class="col-12 col-md-3">
-          <h5>
-            Опыт работы - {{totalJobExperience}}
-          </h5>
-        </div>
-        <div class="col-12 col-md-9 column q-gutter-y-lg">
-          <div
-            class="column"
-            v-for="job in resume.experience"
-            :key="job"
-          >
-            <div class="flex items-center">
-              <span class="q-mr-md">
-                {{ job.period }}
-              </span>
-              <q-chip
-                no-caps
-                unelevated
-                color="white"
-                text-color="primary"
-                class="cursor-pointer"
-                :label="job.totalPeriod ? job.totalPeriod : currentJobExperience"
+      <div class="row q-col-gutter-lg">
+        <div class="col-12 col-md-6">
+          <h2 class="q-mb-md">
+            Profile
+          </h2>
+          <q-card class="q-pa-md q-mb-lg">
+            <q-card-section>
+              <q-img
+                src="/images/photo.jpg"
+                :ratio="16/11"
+                class="rounded-borders bg-primary q-mb-lg"
               />
-            </div>
-            <div class="text-h5 q-mt-sm">
-              {{ job.company.name }}
-            </div>
-            <div class="text-grey q-mb-md">
-              {{ job.company.city }}, {{ job.company.website }}
-            </div>
-            <div class="text-bold q-mt-sm">
-              {{ job.position }}
-            </div>
-            <p>
-              {{ job.description }}
-            </p>
+              <p class="text-bold">
+                Female, {{ getAge() }}, born {{ resume.birthday }}
+              </p>
+              <p
+                class="q-ma-none"
+                v-html="resume.about"
+              />
+            </q-card-section>
+          </q-card>
+          <h2 class="q-mb-md">
+            Contact
+          </h2>
+          <q-card class="q-pa-md q-mb-lg">
+            <q-card-section>
+              <div class="flex items-center q-gutter-md q-mb-md no-wrap">
+                <q-icon name="eva-pin-outline"/>
+                <div>{{resume.city}}</div>
+              </div>
+              <a
+                class="flex items-center q-gutter-md q-mb-md no-wrap"
+                href="tel:79965901445"
+                target="_blank"
+              >
+                <q-icon name="eva-phone-outline"/>
+                <div>{{resume.phone}}</div>
+              </a>
+              <a
+                class="flex items-center q-gutter-md q-mb-md no-wrap"
+                href="mailto:kaylle@yandex.ru"
+                target="_blank"
+              >
+                <q-icon name="eva-email-outline"/>
+                <div>{{resume.email}}</div>
+              </a>
+              <a
+                class="flex items-center q-gutter-md q-mb-md no-wrap"
+                :href="resume.linkedin"
+                target="_blank"
+              >
+                <q-icon name="eva-linkedin-outline"/>
+                <div>LinkedIn</div>
+              </a>
+              <a
+                class="flex items-center q-gutter-md no-wrap"
+                :href="resume.github"
+                target="_blank"
+              >
+                <q-icon name="eva-github-outline"/>
+                <div>GitHub</div>
+              </a>
+            </q-card-section>
+          </q-card>
+          <h2 class="q-mb-md">
+            Skills
+          </h2>
+          <q-card class="q-pa-md q-mb-lg">
+            <q-card-section>
+              <div class="flex q-gutter-sm">
+                <q-chip
+                  v-for="n in resume.tags"
+                  :key="n"
+                  :label="n"
+                  no-caps
+                  unelevated
+                  color="dark"
+                  outline
+                  class="cursor-pointer"
+                />
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-md-6">
+          <h2 class="q-mb-md">
+            Experience
+          </h2>
+          <div class="column q-gutter-y-lg">
+            <q-card
+              v-for="job in resume.experience"
+              :key="job"
+              class="q-pa-md q-mb-lg"
+            >
+              <q-card-section>
+                <div class="column">
+                  <div class="flex items-center">
+                    <span class="q-mr-md">
+                      {{ job.period }}
+                    </span>
+                    <q-chip
+                      no-caps
+                      unelevated
+                      color="primary"
+                      class="cursor-pointer"
+                      :label="job.totalPeriod ? job.totalPeriod : currentJobExperience"
+                    />
+                  </div>
+                  <div class="text-h5 q-mt-sm">
+                    {{ job.company.name }}
+                  </div>
+                  <div class="q-mb-md">
+                    {{ job.company.city }}, {{ job.company.website }}
+                  </div>
+                  <div class="text-bold q-mt-sm q-mb-sm">
+                    {{ job.position }}
+                  </div>
+                  <p
+                    class="q-ma-none"
+                    v-html="job.description"
+                  />
+                </div>
+              </q-card-section>
+            </q-card>
           </div>
-        </div>
-      </div>
-    </div>
-    <q-separator class="bg-dark q-my-xl"/>
-    <div class="container">
-      <div class="row q-col-gutter-xl">
-        <div class="col-12 col-md-3">
-          <h5>
-            Ключевые навыки
-          </h5>
-        </div>
-        <div class="col-12 col-md-9">
-          <div class="flex q-gutter-sm">
-            <q-chip
-              v-for="n in resume.tags"
-              :key="n"
-              :label="n"
-              no-caps
-              unelevated
-              color="white"
-              text-color="primary"
-              class="cursor-pointer"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    <q-separator class="bg-dark q-my-xl"/>
-    <div class="container">
-      <div class="row q-col-gutter-xl">
-        <div class="col-12 col-md-3">
-          <h5>
-            Образование
-          </h5>
-        </div>
-        <div class="col-12 col-md-9 column">
-          <span>
-            {{ resume.education.type }}
-          </span>
-          <span>
-            {{ resume.education.organization }}
-          </span>
-          <span>
-            {{ resume.education.qualification }}
-          </span>
+          <h2 class="q-mb-md">
+            Education
+          </h2>
+          <q-card class="q-pa-md q-mb-lg">
+            <q-card-section>
+              <div class="column">
+                <b>
+                  {{ resume.education.type }}
+                </b>
+                <span>
+                  {{ resume.education.organization }}
+                </span>
+                <span>
+                  {{ resume.education.qualification }}
+                </span>
+              </div>
+            </q-card-section>
+          </q-card>
         </div>
       </div>
     </div>
@@ -143,12 +162,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { resume } from "boot/api";
-import { useMeta } from "quasar";
+import { onMounted, ref } from "vue"
+import { useMeta } from "quasar"
+import { resume } from "boot/api"
+import HeroSection from "components/HeroSection.vue"
 
 const currentJobExperience = ref('')
-const totalJobExperience = ref('')
 
 const getExperience = () => {
   const currentDate = new Date()
@@ -157,38 +176,21 @@ const getExperience = () => {
   months -= currentJobDate.getMonth()
   months += currentDate.getMonth()
   const currentJobYears = Math.floor(months / 12)
-  const totalJobYears = Math.floor((months + 22) / 12)
   const currentJobMonths = months - currentJobYears * 12
-  const totalJobMonths = (months + 22) - totalJobYears * 12
-  currentJobExperience.value = `${currentJobYears} ${getYearName(currentJobYears)} ${currentJobMonths} месяц${getMonthName(currentJobMonths)}`
-  totalJobExperience.value = `${totalJobYears} ${getYearName(totalJobYears)} ${totalJobMonths<=0?'':totalJobMonths+'месяц'+getMonthName(totalJobMonths)}`
+  currentJobExperience.value = `${currentJobYears} year ${currentJobMonths} months`
 }
 
 const getAge = () => {
   let year = Number(new Date().getFullYear())-2000
-  return `${year} ${getYearName(year)}`
-}
-
-const getYearName = (number) => {
-  let localYear = number.toString()
-  let year = localYear.substring(localYear.length - 1)
-  if (Number(year) === 1) return 'год'
-  if (Number(year) > 1 && year < 5) return 'года'
-  if (Number(year) > 4) return 'лет'
-}
-
-const getMonthName = (month) => {
-  if (month === 1) return ''
-  if (month > 1 && month < 5) return 'а'
-  if (month > 4) return 'ев'
+  return `${year} y.o`
 }
 
 const metaData = {
-  title: 'Портфолио фронт-енд разработчика - Екатерина Куркина | Резюме',
+  title: 'Resume | Kate Kurkina | Front-end developer`s portfolio',
   meta: {
     description: {
       name: 'description',
-      content: 'Подробная информация обо мне и о моем рабочем опыте'
+      content: 'More about me and my professional background'
     }
   }
 }
@@ -199,44 +201,3 @@ onMounted(()=>{
   getExperience()
 })
 </script>
-
-<style lang="scss" scoped>
-@import "src/css/quasar.variables";
-
-.resume-hero {
-  height: 200px;
-  &__wrapper {
-    display: flex;
-    flex-direction: row;
-    color: $black;
-    width: 100%;
-    justify-content: space-between;
-    & > div:last-child {
-      align-items: flex-end;
-    }
-  }
-}
-
-.container:last-child {
-  padding-bottom: 48px;
-}
-
-@media (max-width: 800px) {
-  .resume-hero {
-    &__wrapper {
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 16px;
-      & > div:last-child {
-        align-items: flex-start;
-      }
-    }
-  }
-}
-
-@media (max-width: 700px) {
-  .resume-hero {
-    height: 300px;
-  }
-}
-</style>

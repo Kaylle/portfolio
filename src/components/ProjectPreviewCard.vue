@@ -3,14 +3,15 @@
     <q-card-section class="column full-height">
       <q-img
         position="left"
-        @click="$router.push('/project/'+card.slug)"
+        @click="$router.push('/project/' + card.slug)"
         :ratio="16/9"
-        class="rounded-borders hover"
+        class="hover"
         :src="card.image"
       >
         <div class="full-height full-width flex items-end hover-inner">
           <div class="q-gutter-sm flex reverse-wrap">
             <q-badge
+              color="dark"
               v-for="badge in card.badges"
               :key="badge"
               rounded
@@ -19,37 +20,38 @@
           </div>
         </div>
       </q-img>
-      <h6 class="q-my-md">
+      <h5 class="q-my-md">
         {{ card.title }}
-      </h6>
-      <p class="text-grey text-description">
+      </h5>
+      <p class="text-description">
         {{ card.description.slice(0,100) }}
         <span v-if="card.description.length > 100">
           ...
         </span>
       </p>
       <q-space/>
-      <div class="flex items-center">
-        <div class="column q-gutter-y-sm">
-          <q-btn
-            v-for="pos in card.link"
-            :key="pos"
-            flat
-            class="self-start"
-            padding="0 4px"
-            no-caps
-            icon="eva-person-outline"
-            :label="pos"
-          />
-        </div>
-        <q-space/>
+      <div class="column q-gutter-y-sm">
         <q-btn
-          class="q-my-sm"
-          color="primary"
+          v-for="pos in card.link"
+          :key="pos"
+          flat
+          class="self-start border"
+          padding="0 4px"
           no-caps
-          :to="'/project/'+card.slug"
+          icon="eva-person-outline"
+          :label="pos"
+        />
+      </div>
+      <div class="absolute-bottom-right btn-before">
+        <div class="t"/>
+        <div class="r"/>
+        <q-btn
+          padding="14px 32px"
+          color="dark"
+          no-caps
+          :to="'/project/' + card.slug"
           icon-right="eva-chevron-right-outline"
-          label="Подробнее"
+          label="More info"
         />
       </div>
     </q-card-section>
@@ -57,17 +59,60 @@
 </template>
 
 <script setup>
-defineProps(['card'])
+defineProps([
+  'card'
+])
 </script>
 
 <style lang="scss" scoped>
-
-
-.q-card {
-  box-shadow: 1px 1px 0 1px $black;
-}
+@import 'src/css/quasar.variables';
 
 .text-description {
+  opacity: .6;
   min-height: 80px;
 }
+
+.btn-before {
+  &:before {
+    content: '';
+    position: absolute;
+    width: 166px;
+    height: 68px;
+    top: -15px;
+    left: -15px;
+    border-radius: 24px 0 0 0;
+    box-shadow: inset 0 0 25px #44455210;
+    background-color: $accent;
+  }
+}
+
+.t,
+.r {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  position: absolute;
+  &:before {
+    content: "";
+    display: block;
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    box-shadow: 30px 30px 0 0 #f4eff5;
+  }
+}
+
+.t {
+  top: 12px;
+  right: 165px;
+}
+
+.r {
+  top: -55px;
+  left: 111px;
+}
+
 </style>

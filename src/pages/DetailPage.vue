@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pt-md q-pb-xl">
+  <q-page>
     <SharePopup
       v-model="sharePopup"
       :card="card"
@@ -12,148 +12,72 @@
     <span class="hidden">
       {{ id }}
     </span>
-    <div class="container">
-      <div class="flex items-center q-my-lg no-wrap">
-        <div class="column">
-          <h5 class="text-h5">
-            {{ card.title }}
-          </h5>
-        </div>
+    <div class="hero-section">
+      <div class="absolute-top-right element-top"/>
+      <div class="absolute-top-right element-right"/>
+      <div class="flex items-center q-mb-lg no-wrap">
+        <h2>
+          {{ card.title }}
+        </h2>
         <q-space/>
         <q-btn
-          round
-          dark
-          color="primary"
+          padding="12px"
+          color="dark"
           dense
           @click="share"
           icon="eva-share-outline"
         />
       </div>
-      <div class="q-pa-xs browser-wrapper">
-        <div class="full-width flex items-center q-mb-xs q-px-md no-wrap overflow-hidden">
-          <div
-            class="flex items-center no-wrap gap"
-            v-if="$q.screen.width>1024"
-          >
-            <div
-              v-for="n in 3"
-              :key="n"
-              class="bg-primary dot"
-            />
-            <q-icon
-              size="16px"
-              name="eva-arrow-back-outline"
-            />
-            <q-icon
-              size="16px"
-              color="grey"
-              name="eva-arrow-forward-outline"
-            />
-          </div>
-          <q-space/>
-          <div class="flex items-center q-pa-sm no-wrap address-bar">
-            <q-icon
-              name="eva-lock-outline"
-            />
-            <span
-              v-if="$q.screen.width>1024"
-              class="text-caption"
-            >
-              {{ card.linkToGit ? card.linkToGit : card.linkToSite ? card.linkToSite : 'https://test.com' }}
-            </span>
-            <span v-else class="text-caption">
-              https://test.com
-            </span>
-            <q-icon
-              name="eva-link-2-outline"
-            />
-          </div>
-          <q-space/>
-          <div
-            v-if="$q.screen.width>1024"
-            class="flex items-center no-wrap gap"
-          >
-            <q-icon
-              size="16px"
-              name="eva-sync-outline"
-            />
-            <q-icon
-              size="16px"
-              name="eva-download-outline"
-            />
-            <q-icon
-              size="16px"
-              name="eva-plus-outline"
-            />
-          </div>
-        </div>
-        <q-carousel
-          swipeable
-          transition-prev="slide-right"
-          transition-next="slide-left"
-          animated
-          v-model="slide"
-          arrows
-          navigation
-          navigation-icon="eva-radio-button-off"
-          navigation-active-icon="eva-radio-button-on"
-          next-icon="eva-arrow-right-outline"
-          prev-icon="eva-arrow-left-outline"
-          control-color="grey"
-          control-type="regular"
-          infinite
-        >
-          <q-carousel-slide
-            v-for="(n,i) in card.images"
-            :key="i"
-            :name="i"
-            :img-src="n"
-            @click="openImage(i)"
-          />
-        </q-carousel>
-      </div>
+      <CarouselSection
+        :card="card"
+      />
       <div class="q-gutter-sm flex q-pt-lg">
         <q-btn
           v-if="card.linkToSite"
           :href="card.linkToSite"
           target="_blank"
-          label="Ссылка на действующий сайт"
+          label="Go to website"
           no-caps
           no-wrap
-          color="grey"
+          color="dark"
           class="q-mt-md"
         />
         <q-btn
           v-if="card.linkToGit"
           :href="card.linkToGit"
           target="_blank"
-          label="Ссылка на репозиторий"
+          label="GitHub"
           no-caps
           no-wrap
-          color="grey"
+          color="dark"
           class="q-mt-md"
         />
         <q-btn
           v-if="card.linkToFigma"
           :href="card.linkToFigma"
           target="_blank"
-          label="Ссылка на Figma"
+          label="Figma"
           no-caps
           no-wrap
-          color="grey"
+          color="dark"
           class="q-mt-md"
         />
       </div>
-      <p class=" q-mt-lg text-grey">
-        {{ card.description }}
-      </p>
-      <div class="q-gutter-sm flex">
-        <q-badge
-          v-for="badge in card.badges"
-          :key="badge"
-          rounded
-          :label="badge"
-        />
+      <div class="row q-col-gutter-md">
+        <div class="col-12 col-md-8">
+          <p class="q-mt-lg">
+            {{ card.description }}
+          </p>
+          <div class="q-gutter-sm flex">
+            <q-chip
+              v-for="badge in card.badges"
+              :key="badge"
+              rounded
+              color="primary"
+              :label="badge"
+            />
+          </div>
+        </div>
       </div>
       <div class="flex q-mt-md">
         <q-btn
@@ -161,7 +85,7 @@
           color="primary"
           no-caps
           @click="getSlug('prev')"
-          label="Назад"
+          label="Previous"
           icon="eva-arrow-left-outline"
         />
         <q-space/>
@@ -170,26 +94,29 @@
           color="primary"
           no-caps
           @click="getSlug('next')"
-          label="Далее"
+          label="Next"
           icon-right="eva-arrow-right-outline"
         />
       </div>
     </div>
+    <ContactSection/>
   </q-page>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import { data } from "boot/api"
-import { useRoute, useRouter } from "vue-router";
-import { useMeta, useQuasar } from "quasar";
-import SharePopup from "components/SharePopup.vue";
-import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue";
+import { computed, ref } from "vue"
+import { projectsData } from "boot/api"
+import { useRoute, useRouter } from "vue-router"
+import { useMeta, useQuasar } from "quasar"
+import SharePopup from "components/SharePopup.vue"
+import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue"
+import ContactSection from "components/ContactSection.vue"
+import CarouselSection from "components/CarouselSection.vue"
 
 const $q = useQuasar()
 const route = useRoute()
 const router = useRouter()
-const projects = data
+const projects = projectsData
 const slide = ref(0)
 const sharePopup = ref(false)
 const showPhoto = ref(false)
@@ -218,29 +145,24 @@ const getSlug = (type) => {
 
 const id = computed(()=>{
   // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-  slide.value=0
+  slide.value = 0
   getData(route.params.id)
   return route.params.id
 })
 
 const getData = (slug) => {
-  card.value = data.find(e=>e.slug === slug)
-}
-
-const openImage = (index) => {
-  preview.value = index
-  showPhoto.value = true
+  card.value = projectsData.find(e=>e.slug === slug)
 }
 
 const share = () => {
-  let data = {
+  let shareData = {
     url: window.location.href,
     text: card.value.description,
     title: card.value.title
   }
   try {
     if ($q.screen.width < 500)
-      navigator.share(data)
+      navigator.share(shareData)
     else
       sharePopup.value = true
   } catch (e) {
@@ -250,7 +172,7 @@ const share = () => {
 
 useMeta(() => {
   return {
-    title: `Портфолио фронт-енд разработчика - Екатерина Куркина | ${card.value.title}`,
+    title: `${card.value.title} | Kate Kurkina | Front-end developer's portfolio`,
     meta: {
       description: {
         name: 'description',
@@ -260,43 +182,3 @@ useMeta(() => {
   }
 })
 </script>
-
-<style lang="scss">
-@import "src/css/quasar.variables";
-
-.q-carousel {
-  height: 508px;
-}
-
-.browser-wrapper {
-  border-radius: 10px;
-  background: $avatar2;
-}
-
-.gap {
-  gap: 8px;
-}
-
-.dot {
-  padding: 6px;
-  border-radius: 100px;
-}
-
-.address-bar {
-  border-radius: 10px;
-  background: #00000013;
-  gap: 48px;
-}
-
-@media (max-width: 1024px) {
-  .q-carousel {
-    height: 323px;
-  }
-}
-
-@media (max-width: 765px) {
-  .q-carousel {
-    height: 48vw;
-  }
-}
-</style>

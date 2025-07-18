@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="text-center"
+    class="text-center bg-white"
     @mousemove="eyeMovement"
   >
     <div class="box__ghost">
@@ -27,14 +27,14 @@
         <h1 class="error">
           404
         </h1>
-        <h5 class="q-ma-none text-grey">
-          Не существующая страница
-        </h5>
+        <div>
+          Page is not available
+        </div>
         <q-btn
           class="q-mt-xl"
           color="primary"
           to="/"
-          label="На главную"
+          label="To Home"
           no-caps
         />
       </div>
@@ -43,8 +43,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useMeta, useQuasar } from "quasar";
+import { ref } from "vue"
+import { useMeta, useQuasar } from "quasar"
 
 const style = ref('')
 const $q = useQuasar()
@@ -62,11 +62,11 @@ const eyeMovement = (e) => {
 }
 
 const metaData = {
-  title: 'Портфолио фронт-енд разработчика - Екатерина Куркина | 404',
+  title: '404 | Kate Kurkina | Front-end developer`s portfolio',
   meta: {
     description: {
       name: 'description',
-      content: 'Вы попали на не существующую страницу'
+      content: 'Page is not available'
     }
   }
 }
@@ -78,26 +78,22 @@ useMeta(metaData)
 @import "src/css/quasar.variables";
 
 .error {
-  background: $avatar3;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   margin: 0;
   font-weight: 700;
   font-size: 200px;
   line-height: 250px;
 }
+
 .box__ghost {
   padding: 15px 25px 25px;
   position: absolute;
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
-
-  .symbol{
+  & .symbol{
     &:nth-child(1) {
       opacity: .2;
       animation: shine 4s ease-in-out 3s infinite;
-
       &:before, &:after {
         content: '';
         width: 12px;
@@ -129,12 +125,11 @@ useMeta(metaData)
     &:nth-child(3) {
       opacity: .2;
       animation: shine 3s ease-in-out .5s infinite;
-
       &:before, &:after {
         content: '';
         width: 12px;
         height: 4px;
-        background: $newWhite;
+        background: $white;
         position: absolute;
         border-radius: 5px;
         top: 5px;
@@ -150,12 +145,11 @@ useMeta(metaData)
     &:nth-child(4) {
       opacity: .2;
       animation: shine 6s ease-in-out 1.6s infinite;
-
       &:before, &:after {
         content: '';
         width: 15px;
         height: 4px;
-        background: $newWhite;
+        background: $white;
         position: absolute;
         border-radius: 5px;
         top: 10px;
@@ -182,7 +176,6 @@ useMeta(metaData)
     &:nth-child(6) {
       opacity: .2;
       animation: shine 2s ease-in-out 6s infinite;
-
       &:before, &:after {
         content: '';
         width: 15px;
@@ -201,33 +194,32 @@ useMeta(metaData)
       }
     }
   }
-
-  .box__ghost-container {
+  & .box__ghost-container {
     width: 100px;
     height: 100px;
     border-radius: 100px 100px 0 0;
     position: relative;
     margin: 0 auto;
     animation: up_down 3s ease-in-out infinite;
-    .box__ghost-eyes {
+    & .box__ghost-eyes {
       position: absolute;
       left: 50%;
       top: 45%;
       height: 12px;
       width: 70px;
-      .box__eye-left {
+      & .box__eye-left {
         width: 12px;
         height: 12px;
-        background: $newWhite;
+        background: $white;
         border-radius: 50%;
         margin: 0 10px;
         position: absolute;
         left: 0;
       }
-      .box__eye-right {
+      & .box__eye-right {
         width: 12px;
         height: 12px;
-        background: $newWhite;
+        background: $white;
         border-radius: 50%;
         margin: 0 10px;
         position: absolute;
@@ -235,7 +227,7 @@ useMeta(metaData)
       }
     }
   }
-  .box__ghost-shadow {
+  & .box__ghost-shadow {
     height: 20px;
     box-shadow: 0 50px 15px 5px rgb(196, 111, 169);
     border-radius: 50%;
@@ -251,19 +243,41 @@ useMeta(metaData)
 }
 
 @keyframes up_down {
-  0% {transform: translateY(5px);}
-  50% {transform: translateY(15px);}
-  100% {transform: translateY(5px);}
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
 }
+
 @keyframes small_big {
-  0% {width: 90px;}
-  50% {width: 100px;}
-  100% {width: 90px;}
+  0% {
+    width: 90px;
+  }
+  50% {
+    width: 100px;
+  }
+  100% {
+    width: 90px;
+  }
 }
+
 @keyframes shine {
-  0% {opacity: .2;}
-  25% {opacity: .1;}
-  50% {opacity: .2;}
-  100% {opacity: .2;}
+  0% {
+    opacity: .2;
+  }
+  25% {
+    opacity: .1;
+  }
+  50% {
+    opacity: .2;
+  }
+  100% {
+    opacity: .2;
+  }
 }
 </style>

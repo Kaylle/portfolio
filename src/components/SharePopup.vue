@@ -1,54 +1,62 @@
 <template>
   <q-dialog>
-    <q-card class="rounded-borders q-menu image">
-      <div class="flex items-center q-px-lg q-py-md">
-        <span>
-          Поделиться ссылкой
-        </span>
+    <q-card class="q-menu rounded-borders q-py-sm q-px-lg full-width">
+      <div class="flex items-center q-pa-md">
+        <h5>
+          Share a link
+        </h5>
         <q-space/>
         <q-btn
-          flat
           dense
+          color="grey"
+          text-color="black"
           padding="6px"
           v-close-popup
           icon="eva-close"
-          round
         />
       </div>
-      <q-list>
+      <q-list
+        separator
+        class="rounded-borders overflow-hidden"
+      >
         <q-item
+          class="bg-primary"
           clickable
-          @click="shareSocialMedia('telegram')"
+          @click="shareSocialMedia('facebook')"
         >
           <q-item-section side>
-            <q-img
-              src="/svg/tg.svg"
+            <q-icon
+              color="dark"
+              name="eva-facebook-outline"
               width="24px"
             />
           </q-item-section>
           <q-item-section>
             <q-item-label class="q-ml-md">
-              Telegram
+              Facebook
             </q-item-label>
           </q-item-section>
         </q-item>
         <q-item
+          class="bg-primary"
           clickable
-          @click="shareSocialMedia('vk')"
+          @click="shareSocialMedia('linkedin')"
         >
           <q-item-section side>
-            <q-img
+            <q-icon
+              color="dark"
+              name="eva-linkedin-outline"
               width="24px"
-              src="/svg/vk.svg"
             />
           </q-item-section>
           <q-item-section>
             <q-item-label class="q-ml-md">
-              VK
+              LinkedIn
             </q-item-label>
           </q-item-section>
         </q-item>
         <q-item
+          class="bg-primary"
           clickable
           @click="shareSocialMedia('whatsApp')"
         >
@@ -64,31 +72,31 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item>
-          <q-item-section>
-            <span class="q-mb-sm q-ml-sm">
-              Или скопировать ссылку
-            </span>
-            <q-btn
-              class="bg-gradient"
-              no-caps
-              align="left"
-              padding="8px 12px"
-              color="primary"
-              @click="copyLink($route.fullPath)"
-              icon="eva-copy-outline"
-              :label="$route.fullPath"
-            />
-          </q-item-section>
-        </q-item>
       </q-list>
-      <div class="q-pa-md"/>
+      <q-item>
+        <q-item-section>
+          <span class="q-mb-sm text-center">
+            or copy link
+          </span>
+          <q-btn
+            no-caps
+            align="left"
+            padding="8px 12px"
+            color="secondary"
+            text-color="dark"
+            @click="copyLink($route.fullPath)"
+            icon="eva-copy-outline"
+            :label="$route.fullPath"
+          />
+        </q-item-section>
+      </q-item>
+      <div class="q-pa-xs"/>
     </q-card>
   </q-dialog>
 </template>
 
 <script setup>
-import { copyToClipboard, useQuasar } from "quasar";
+import { copyToClipboard, useQuasar } from "quasar"
 
 const $q = useQuasar()
 const props = defineProps({
@@ -99,55 +107,35 @@ const copyLink = (link) => {
   copyToClipboard(link).then(() => {
     $q.notify({
       color: 'positive',
-      message: 'Ссылка была успешно скопирована!'
+      message: 'Link copied!'
     })
   })
   .catch(() => {
     $q.notify({
       color: 'negative',
-      message: 'Не удалось скопировать ссылку'
+      message: 'Can`t copy link'
     })
   })
 }
 
 const shareSocialMedia = (type) => {
-  let vkLink = `https://vk.com/share.php?url=${window.location}&title=${props.card.title}&image=https://${window.location.hostname}/icons/favicon-32x32.png`
-  let telegramLink = `https://t.me/share/url?url=${window.location}&text=${props.card.title}`
+  let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${window.location}`
+  let linkedinLink = `https://www.linkedin.com/shareArticle?mini=true&url=${window.location}`
   let whatsAppLink = `https://wa.me/?text=${props.card.title} - ${window.location}`
   let link
-  if (type === 'vk') link = vkLink
-  if (type === 'telegram') link = telegramLink
-  if (type === 'whatsApp') link = whatsAppLink
+  switch (type) {
+    case 'facebook':
+      link = facebookLink
+      break
+    case 'linkedin':
+      link = linkedinLink
+      break
+    case 'whatsApp':
+      link = whatsAppLink
+      break
+    default:
+      link = whatsAppLink
+  }
   window.open(link, '_blank')
 }
 </script>
-
-<style lang="scss" scoped>
-@import "src/css/quasar.variables";
-
-.image {
-  min-width: 300px;
-  border-radius: 20px;
-  box-shadow: none;
-  background: #FFFFFF90;
-  backdrop-filter: blur(5px);
-  border: 1px solid $newWhite;
-  position: relative;
-  &:before {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    left: -100px;
-    top: -50px;
-    background-image: url("/images/1.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: top left;
-  }
-  &>* {
-    z-index: 2;
-    position: relative;
-  }
-}
-</style>

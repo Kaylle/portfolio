@@ -6,25 +6,28 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: $newWhite;
+  background-color: $white;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $grey;
+  background-color: $dark-grey;
+  border-radius: 10px;
 }
 
 ::-moz-selection {
-  background: $primary;
-  color: $newWhite;
+  background: $black;
+  color: $primary;
 }
 
 ::selection {
-  background: $primary;
-  color: $newWhite;
+  background: $black;
+  color: $primary;
 }
 
 body {
   color: $black;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 a {
@@ -32,13 +35,27 @@ a {
   color: inherit;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5 {
   margin-block-start: 0;
   margin-block-end: 0;
 }
 
+.text-h1, h1 {
+  font-size: 64px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.text-h2, h2 {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
 .text-h3, h3 {
-  font-weight: 900;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
 }
 
 .text-h5, h5 {
@@ -48,27 +65,16 @@ h1,h2,h3,h4,h5,h6 {
   line-height: normal;
 }
 
-.text-h6, h6 {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
 .on-right {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 
 .on-left {
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .rounded-borders {
-  border-radius: 18px !important;
-}
-
-.relative-position {
-  z-index: 2;
+  border-radius: 30px !important;
 }
 
 .text-black {
@@ -79,29 +85,92 @@ h1,h2,h3,h4,h5,h6 {
   flex-shrink: 0;
 }
 
+.border {
+  border: 2px $grey solid;
+}
+
+.hero-section {
+  box-shadow: 5px 11px 20px #721E4210;
+  padding: 48px;
+  position: relative;
+  background: $white;
+  & * {
+    z-index: 1;
+  }
+}
+
+.element-top {
+  animation: shimmer 3s linear infinite;
+  top: -140px;
+  left: calc(50% - 200px);
+  width: 340px;
+  height: 340px;
+  background: $main-gradient;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+.element-right {
+  animation: shimmer 3s linear infinite;
+  right: -140px;
+  width: 340px;
+  height: 340px;
+  background: $main-gradient;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+.tag-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  & .q-chip {
+    cursor: pointer;
+    margin: 0;
+  }
+}
+
 .q-btn {
-  border-radius: 200px;
-  font-weight: 400;
-  padding: 8px 22px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 34px;
+  &.bg-primary {
+    color: $black !important;
+  }
   &:before {
     box-shadow: none;
   }
-  & i{
+  & i {
     font-size: 18px !important;
   }
 }
 
 .q-avatar {
-  background: $avatar3;
-  outline: 1px solid $black;
+  border-radius: 20px;
 }
 
 .q-tabs {
-  border-radius: 200px;
-  outline: 1px solid $black;
+  border-radius: 12px;
+  outline: 4px solid $dark-grey;
+  background-color: $white;
+  margin-right: 4px;
+  margin-top: -4px;
+  &__content {
+    padding: 2px;
+    gap: 2px;
+  }
   & .q-tab,
   & .q-item {
-    height: 67px;
+    &--active {
+      & .q-tab__label {
+        font-weight: 600 !important;
+      }
+      background-color: $primary;
+      color: $black !important;
+    }
+    border-radius: 10px;
+    height: 49px;
     padding: 0 32px;
   }
 }
@@ -109,18 +178,19 @@ h1,h2,h3,h4,h5,h6 {
 .q-card {
   cursor: default;
   transition: all 0.5s ease !important;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
+  border-radius: 30px;
+  box-shadow: 0 0 25px #44455210;
+  background: $white;
   & .q-card__section {
-    padding: 44px;
+    padding: 24px;
     & .q-img {
       box-shadow: none;
+      border-radius: 24px !important;
     }
   }
   & .hover {
     cursor: pointer;
-    border: 1px solid $black;
+    border: 2px solid $grey;
     & .hover-inner {
       opacity: 0;
       transition: all .3s ease;
@@ -136,7 +206,7 @@ h1,h2,h3,h4,h5,h6 {
     }
     & .hover {
       & .hover-inner {
-        background: $avatar2;
+        background: $main-gradient;
         opacity: 1;
         transition: all .3s ease;
       }
@@ -146,29 +216,25 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .q-menu {
-  min-width: 280px;
   border-radius: 20px;
-  box-shadow: none;
-  background: #FFFFFFCD;
-  backdrop-filter: blur(5px);
-  border: 1px solid $newWhite;
-}
-
-.q-list {
-  & .q-item {
-    & .q-item__section--side {
-      border-radius: 100px;
-      width: 31px;
-      height: 31px;
-      padding: 0;
-      align-items: center;
-    }
-  }
+  box-shadow: 0 0 25px #44455210;
+  background: $white;
+  border: 2px solid $grey;
 }
 
 .q-select {
+  & .q-field__native {
+    font-weight: 600;
+  }
   & .q-field__control {
     border-radius: 10px;
+    &:before {
+      border-width: 2px;
+      border-color: $dark-grey;
+    }
+    &:hover:before {
+      border-color: $dark;
+    }
   }
   & .q-field__prepend {
     color: $black !important;
@@ -176,56 +242,47 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .q-carousel {
-  border-radius: 10px;
+  border-radius: 30px;
   background: transparent;
+  &__slide {
+    background-position: top;
+  }
   &__navigation {
     .q-btn {
-      background: transparent !important;
-      color: $grey !important;
+      background: $primary !important;
+      color: $dark !important;
     }
   }
 }
 
-.q-page,
-.q-toolbar {
-  background-size: 400px;
-  background-color: $newWhite;
-  background-image: url("/images/Bitmap.png");
-  background-repeat: repeat;
-  background-attachment: fixed;
-  animation: shimmer .3s step-start infinite;
-  background-position: center;
+.q-page {
+  background-color: $accent;
+}
+
+.container {
+  padding: 48px;
 }
 
 @keyframes shimmer {
   0% {
-    background-size: 400px;
+    opacity: 1;
   }
   50% {
-    background-size: 350px;
+    opacity: .5;
   }
   100% {
-    background-size: 400px;
+    opacity: 1;
   }
 }
 
-.bg-gradient {
-  background: $avatar3 !important;
-  outline: 1px solid $black !important;
-  color: $black !important;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 1024px;
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 600px) {
   .container {
-    padding: 0 24px;
-    max-width: 700px;
+    padding: 24px;
   }
-  .text-h3, h3 {
-    font-size: 38px;
+  .text-h1, h1 {
+    font-size: 48px;
+  }
+  .hero-section {
+    padding: 24px;
   }
 }
