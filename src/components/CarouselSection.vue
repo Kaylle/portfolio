@@ -5,9 +5,9 @@
       :card="card"
       :carousel="preview"
     />
-    <div class="full-width flex items-center q-mb-xs q-px-md no-wrap overflow-hidden">
+    <div class="full-width flex items-center q-mb-xs no-wrap overflow-hidden">
       <div
-        class="flex items-center no-wrap gap"
+        class="flex items-center no-wrap gap q-pl-md"
         v-if="$q.screen.width>1024"
       >
         <div
@@ -53,7 +53,7 @@
       <q-space/>
       <div
         v-if="$q.screen.width>1024"
-        class="flex items-center no-wrap gap"
+        class="flex items-center no-wrap gap q-pr-md"
       >
         <q-icon
           size="16px"

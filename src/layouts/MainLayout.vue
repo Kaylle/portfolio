@@ -11,7 +11,7 @@
         <q-toolbar>
           <router-link
             to="/"
-            class="flex items-center"
+            class="flex items-center no-wrap"
           >
             <q-avatar size="60px">
               <q-img src="/images/logo.png" />
@@ -60,6 +60,7 @@
                   clickable
                   :to="item.link"
                   active-class="text-dark bg-primary"
+                  exact
                 >
                   <q-item-section>
                     {{ item.label }}

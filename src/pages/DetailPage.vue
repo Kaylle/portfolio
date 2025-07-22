@@ -21,6 +21,7 @@
         </h2>
         <q-space/>
         <q-btn
+          class="no-shrink"
           padding="12px"
           color="dark"
           dense
