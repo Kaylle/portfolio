@@ -152,6 +152,24 @@ const openImage = (index) => {
 <style lang="scss">
 @import "src/css/quasar.variables";
 
+.body--light {
+  .browser-wrapper {
+    background: $accent;
+  }
+  .address-bar {
+    background: $primary;
+  }
+}
+
+.body--dark {
+  .browser-wrapper {
+    background: $secondary-dark;
+  }
+  .address-bar {
+    background: $primary-dark;
+  }
+}
+
 .q-carousel {
   height: 508px;
 }
@@ -159,7 +177,6 @@ const openImage = (index) => {
 .browser-wrapper {
   padding: 8px;
   border-radius: 30px;
-  background: $accent;
 }
 
 .gap {
@@ -173,7 +190,6 @@ const openImage = (index) => {
 
 .address-bar {
   border-radius: 10px;
-  background: $primary;
   gap: 48px;
 }
 

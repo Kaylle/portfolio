@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2 class="q-mb-lg">
+    <h2 class="q-mb-lg text-black">
       Contacts
     </h2>
     <div class="row q-col-gutter-md">
@@ -9,7 +9,7 @@
         v-for="card in contactInfo"
         :key="card"
       >
-        <q-card class="q-pa-md">
+        <q-card class="q-pa-md text-black">
           <q-card-section>
             <a
               class="flex items-center q-gutter-md no-wrap"

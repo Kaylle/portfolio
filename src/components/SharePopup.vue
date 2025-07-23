@@ -8,7 +8,7 @@
         <q-space/>
         <q-btn
           dense
-          color="grey"
+          color="dark-grey"
           text-color="black"
           padding="6px"
           v-close-popup

@@ -22,7 +22,7 @@
       />
     </HeroSection>
     <div class="container">
-      <div class="flex items-center q-pb-lg no-wrap">
+      <div class="flex items-center q-pb-lg no-wrap text-black">
         <h2>
           Portfolio
         </h2>

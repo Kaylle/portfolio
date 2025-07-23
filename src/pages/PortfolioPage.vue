@@ -2,7 +2,7 @@
   <q-page>
     <HeroSection title="Portfolio"/>
     <div class="container">
-      <div class="flex items-center q-py-lg no-wrap">
+      <div class="flex items-center q-py-lg no-wrap text-black">
         <h3>
           My projects
         </h3>

@@ -11,13 +11,13 @@
       />
       <!--file-->
     </HeroSection>
-    <div class="container">
+    <div class="container text-black">
       <div class="row q-col-gutter-lg">
         <div class="col-12 col-md-6">
           <h2 class="q-mb-md">
             Profile
           </h2>
-          <q-card class="q-pa-md q-mb-lg">
+          <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
               <q-img
                 src="/images/photo.jpg"
@@ -36,7 +36,7 @@
           <h2 class="q-mb-md">
             Contact
           </h2>
-          <q-card class="q-pa-md q-mb-lg">
+          <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
               <div class="flex items-center q-gutter-md q-mb-md no-wrap">
                 <q-icon name="eva-pin-outline"/>
@@ -79,7 +79,7 @@
           <h2 class="q-mb-md">
             Skills
           </h2>
-          <q-card class="q-pa-md q-mb-lg">
+          <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
               <div class="flex q-gutter-sm">
                 <q-chip
@@ -104,7 +104,7 @@
             <q-card
               v-for="job in resume.experience"
               :key="job"
-              class="q-pa-md q-mb-lg"
+              class="q-pa-md q-mb-lg text-black"
             >
               <q-card-section>
                 <div class="column">
@@ -140,7 +140,7 @@
           <h2 class="q-mb-md">
             Education
           </h2>
-          <q-card class="q-pa-md q-mb-lg">
+          <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
               <div class="column">
                 <b>

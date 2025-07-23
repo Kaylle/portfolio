@@ -1,0 +1,293 @@
+@import "quasar.variables";
+
+.body--light {
+  & ::-webkit-scrollbar-track {
+    background-color: $white;
+  }
+
+  & ::-webkit-scrollbar-thumb {
+    background-color: $dark-grey;
+  }
+
+  & ::-moz-selection {
+    background: $black;
+    color: $primary;
+  }
+
+  & ::selection {
+    background: $black;
+    color: $primary;
+  }
+
+  &body {
+    color: $black;
+  }
+
+  & .main-container {
+    background-image: url('/images/bg.png');
+    background-color: #F6EFF7;
+  }
+
+  & .header-white {
+    background: #FFFFFF70 !important;
+    box-shadow: 5px 11px 20px #721E4210;
+  }
+
+  & .q-layout-container {
+    box-shadow: 0 0 25px #44455210 !important;
+    background: $white !important;
+  }
+
+  & .q-footer {
+    box-shadow: -5px -11px 20px #721E4210;
+    & .q-toolbar {
+      background: $white;
+    }
+  }
+
+  & .q-toolbar {
+    color: $black;
+  }
+
+  & .text-black {
+    color: $black !important;
+  }
+
+  & .border {
+    border: 2px $grey solid;
+  }
+
+  & .hero-section {
+    box-shadow: none;
+    background: $white;
+  }
+
+  & .element-top {
+    background: $main-gradient;
+  }
+
+  & .element-right {
+    background: $main-gradient;
+  }
+
+  & .q-btn.bg-primary {
+    color: $black !important;
+  }
+
+  & .q-tabs {
+    outline: 4px solid $dark-grey;
+    background-color: $white;
+    & .q-tab--active,
+    & .q-item--active {
+      background-color: $primary;
+      color: $black !important;
+    }
+  }
+
+  & .q-card {
+    box-shadow: 0 0 25px #44455210;
+    background: $white;
+    & .hover {
+      border: 2px solid $grey;
+    }
+    &:hover .hover .hover-inner {
+      background: $main-gradient;
+    }
+  }
+
+  & .q-notification {
+    box-shadow: 0 0 25px #44455210 !important;
+  }
+
+  & .q-menu {
+    box-shadow: 0 0 25px #44455210;
+    background: $white;
+    border: 2px solid $grey;
+  }
+
+  & .q-select {
+    & .q-field__control {
+      &:before {
+        border-color: $dark-grey;
+      }
+      &:hover:before {
+        border-color: $dark;
+      }
+    }
+    & .q-field__prepend {
+      color: $black !important;
+    }
+  }
+
+  & .q-carousel {
+    &__navigation.q-btn {
+      background: $primary !important;
+      color: $dark !important;
+    }
+  }
+
+  & .q-page {
+    background-color: $accent;
+  }
+}
+
+.body--dark {
+  & ::-webkit-scrollbar-track {
+    background-color: $dark-dark;
+  }
+
+  & ::-webkit-scrollbar-thumb {
+    background-color: $black-dark;
+  }
+
+  & ::-moz-selection {
+    background: black;
+    color: #a4afe6;
+  }
+
+  & ::selection {
+    background: black;
+    color: #a4afe6;
+  }
+
+  &body {
+    color: $white-dark;
+  }
+
+  & .main-container {
+    background-color: #000000;
+  }
+
+  & .header-white {
+    background: #00000070 !important;
+    box-shadow: 5px 11px 20px #211E7210;
+  }
+
+  & .q-layout-container {
+    box-shadow: 0 0 25px #00000020 !important;
+    background: $dark-dark !important;
+  }
+
+  & .q-footer {
+    box-shadow: none;
+    & .q-toolbar {
+      background: $dark-dark;
+    }
+  }
+
+  & .q-toolbar {
+    color: $white-dark;
+  }
+
+  & .text-black {
+    color: $white-dark !important;
+  }
+
+  & .text-dark {
+    color: $white-dark !important;
+  }
+
+  & .bg-primary {
+    background: $black-dark !important;
+  }
+
+  & .bg-white {
+    background: $dark-dark !important;
+  }
+
+  & .q-btn.bg-secondary {
+    color: $white-dark !important;
+    background: $secondary-dark !important;
+  }
+
+  & .border {
+    border: 2px $grey-dark solid;
+  }
+
+  & .hero-section {
+    box-shadow: 5px 11px 20px #241E7210;
+    background: $dark-dark;
+  }
+
+  & .element-top {
+    background: $main-gradient-dark;
+  }
+
+  & .element-right {
+    background: $main-gradient-dark;
+  }
+
+  & .q-btn.bg-primary {
+    color: $primary-dark !important;
+  }
+
+  & .q-toggle .text-dark {
+    color: $primary-dark !important;
+  }
+
+  & .q-tabs {
+    outline: 4px solid $dark-grey-dark;
+    background-color: $dark-dark;
+    & .q-tab--active,
+    & .q-item--active {
+      background-color: $black-dark;
+      color: $white-dark !important;
+    }
+  }
+
+  & .q-card {
+    box-shadow: none;
+    background: $dark-dark;
+    & .hover {
+      border: 2px solid black;
+      filter: grayscale(.5) brightness(.5);
+    }
+    &:hover .hover {
+      background: $main-gradient-dark;
+      filter: grayscale(0) brightness(1);
+    }
+    &:hover .hover .hover-inner {
+      background: $main-gradient-dark;
+    }
+  }
+
+  & .q-notification {
+    box-shadow: none !important;
+  }
+
+  & .q-menu {
+    box-shadow: none;
+    background: $dark-dark;
+    border: 2px solid $grey-dark;
+  }
+
+  & .q-select {
+    & .q-field__control {
+      &:before {
+        border-color: $white-dark;
+      }
+      &:hover:before {
+        border-color: $dark;
+      }
+    }
+    & .q-field__prepend {
+      color: $white-dark !important;
+    }
+  }
+
+  & .q-carousel {
+    &__navigation.q-btn {
+      background: $primary-dark !important;
+      color: $dark !important;
+    }
+  }
+
+  & .q-page {
+    background-color: #1F2027;
+  }
+}
+
+
+
+
+

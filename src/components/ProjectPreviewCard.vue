@@ -1,6 +1,6 @@
 <template>
   <q-card class="full-height">
-    <q-card-section class="column full-height">
+    <q-card-section class="column full-height text-black">
       <q-img
         position="left"
         @click="$router.push('/project/' + card.slug)"
@@ -67,6 +67,28 @@ defineProps([
 <style lang="scss" scoped>
 @import 'src/css/quasar.variables';
 
+.body--light {
+  .btn-before:before {
+    box-shadow: inset 0 0 25px #44455210;
+    background-color: $accent;
+  }
+  .t:before,
+  .r:before {
+    box-shadow: 30px 30px 0 0 #f4eff5;
+  }
+}
+
+.body--dark {
+  .btn-before:before {
+    box-shadow: none;
+    background-color: #1F2027;
+  }
+  .t:before,
+  .r:before {
+    box-shadow: 30px 30px 0 0 #1F2027;
+  }
+}
+
 .text-description {
   opacity: .6;
   min-height: 80px;
@@ -81,8 +103,6 @@ defineProps([
     top: -15px;
     left: -15px;
     border-radius: 24px 0 0 0;
-    box-shadow: inset 0 0 25px #44455210;
-    background-color: $accent;
   }
 }
 
@@ -101,7 +121,6 @@ defineProps([
     border-radius: 50%;
     bottom: 0;
     right: 0;
-    box-shadow: 30px 30px 0 0 #f4eff5;
   }
 }
 
@@ -114,5 +133,4 @@ defineProps([
   top: -55px;
   left: 111px;
 }
-
 </style>

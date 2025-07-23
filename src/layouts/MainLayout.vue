@@ -26,6 +26,15 @@
             </div>
           </router-link>
           <q-space/>
+          <q-toggle
+            text-color="white"
+            color="dark"
+            :model-value="lightTheme"
+            @click="switchTheme"
+            checked-icon="eva-sun-outline"
+            size="lg"
+            unchecked-icon="eva-moon-outline"
+          />
           <q-tabs
             v-if="$q.screen.width>1024"
             indicator-color="transparent"
@@ -104,10 +113,12 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
+import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router"
-import { scroll } from "quasar"
+import { scroll, useQuasar } from "quasar"
 
+const $q = useQuasar()
+const lightTheme = ref(true)
 const isOnTop = ref(false)
 const route = useRoute()
 const { setVerticalScrollPosition } = scroll
@@ -119,6 +130,12 @@ const onScroll = (position) => {
 const scrollToTop = () => {
   const element = document.getElementsByClassName('scroll')
   setVerticalScrollPosition(element[0], 0, 300)
+}
+
+const switchTheme = () => {
+  lightTheme.value = !lightTheme.value
+  localStorage.setItem("theme", lightTheme.value ? '0' : '1')
+  $q.dark.toggle()
 }
 
 watch(route,() => {
@@ -139,14 +156,17 @@ const menuLinks = [
     link: '/resume'
   }
 ]
+
+onMounted(() => {
+  lightTheme.value = localStorage.getItem("theme") === '0'
+  $q.dark.set(lightTheme.value)
+})
 </script>
 
 <style lang="scss" scoped>
 @import "src/css/quasar.variables";
 
 .main-container {
-  background-color: #F6EFF7;
-  background-image: url('/images/bg.png');
   background-position: center center;
   background-size: cover;
   padding: 48px;
@@ -155,16 +175,12 @@ const menuLinks = [
 }
 
 .header-white {
-  background: #FFFFFF70 !important;
   backdrop-filter: blur(10px);
-  box-shadow: 5px 11px 20px #721E4210;
 }
 
 .q-layout-container {
-  box-shadow: 0 0 25px #44455210 !important;
   max-width: 1300px !important;
   margin: auto !important;
-  background: $white !important;
   border-radius: 30px !important;
 }
 
@@ -176,16 +192,8 @@ const menuLinks = [
   }
 }
 
-.q-footer {
-  box-shadow: -5px -11px 20px #721E4210;
-  & .q-toolbar {
-    background: $white;
-  }
-}
-
 .q-toolbar {
   padding: 32px;
-  color: $black;
 }
 
 .footer-heading {

@@ -1,18 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200..900&display=swap');
+
+$white                  : #FFFFFF;
+$grey                   : #EAEAEA;
+$dark-grey              : #D6D2DF;
+$dark                   : #444552;
+$black                  : #444552;
+$primary                : #F8E5EF;
+$secondary              : #F3DAEA;
+$accent                 : #FCF7FD;
+
+$white-dark             : #EEE0E0;
+$grey-dark              : #57555D;
+$dark-grey-dark         : #57555D;
+$dark-dark              : #17181F;
+$black-dark             : #1F2027;
+$primary-dark           : #8189B2;
+$secondary-dark         : #4C5270;
+$accent-dark            : #4C5270;
+
+$dark-page              : #1E1D1D;
+$positive               : #3CBA98;
+$negative               : #EB5769;
+$info                   : #2FA9F9;
+$warning                : #F4CC63;
+
+$main-gradient          : linear-gradient(90deg, #CC6EE640, #DA4F8B40, #EF6B5F40);
+$main-gradient-dark     : linear-gradient(90deg, #CC6EE640, #5D4FDA40, #5FEFC940);
 $typography-font-family : 'Inter', sans-serif !default;
-
-$white     : #FFFFFF;
-$grey      : #EAEAEA;
-$dark-grey : #D6D2DF;
-$dark      : #444552;
-$black     : #444552;
-$dark-page : #1E1D1D;
-$primary   : #F8E5EF;
-$secondary : #F3DAEA;
-$accent    : #FCF7FD;
-$positive  : #3CBA98;
-$negative  : #EB5769;
-$info      : #2FA9F9;
-$warning   : #F4CC63;
-
-$main-gradient: linear-gradient(90deg, #CC6EE640, #DA4F8B40, #EF6B5F40);
