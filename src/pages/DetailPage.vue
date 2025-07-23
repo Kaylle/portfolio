@@ -9,9 +9,6 @@
       :card="card"
       :carousel="preview"
     />
-    <span class="hidden">
-      {{ id }}
-    </span>
     <div class="hero-section">
       <div class="absolute-top-right element-top"/>
       <div class="absolute-top-right element-right"/>
@@ -105,7 +102,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+import { onMounted, ref, watch } from "vue";
 import { projectsData } from "boot/api"
 import { useRoute, useRouter } from "vue-router"
 import { useMeta, useQuasar } from "quasar"
@@ -144,15 +141,10 @@ const getSlug = (type) => {
     router.push(`/project/${item.slug}`)
 }
 
-const id = computed(()=>{
-  // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-  slide.value = 0
-  getData(route.params.id)
-  return route.params.id
-})
-
 const getData = (slug) => {
-  card.value = projectsData.find(e=>e.slug === slug)
+  slide.value = 0
+  card.value = projects.find(e=>e.slug === slug)
+  console.log(slug)
 }
 
 const share = () => {
@@ -171,15 +163,23 @@ const share = () => {
   }
 }
 
+watch(() => route.params.id, () => {
+  getData(route.params.id)
+})
+
 useMeta(() => {
   return {
-    title: `${card.value.title} | Kate Kurkina | Front-end developer's portfolio`,
+    title: `${card.value?.title} | Kate Kurkina | Front-end developer's portfolio`,
     meta: {
       description: {
         name: 'description',
-        content: card.value.description
+        content: card.value?.description
       }
     }
   }
+})
+
+onMounted(() => {
+  getData(route.params.id)
 })
 </script>
