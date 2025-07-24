@@ -3,7 +3,7 @@
     <HeroSection :title="resume.fio">
       <q-btn
         class="self-start q-mb-lg"
-        label="Resume file"
+        :label="$t('resumeFile')"
         no-caps
         color="dark"
         text-color="white"
@@ -15,7 +15,7 @@
       <div class="row q-col-gutter-lg">
         <div class="col-12 col-md-6">
           <h2 class="q-mb-md">
-            Profile
+            {{ $t('profile') }}
           </h2>
           <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
@@ -34,7 +34,7 @@
             </q-card-section>
           </q-card>
           <h2 class="q-mb-md">
-            Contact
+            {{ $t('contacts') }}
           </h2>
           <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
@@ -77,7 +77,7 @@
             </q-card-section>
           </q-card>
           <h2 class="q-mb-md">
-            Skills
+            {{ $t('skills') }}
           </h2>
           <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
@@ -98,7 +98,7 @@
         </div>
         <div class="col-12 col-md-6">
           <h2 class="q-mb-md">
-            Experience
+            {{ $t('experience') }}
           </h2>
           <div class="column q-gutter-y-lg">
             <q-card
@@ -138,7 +138,7 @@
             </q-card>
           </div>
           <h2 class="q-mb-md">
-            Education
+            {{ $t('education') }}
           </h2>
           <q-card class="q-pa-md q-mb-lg text-black">
             <q-card-section>
@@ -162,12 +162,17 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue"
+import { computed, onMounted, ref } from "vue";
 import { useMeta } from "quasar"
-import { resume } from "boot/api"
 import HeroSection from "components/HeroSection.vue"
+import { useI18n } from "vue-i18n"
 
 const currentJobExperience = ref('')
+const { t, messages, locale } = useI18n()
+
+const resume = computed(() =>
+  messages.value[locale.value].resumeData
+)
 
 const getExperience = () => {
   const currentDate = new Date()
@@ -177,20 +182,20 @@ const getExperience = () => {
   months += currentDate.getMonth()
   const currentJobYears = Math.floor(months / 12)
   const currentJobMonths = months - currentJobYears * 12
-  currentJobExperience.value = `${currentJobYears} year ${currentJobMonths} months`
+  currentJobExperience.value = `${currentJobYears} ${t('year')} ${currentJobMonths} ${t('months')}`
 }
 
 const getAge = () => {
   let year = Number(new Date().getFullYear())-2000
-  return `${year} y.o`
+  return `${year}`
 }
 
 const metaData = {
-  title: 'Resume | Kate Kurkina | Front-end developer`s portfolio',
+  title: `${t('resume')} | ${t('titleMeta')}`,
   meta: {
     description: {
       name: 'description',
-      content: 'More about me and my professional background'
+      content: t('descriptionMeta')
     }
   }
 }

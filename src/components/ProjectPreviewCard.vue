@@ -51,7 +51,7 @@
           no-caps
           :to="'/project/' + card.slug"
           icon-right="eva-chevron-right-outline"
-          label="More info"
+          :label="$t('moreInfo')"
         />
       </div>
     </q-card-section>

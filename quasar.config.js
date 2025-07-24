@@ -8,7 +8,9 @@ module.exports = configure(function (/* ctx */) {
       warnings: true,
       errors: true
     },
-    boot: [],
+    boot: [
+      'i18n'
+    ],
     css: [
       'app.scss'
     ],

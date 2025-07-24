@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <HeroSection title="Welcome!">
+    <HeroSection :title="$t('welcome')">
       <div class="tag-section">
         <q-chip
           v-for="n in tags"
@@ -14,7 +14,7 @@
       </div>
       <q-btn
         class="self-start q-mb-lg"
-        label="404 Page"
+        :label="$t('page404')"
         no-caps
         color="dark"
         text-color="white"
@@ -24,14 +24,14 @@
     <div class="container">
       <div class="flex items-center q-pb-lg no-wrap text-black">
         <h2>
-          Portfolio
+          {{ $t('portfolio') }}
         </h2>
         <q-space/>
         <q-btn
           no-caps
           color="secondary"
           text-color="dark"
-          label="See more"
+          :label="$t('seeMore')"
           icon-right="eva-chevron-right-outline"
           to="/portfolio"
         />
@@ -52,7 +52,7 @@
             no-caps
             color="secondary"
             text-color="dark"
-            label="See more of my projects"
+            :label="$t('seeMoreProject')"
             icon-right="eva-chevron-right-outline"
             to="/portfolio"
           />
@@ -64,12 +64,14 @@
 </template>
 
 <script setup>
-import { projectsData } from "boot/api"
 import { computed } from "vue"
 import { useMeta } from "quasar"
 import ContactSection from "components/ContactSection.vue"
 import HeroSection from "components/HeroSection.vue"
 import ProjectPreviewCard from "components/ProjectPreviewCard.vue"
+import { useI18n } from "vue-i18n"
+
+const { t, messages, locale} = useI18n()
 
 const tags = [
   {
@@ -93,15 +95,16 @@ const tags = [
 ]
 
 const projects = computed(() => {
-  return projectsData.slice(0,3)
+  const data = [...messages.value[locale.value].projectsData]
+  return data.slice(0,3)
 })
 
 const metaData = {
-  title: 'Home | Kate Kurkina | Front-end developer`s portfolio',
+  title: `${t('home')} | ${t('titleMeta')}`,
   meta: {
     description: {
       name: 'description',
-      content: 'Here I present the projects I\'ve worked on throughout my journey as a front-end developer. My portfolio includes a variety of projects I\'ve built for both clients and personal use. I believe that every project I work on should be unique and tailored to the client\'s needs. I hope you\'ll enjoy browsing through my work and find something that inspires or interests you!'
+      content: t('descriptionMeta')
     }
   }
 }

@@ -3,7 +3,7 @@
     <q-card class="q-menu rounded-borders q-py-sm q-px-lg full-width">
       <div class="flex items-center q-pa-md">
         <h5>
-          Share a link
+          {{ $t('share') }}
         </h5>
         <q-space/>
         <q-btn
@@ -76,7 +76,7 @@
       <q-item>
         <q-item-section>
           <span class="q-mb-sm text-center">
-            or copy link
+            {{ $t('copyLink') }}
           </span>
           <q-btn
             no-caps
@@ -97,8 +97,11 @@
 
 <script setup>
 import { copyToClipboard, useQuasar } from "quasar"
+import { useI18n } from "vue-i18n"
 
+const { t } = useI18n()
 const $q = useQuasar()
+
 const props = defineProps({
   card: Object
 })
@@ -107,13 +110,13 @@ const copyLink = (link) => {
   copyToClipboard(link).then(() => {
     $q.notify({
       color: 'positive',
-      message: 'Link copied!'
+      message: t('successLink')
     })
   })
   .catch(() => {
     $q.notify({
       color: 'negative',
-      message: 'Can`t copy link'
+      message: t('errorLink')
     })
   })
 }

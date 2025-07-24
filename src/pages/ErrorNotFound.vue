@@ -23,18 +23,18 @@
         </div>
       </div>
       <div class="box__ghost-shadow"/>
-      <div class="q-mt-lg">
+      <div class="q-mt-lg text-black">
         <h1 class="error">
           404
         </h1>
         <div>
-          Page is not available
+          {{ $t('error404') }}
         </div>
         <q-btn
           class="q-mt-xl"
           color="primary"
           to="/"
-          label="To Home"
+          :label="$t('toHome')"
           no-caps
         />
       </div>
@@ -45,9 +45,11 @@
 <script setup>
 import { ref } from "vue"
 import { useMeta, useQuasar } from "quasar"
+import { useI18n } from "vue-i18n"
 
 const style = ref('')
 const $q = useQuasar()
+const { t } = useI18n()
 
 const eyeMovement = (e) => {
   let pageX = $q.screen.width;
@@ -62,11 +64,11 @@ const eyeMovement = (e) => {
 }
 
 const metaData = {
-  title: '404 | Kate Kurkina | Front-end developer`s portfolio',
+  title: `404 | ${t('titleMeta')}`,
   meta: {
     description: {
       name: 'description',
-      content: 'Page is not available'
+      content: t('error404')
     }
   }
 }

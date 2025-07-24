@@ -97,15 +97,18 @@
 </template>
 
 <script setup>
-import { projectsData } from "boot/api"
-import { ref } from "vue"
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router"
 import { useQuasar, copyToClipboard } from "quasar"
 import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue"
+import { useI18n } from "vue-i18n"
 
+const { t, messages, locale } = useI18n()
 const $q = useQuasar()
 const router = useRouter()
-const projects = projectsData
+const projects = computed(() =>
+  messages.value[locale.value].projectsData
+)
 const slide = ref(0)
 const showPhoto = ref(false)
 const preview = ref(1)
@@ -118,13 +121,13 @@ const copyLink = (link) => {
   copyToClipboard(link).then(() => {
     $q.notify({
       color: 'positive',
-      message: 'Link copied!'
+      message: t('successLink')
     })
   })
     .catch(() => {
       $q.notify({
         color: 'negative',
-        message: 'Can`t copy link'
+        message: t('errorLink')
       })
     })
 }
@@ -132,13 +135,13 @@ const copyLink = (link) => {
 const isBtnDisabled = (type) => {
   let searchId
   type === 'prev' ? searchId = -1 : searchId = 1
-  return !projects.find(e=>e.id === props.card.id + searchId)
+  return !projects.value.find(e=>e.id === props.card.id + searchId)
 }
 
 const getSlug = (type) => {
   let searchId
   type === 'prev' ? searchId = -1 : searchId = 1
-  let item = projects.find(e=>e.id === props.card.id + searchId)
+  let item = projects.value.find(e=>e.id === props.card.id + searchId)
   if (item)
     router.push(`/project/${item.slug}`)
 }

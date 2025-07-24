@@ -18,10 +18,10 @@
             </q-avatar>
             <div class="column q-ml-md">
               <h3>
-                Kate Kurkina
+                {{ $t('name') }}
               </h3>
               <div>
-                Front-end developer
+                {{ $t('position') }}
               </div>
             </div>
           </router-link>
@@ -35,6 +35,29 @@
             size="lg"
             unchecked-icon="eva-moon-outline"
           />
+          <q-btn-dropdown
+            text-color="white"
+            class="q-mr-md"
+            dropdown-icon="eva-arrow-ios-downward"
+            color="dark"
+            padding="8px 10px"
+            :label="language"
+          >
+            <q-list>
+              <q-item
+                v-for="lang in langOptions"
+                :key="lang"
+                :active="language === lang.value"
+                active-class="text-blue-grey"
+                clickable
+                @click="switchLanguage(lang.value)"
+              >
+                <q-item-section>
+                  {{ lang.label }}
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
           <q-tabs
             v-if="$q.screen.width>1024"
             indicator-color="transparent"
@@ -60,7 +83,7 @@
               <q-list separator style="min-width: 280px">
                 <q-item>
                   <q-item-section>
-                    <b>Menu</b>
+                    <b>{{ $t('menu') }}</b>
                   </q-item-section>
                 </q-item>
                 <q-item
@@ -92,10 +115,10 @@
             </q-avatar>
             <div class="column footer-heading__text">
               <h3>
-                Kate Kurkina
+                {{ $t('name') }}
               </h3>
               <div>
-                Front-end developer
+                {{ $t('position') }}
               </div>
             </div>
           </router-link>
@@ -113,15 +136,18 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue"
 import { useRoute } from "vue-router"
 import { scroll, useQuasar } from "quasar"
+import { useI18n } from "vue-i18n"
 
 const $q = useQuasar()
 const lightTheme = ref(true)
+const language = ref('en')
 const isOnTop = ref(false)
 const route = useRoute()
 const { setVerticalScrollPosition } = scroll
+const { locale, t } = useI18n()
 
 const onScroll = (position) => {
   isOnTop.value =  position > 50
@@ -138,21 +164,38 @@ const switchTheme = () => {
   $q.dark.toggle()
 }
 
+const switchLanguage = (lang) => {
+  language.value = lang
+  locale.value = lang
+  localStorage.setItem("lang", lang)
+}
+
 watch(route,() => {
   scrollToTop()
 })
 
+const langOptions = [
+  {
+    label: 'English',
+    value: 'en'
+  },
+  {
+    label: 'Русский',
+    value: 'ru'
+  }
+]
+
 const menuLinks = [
   {
-    label: 'Home',
+    label: t('home'),
     link: '/'
   },
   {
-    label: 'Portfolio',
+    label: t('portfolio'),
     link: '/portfolio'
   },
   {
-    label: 'Resume',
+    label: t('resume'),
     link: '/resume'
   }
 ]
@@ -160,6 +203,8 @@ const menuLinks = [
 onMounted(() => {
   lightTheme.value = localStorage.getItem("theme") === '0'
   $q.dark.set(lightTheme.value)
+  const localLang = localStorage.getItem("lang")
+  if (localLang) language.value = localLang
 })
 </script>
 

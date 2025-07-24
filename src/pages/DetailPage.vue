@@ -34,7 +34,7 @@
           v-if="card.linkToSite"
           :href="card.linkToSite"
           target="_blank"
-          label="Go to website"
+          :label="$t('website')"
           no-caps
           no-wrap
           color="dark"
@@ -83,7 +83,7 @@
           color="primary"
           no-caps
           @click="getSlug('prev')"
-          label="Previous"
+          :label="$t('previous')"
           icon="eva-arrow-left-outline"
         />
         <q-space/>
@@ -92,7 +92,7 @@
           color="primary"
           no-caps
           @click="getSlug('next')"
-          label="Next"
+          :label="$t('next')"
           icon-right="eva-arrow-right-outline"
         />
       </div>
@@ -102,19 +102,22 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
-import { projectsData } from "boot/api"
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router"
 import { useMeta, useQuasar } from "quasar"
 import SharePopup from "components/SharePopup.vue"
 import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue"
 import ContactSection from "components/ContactSection.vue"
 import CarouselSection from "components/CarouselSection.vue"
+import { useI18n } from "vue-i18n"
 
+const { t, messages, locale } = useI18n()
 const $q = useQuasar()
 const route = useRoute()
 const router = useRouter()
-const projects = projectsData
+const projects = computed(() =>
+  messages.value[locale.value].projectsData
+)
 const slide = ref(0)
 const sharePopup = ref(false)
 const showPhoto = ref(false)
@@ -130,21 +133,20 @@ const card = ref({
 const isBtnDisabled = (type) => {
   let searchId
   type === 'prev' ? searchId = -1 : searchId = 1
-  return !projects.find(e=>e.id === card.value.id + searchId)
+  return !projects.value.find(e=>e.id === card.value.id + searchId)
 }
 
 const getSlug = (type) => {
   let searchId
   type === 'prev' ? searchId = -1 : searchId = 1
-  let item = projects.find(e=>e.id === card.value.id + searchId)
+  let item = projects.value.find(e=>e.id === card.value.id + searchId)
   if (item)
     router.push(`/project/${item.slug}`)
 }
 
 const getData = (slug) => {
   slide.value = 0
-  card.value = projects.find(e=>e.slug === slug)
-  console.log(slug)
+  card.value = projects.value.find(e=>e.slug === slug)
 }
 
 const share = () => {
@@ -168,8 +170,8 @@ watch(() => route.params.id, () => {
 })
 
 useMeta(() => {
-  return {
-    title: `${card.value?.title} | Kate Kurkina | Front-end developer's portfolio`,
+  return  {
+    title: `${card.value?.title} | ${t('titleMeta')}`,
     meta: {
       description: {
         name: 'description',

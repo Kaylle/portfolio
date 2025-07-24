@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <h2 class="q-mb-lg text-black">
-      Contacts
+      {{ $t('contacts') }}
     </h2>
     <div class="row q-col-gutter-md">
       <div
         class="col-md-4 col-sm-6 col-12"
-        v-for="card in contactInfo"
+        v-for="card in contacts"
         :key="card"
       >
         <q-card class="q-pa-md text-black">
@@ -30,5 +30,11 @@
 </template>
 
 <script setup>
-import { contactInfo } from "boot/api"
+import { useI18n } from "vue-i18n"
+import { computed } from "vue";
+
+const { messages, locale } = useI18n()
+const contacts = computed(() =>
+  messages.value[locale.value].contactInfo
+)
 </script>
