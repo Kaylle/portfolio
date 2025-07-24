@@ -46,6 +46,7 @@
         <div class="t"/>
         <div class="r"/>
         <q-btn
+          style="width: 170px"
           padding="14px 32px"
           color="dark"
           no-caps
@@ -98,7 +99,7 @@ defineProps([
   &:before {
     content: '';
     position: absolute;
-    width: 166px;
+    width: 186px;
     height: 68px;
     top: -15px;
     left: -15px;
@@ -126,11 +127,11 @@ defineProps([
 
 .t {
   top: 12px;
-  right: 165px;
+  right: 184px;
 }
 
 .r {
   top: -55px;
-  left: 111px;
+  left: 131px;
 }
 </style>

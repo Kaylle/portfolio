@@ -26,51 +26,52 @@
             </div>
           </router-link>
           <q-space/>
-          <q-toggle
-            text-color="white"
-            color="dark"
-            :model-value="lightTheme"
-            @click="switchTheme"
-            checked-icon="eva-sun-outline"
-            size="lg"
-            unchecked-icon="eva-moon-outline"
-          />
-          <q-btn-dropdown
-            text-color="white"
-            class="q-mr-md"
-            dropdown-icon="eva-arrow-ios-downward"
-            color="dark"
-            padding="8px 10px"
-            :label="language"
-          >
-            <q-list>
-              <q-item
-                v-for="lang in langOptions"
-                :key="lang"
-                :active="language === lang.value"
-                active-class="text-blue-grey"
-                clickable
-                @click="switchLanguage(lang.value)"
-              >
-                <q-item-section>
-                  {{ lang.label }}
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-          <q-tabs
-            v-if="$q.screen.width>1024"
-            indicator-color="transparent"
-            no-caps
-          >
-            <q-route-tab
-              v-for="item in menuLinks"
-              :key="item"
-              :to="item.link"
-              :label="item.label"
-              exact
+          <template v-if="$q.screen.width>1024">
+            <q-toggle
+              text-color="white"
+              color="dark"
+              :model-value="lightTheme"
+              @click="switchTheme"
+              checked-icon="eva-sun-outline"
+              size="lg"
+              unchecked-icon="eva-moon-outline"
             />
-          </q-tabs>
+            <q-btn-dropdown
+              text-color="white"
+              class="q-mr-md"
+              dropdown-icon="eva-arrow-ios-downward"
+              color="dark"
+              padding="8px 10px"
+              :label="language"
+            >
+              <q-list>
+                <q-item
+                  v-for="lang in langOptions"
+                  :key="lang"
+                  :active="language === lang.value"
+                  active-class="text-blue-grey"
+                  clickable
+                  @click="switchLanguage(lang.value)"
+                >
+                  <q-item-section>
+                    {{ lang.label }}
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+            <q-tabs
+              indicator-color="transparent"
+              no-caps
+            >
+              <q-route-tab
+                v-for="item in menuLinks"
+                :key="item"
+                :to="item.link"
+                :label="item.label"
+                exact
+              />
+            </q-tabs>
+          </template>
           <q-btn
             v-else
             padding="14px"
@@ -97,6 +98,40 @@
                   <q-item-section>
                     {{ item.label }}
                   </q-item-section>
+                </q-item>
+                <q-item>
+                  <q-toggle
+                    text-color="white"
+                    color="dark"
+                    :model-value="lightTheme"
+                    @click="switchTheme"
+                    checked-icon="eva-sun-outline"
+                    size="lg"
+                    unchecked-icon="eva-moon-outline"
+                  />
+                  <q-btn-dropdown
+                    text-color="white"
+                    class="q-mr-md"
+                    dropdown-icon="eva-arrow-ios-downward"
+                    color="dark"
+                    padding="8px 10px"
+                    :label="language"
+                  >
+                    <q-list>
+                      <q-item
+                        v-for="lang in langOptions"
+                        :key="lang"
+                        :active="language === lang.value"
+                        active-class="text-blue-grey"
+                        clickable
+                        @click="switchLanguage(lang.value)"
+                      >
+                        <q-item-section>
+                          {{ lang.label }}
+                        </q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-btn-dropdown>
                 </q-item>
                 <q-item/>
               </q-list>
