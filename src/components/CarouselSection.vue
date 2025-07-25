@@ -23,7 +23,7 @@
           class="cursor-pointer"
         />
         <q-icon
-          :color="isBtnDisabled('prev')?'grey':'dark'"
+          :color="isBtnDisabled('next')?'grey':'dark'"
           @click="getSlug('next')"
           size="16px"
           name="eva-arrow-forward-outline"
@@ -35,17 +35,17 @@
         <a
           style="height: 16px;line-height: 16px"
           target="_blank"
-          :href="card.linkToGit ? card.linkToGit : card.linkToSite"
+          :href="card.linkToGit || card.linkToSite || 'https://test.com'"
         >
           <q-icon
             name="eva-globe-outline"
           />
         </a>
         <span class="text-caption">
-          {{ card.linkToGit ? card.linkToGit : card.linkToSite ? card.linkToSite : 'https://test.com' }}
+          {{ card.linkToGit || card.linkToSite || 'https://test.com' }}
         </span>
         <q-icon
-          @click="copyLink( card.linkToGit ? card.linkToGit : card.linkToSite ? card.linkToSite : '')"
+          @click="copyLink( card.linkToGit || card.linkToSite || 'https://test.com', $t)"
           name="eva-link-2-outline"
           class="cursor-pointer"
         />
@@ -96,60 +96,50 @@
   </div>
 </template>
 
-<script setup>
-import { computed, ref } from "vue";
-import { useRouter } from "vue-router"
-import { useQuasar, copyToClipboard } from "quasar"
-import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue"
-import { useI18n } from "vue-i18n"
+<script setup lang="ts">
+import { computed, ref, watch } from 'vue';
+import { useQuasar } from "quasar";
+import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue";
+import { useI18n } from "vue-i18n";
+import type { Project } from "components/models";
+import { checkDisabled, copyLink } from 'src/utils/functions';
+import { useRoute } from 'vue-router';
 
-const { t, messages, locale } = useI18n()
-const $q = useQuasar()
-const router = useRouter()
-const projects = computed(() =>
-  messages.value[locale.value].projectsData
-)
-const slide = ref(0)
-const showPhoto = ref(false)
-const preview = ref(1)
+const { messages, locale } = useI18n();
+const $q = useQuasar();
+const route = useRoute();
+const slide = ref<number>(0);
+const showPhoto = ref<boolean>(false);
+const preview = ref<number>(1);
 
-const props = defineProps({
-  card: Object
-})
+const props = defineProps<{
+  card: Project
+}>();
 
-const copyLink = (link) => {
-  copyToClipboard(link).then(() => {
-    $q.notify({
-      color: 'positive',
-      message: t('successLink')
-    })
-  })
-    .catch(() => {
-      $q.notify({
-        color: 'negative',
-        message: t('errorLink')
-      })
-    })
-}
+const emit = defineEmits<{
+  (e: 'getSlug', type: 'prev' | 'next'): void;
+}>();
 
-const isBtnDisabled = (type) => {
-  let searchId
-  type === 'prev' ? searchId = -1 : searchId = 1
-  return !projects.value.find(e=>e.id === props.card.id + searchId)
-}
+const projects = computed<Project[]>(() =>
+  (messages.value[locale.value]?.projectsData ?? []) as Project[]
+);
 
-const getSlug = (type) => {
-  let searchId
-  type === 'prev' ? searchId = -1 : searchId = 1
-  let item = projects.value.find(e=>e.id === props.card.id + searchId)
-  if (item)
-    router.push(`/project/${item.slug}`)
-}
+const isBtnDisabled = (type: 'prev' | 'next'): boolean => {
+  return checkDisabled(type, projects.value, props.card.id);
+};
 
-const openImage = (index) => {
-  preview.value = index
-  showPhoto.value = true
-}
+const getSlug = (type: 'prev' | 'next'): void => {
+  emit('getSlug', type);
+};
+
+const openImage = (index: number):void => {
+  preview.value = index;
+  showPhoto.value = true;
+};
+
+watch(() => route.params.id, () => {
+  slide.value = 0;
+});
 </script>
 
 <style lang="scss">

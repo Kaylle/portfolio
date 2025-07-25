@@ -1,4 +1,6 @@
-const routes = [
+import type { RouteRecordRaw } from 'vue-router';
+
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
@@ -8,17 +10,17 @@ const routes = [
         component: () => import('pages/IndexPage.vue')
       },
       {
-        path: '/portfolio',
+        path: 'portfolio',
         component: () => import('pages/PortfolioPage.vue')
       },
       {
-        path: '/project/:id',
+        path: 'project/:id',
         component: () => import('pages/DetailPage.vue')
       },
       {
-        path: '/resume',
+        path: 'resume',
         component: () => import('pages/ResumePage.vue')
-      },
+      }
     ]
   },
   {
@@ -26,10 +28,11 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        path: '', component: () => import('pages/ErrorNotFound.vue')
+        path: '',
+        component: () => import('pages/ErrorNotFound.vue')
       }
     ]
   }
-]
+];
 
-export default routes
+export default routes;

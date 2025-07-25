@@ -7,7 +7,7 @@
       <div
         class="col-md-4 col-sm-6 col-12"
         v-for="card in contacts"
-        :key="card"
+        :key="card.link"
       >
         <q-card class="q-pa-md text-black">
           <q-card-section>
@@ -29,12 +29,13 @@
   </div>
 </template>
 
-<script setup>
-import { useI18n } from "vue-i18n"
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { computed } from "vue";
+import type { ContactItem } from 'components/models';
 
-const { messages, locale } = useI18n()
-const contacts = computed(() =>
-  messages.value[locale.value].contactInfo
-)
+const { messages, locale } = useI18n();
+const contacts = computed<ContactItem[]>(() =>
+  (messages.value[locale.value]?.contactInfo ?? []) as ContactItem[]
+);
 </script>

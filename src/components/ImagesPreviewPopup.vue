@@ -43,39 +43,41 @@
   </q-dialog>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
+import type { PreviewItem, Project } from 'components/models';
 
-const props = defineProps({
-  card: Object,
-  carousel: Number
-})
+const props = defineProps<{
+  card: Project,
+  carousel: number
+}>();
 
-const preview = ref({
+const preview = ref<PreviewItem>({
   currentIndex: 1,
   total: 0,
   image: ''
-})
+});
 
-const switchPreview = (type) => {
-  let searchId
-  type === 'prev' ? searchId = -1 : searchId = 1
+const switchPreview = (type: 'prev' | 'next'):void => {
+  const step  = type === 'prev' ? -1 : 1;
+
   if (preview.value.total === preview.value.currentIndex && type === 'next')
-    preview.value.currentIndex = 1
+    preview.value.currentIndex = 1;
   else if (preview.value.currentIndex === 1 && type === 'prev')
-    preview.value.currentIndex = preview.value.total
+    preview.value.currentIndex = preview.value.total;
   else
-    preview.value.currentIndex += searchId
-  preview.value.image = props.card.images[preview.value.currentIndex-1]
-}
+    preview.value.currentIndex += step;
 
-const getData = () => {
+  preview.value.image = props.card.images[preview.value.currentIndex-1] ?? '';
+};
+
+const getData = (): void => {
   preview.value = {
-    currentIndex: props.carousel + 1,
+    currentIndex: Number(props.carousel) + 1,
     total: props.card.images.length,
-    image: props.card.images[props.carousel]
-  }
-}
+    image: props.card.images[props.carousel] ?? ''
+  };
+};
 </script>
 
 <style lang="scss" scoped>

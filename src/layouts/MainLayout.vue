@@ -47,7 +47,7 @@
               <q-list>
                 <q-item
                   v-for="lang in langOptions"
-                  :key="lang"
+                  :key="lang.value"
                   :active="language === lang.value"
                   active-class="text-blue-grey"
                   clickable
@@ -65,7 +65,7 @@
             >
               <q-route-tab
                 v-for="item in menuLinks"
-                :key="item"
+                :key="item.link"
                 :to="item.link"
                 :label="item.label"
                 exact
@@ -89,7 +89,7 @@
                 </q-item>
                 <q-item
                   v-for="item in menuLinks"
-                  :key="item"
+                  :key="item.link"
                   clickable
                   :to="item.link"
                   active-class="text-dark bg-primary"
@@ -120,7 +120,7 @@
                     <q-list>
                       <q-item
                         v-for="lang in langOptions"
-                        :key="lang"
+                        :key="lang.value"
                         :active="language === lang.value"
                         active-class="text-blue-grey"
                         clickable
@@ -170,43 +170,44 @@
   </div>
 </template>
 
-<script setup>
-import { onMounted, ref, watch } from "vue"
-import { useRoute } from "vue-router"
-import { scroll, useQuasar } from "quasar"
-import { useI18n } from "vue-i18n"
+<script setup lang="ts">
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import { scroll, useQuasar } from "quasar";
+import { useI18n } from "vue-i18n";
 
-const $q = useQuasar()
-const lightTheme = ref(true)
-const language = ref('en')
-const isOnTop = ref(false)
-const route = useRoute()
-const { setVerticalScrollPosition } = scroll
-const { locale, t } = useI18n()
+const $q = useQuasar();
+const lightTheme = ref(true);
+const language = ref('en');
+const isOnTop = ref(false);
+const route = useRoute();
+const { setVerticalScrollPosition } = scroll;
+const { locale, t } = useI18n();
 
-const onScroll = (position) => {
-  isOnTop.value =  position > 50
-}
+const onScroll = (position: number) => {
+  isOnTop.value =  position > 50;
+};
 
 const scrollToTop = () => {
-  const element = document.getElementsByClassName('scroll')
-  setVerticalScrollPosition(element[0], 0, 300)
-}
+  const element = document.getElementsByClassName('scroll');
+  if (element[0])
+    setVerticalScrollPosition(element[0], 0, 300);
+};
 
 const switchTheme = () => {
-  lightTheme.value = !lightTheme.value
-  localStorage.setItem("theme", lightTheme.value ? '0' : '1')
-  $q.dark.toggle()
-}
+  lightTheme.value = !lightTheme.value;
+  localStorage.setItem("theme", lightTheme.value ? '0' : '1');
+  $q.dark.toggle();
+};
 
-const switchLanguage = (lang) => {
-  language.value = lang
-  locale.value = lang
-  localStorage.setItem("lang", lang)
-}
+const switchLanguage = (lang: string) => {
+  language.value = lang;
+  locale.value = lang;
+  localStorage.setItem("lang", lang);
+};
 
 watch(route,() => {
-  scrollToTop()
+  scrollToTop();
 })
 
 const langOptions = [
@@ -218,7 +219,7 @@ const langOptions = [
     label: 'Русский',
     value: 'ru'
   }
-]
+];
 
 const menuLinks = [
   {
@@ -233,13 +234,14 @@ const menuLinks = [
     label: t('resume'),
     link: '/resume'
   }
-]
+];
 
 onMounted(() => {
-  lightTheme.value = localStorage.getItem("theme") === '0'
-  $q.dark.set(lightTheme.value)
-  const localLang = localStorage.getItem("lang")
-  if (localLang) language.value = localLang
+  lightTheme.value = localStorage.getItem("theme") === '0';
+  $q.dark.set(lightTheme.value);
+  const localLang = localStorage.getItem("lang");
+  if (localLang)
+    language.value = localLang;
 })
 </script>
 

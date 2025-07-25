@@ -84,7 +84,7 @@
             padding="8px 12px"
             color="secondary"
             text-color="dark"
-            @click="copyLink($route.fullPath)"
+            @click="copyLink($route.fullPath, $t)"
             icon="eva-copy-outline"
             :label="$route.fullPath"
           />
@@ -95,50 +95,36 @@
   </q-dialog>
 </template>
 
-<script setup>
-import { copyToClipboard, useQuasar } from "quasar"
-import { useI18n } from "vue-i18n"
+<script setup lang="ts">
+import type { Project } from "components/models";
+import { copyLink } from "src/utils/functions";
 
-const { t } = useI18n()
-const $q = useQuasar()
+const props = defineProps<{
+  card: Project
+}>();
 
-const props = defineProps({
-  card: Object
-})
+const shareSocialMedia = (type: 'facebook' | 'linkedin' | 'whatsApp'):void => {
+  const currentURL = window.location.href;
+  const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+  const linkedinLink = `https://www.linkedin.com/shareArticle?mini=true&url=${currentURL}`;
+  const whatsAppLink = `https://wa.me/?text=${props.card.title} - ${currentURL}`;
 
-const copyLink = (link) => {
-  copyToClipboard(link).then(() => {
-    $q.notify({
-      color: 'positive',
-      message: t('successLink')
-    })
-  })
-  .catch(() => {
-    $q.notify({
-      color: 'negative',
-      message: t('errorLink')
-    })
-  })
-}
+  let link: string;
 
-const shareSocialMedia = (type) => {
-  let facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${window.location}`
-  let linkedinLink = `https://www.linkedin.com/shareArticle?mini=true&url=${window.location}`
-  let whatsAppLink = `https://wa.me/?text=${props.card.title} - ${window.location}`
-  let link
   switch (type) {
     case 'facebook':
-      link = facebookLink
-      break
+      link = facebookLink;
+      break;
     case 'linkedin':
-      link = linkedinLink
-      break
+      link = linkedinLink;
+      break;
     case 'whatsApp':
-      link = whatsAppLink
-      break
+      link = whatsAppLink;
+      break;
     default:
-      link = whatsAppLink
+      link = whatsAppLink;
   }
-  window.open(link, '_blank')
+
+  window.open(link, '_blank');
 }
 </script>

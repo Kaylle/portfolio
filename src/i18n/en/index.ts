@@ -1,5 +1,5 @@
 export default {
-  titleMeta: "Kate Kurkina | Front-end developer\`s portfolio",
+  titleMeta: "Kate Kurkina | Front-end developer`s portfolio",
   descriptionMeta: "Here I present the projects I've worked on throughout my journey " +
     "as a front-end developer. My portfolio includes a variety " +
     "of projects I've built for both clients and personal use. I " +
@@ -384,4 +384,4 @@ export default {
       text: 'Open to relocation | remote work'
     }
   ]
-}
+};

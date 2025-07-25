@@ -4,7 +4,7 @@
       <q-img
         position="left"
         @click="$router.push('/project/' + card.slug)"
-        :ratio="16/9"
+        :ratio="16 / 9"
         class="hover"
         :src="card.image"
       >
@@ -24,12 +24,10 @@
         {{ card.title }}
       </h5>
       <p class="text-description">
-        {{ card.description.slice(0,100) }}
-        <span v-if="card.description.length > 100">
-          ...
-        </span>
+        {{ card.description.slice(0, 100) }}
+        <span v-if="card.description.length > 100"> ... </span>
       </p>
-      <q-space/>
+      <q-space />
       <div class="column q-gutter-y-sm">
         <q-btn
           v-for="pos in card.link"
@@ -43,8 +41,8 @@
         />
       </div>
       <div class="absolute-bottom-right btn-before">
-        <div class="t"/>
-        <div class="r"/>
+        <div class="t" />
+        <div class="r" />
         <q-btn
           style="width: 170px"
           padding="14px 32px"
@@ -59,10 +57,12 @@
   </q-card>
 </template>
 
-<script setup>
-defineProps([
-  'card'
-])
+<script setup lang="ts">
+import type { Project } from 'components/models';
+
+defineProps<{
+  card: Project
+}>();
 </script>
 
 <style lang="scss" scoped>
@@ -82,16 +82,16 @@ defineProps([
 .body--dark {
   .btn-before:before {
     box-shadow: none;
-    background-color: #1F2027;
+    background-color: #1f2027;
   }
   .t:before,
   .r:before {
-    box-shadow: 30px 30px 0 0 #1F2027;
+    box-shadow: 30px 30px 0 0 #1f2027;
   }
 }
 
 .text-description {
-  opacity: .6;
+  opacity: 0.6;
   min-height: 80px;
 }
 
@@ -114,7 +114,7 @@ defineProps([
   overflow: hidden;
   position: absolute;
   &:before {
-    content: "";
+    content: '';
     display: block;
     width: 200%;
     height: 200%;

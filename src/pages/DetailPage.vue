@@ -27,6 +27,7 @@
         />
       </div>
       <CarouselSection
+        @get-slug="getSlug"
         :card="card"
       />
       <div class="q-gutter-sm flex q-pt-lg">
@@ -101,73 +102,71 @@
   </q-page>
 </template>
 
-<script setup>
-import { computed, onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router"
-import { useMeta, useQuasar } from "quasar"
-import SharePopup from "components/SharePopup.vue"
-import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue"
-import ContactSection from "components/ContactSection.vue"
-import CarouselSection from "components/CarouselSection.vue"
-import { useI18n } from "vue-i18n"
+<script setup lang="ts">
+import { computed, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useMeta, useQuasar } from "quasar";
+import SharePopup from "components/SharePopup.vue";
+import ImagesPreviewPopup from "components/ImagesPreviewPopup.vue";
+import ContactSection from "components/ContactSection.vue";
+import CarouselSection from "components/CarouselSection.vue";
+import { useI18n } from "vue-i18n";
+import type { Project } from 'components/models';
+import { checkDisabled } from 'src/utils/functions';
 
-const { t, messages, locale } = useI18n()
-const $q = useQuasar()
-const route = useRoute()
-const router = useRouter()
-const projects = computed(() =>
-  messages.value[locale.value].projectsData
-)
-const slide = ref(0)
-const sharePopup = ref(false)
-const showPhoto = ref(false)
-const preview = ref(1)
+const { t, messages, locale } = useI18n();
+const $q = useQuasar();
+const route = useRoute();
+const router = useRouter();
+const sharePopup = ref<boolean>(false);
+const showPhoto = ref<boolean>(false);
+const preview = ref<number>(1);
 
-const card = ref({
+const projects = computed<Project[]>(() =>
+  (messages.value[locale.value]?.projectsData ?? []) as Project[]
+);
+
+const card = computed<Project>(() =>
+  projects.value.find(e => e.slug === route.params.id) ?? defaultCard as Project
+);
+
+const defaultCard = {
   images: [],
   id: 0,
+  slug: '',
   description: '',
-  title: ''
-})
+  title: '',
+  image: '',
+  link: [],
+  badges: []
+};
 
-const isBtnDisabled = (type) => {
-  let searchId
-  type === 'prev' ? searchId = -1 : searchId = 1
-  return !projects.value.find(e=>e.id === card.value.id + searchId)
-}
+const isBtnDisabled = (type: 'prev' | 'next'): boolean => {
+  return checkDisabled(type, projects.value, card.value.id);
+};
 
-const getSlug = (type) => {
-  let searchId
-  type === 'prev' ? searchId = -1 : searchId = 1
-  let item = projects.value.find(e=>e.id === card.value.id + searchId)
+const getSlug = async (type: 'prev' | 'next'): Promise<void> => {
+  const searchId = type === 'prev' ? -1 : 1;
+  const item = projects.value.find(e=>e.id === card.value.id + searchId);
   if (item)
-    router.push(`/project/${item.slug}`)
-}
+    await router.push(`/project/${item.slug}`);
+};
 
-const getData = (slug) => {
-  slide.value = 0
-  card.value = projects.value.find(e=>e.slug === slug)
-}
-
-const share = () => {
-  let shareData = {
+const share = async () => {
+  const shareData = {
     url: window.location.href,
     text: card.value.description,
     title: card.value.title
-  }
+  };
   try {
     if ($q.screen.width < 500)
-      navigator.share(shareData)
+      await navigator.share(shareData);
     else
-      sharePopup.value = true
+      sharePopup.value = true;
   } catch (e) {
-    sharePopup.value = true
+    console.log(e);
   }
-}
-
-watch(() => route.params.id, () => {
-  getData(route.params.id)
-})
+};
 
 useMeta(() => {
   return  {
@@ -179,9 +178,5 @@ useMeta(() => {
       }
     }
   }
-})
-
-onMounted(() => {
-  getData(route.params.id)
 })
 </script>

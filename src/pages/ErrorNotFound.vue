@@ -42,26 +42,25 @@
   </q-page>
 </template>
 
-<script setup>
-import { ref } from "vue"
-import { useMeta, useQuasar } from "quasar"
-import { useI18n } from "vue-i18n"
+<script setup lang="ts">
+import { ref } from "vue";
+import { useMeta, useQuasar } from "quasar";
+import { useI18n } from "vue-i18n";
+import type { ElementCoords } from 'components/models';
 
-const style = ref('')
-const $q = useQuasar()
-const { t } = useI18n()
+const style = ref<string>('');
+const $q = useQuasar();
+const { t } = useI18n();
 
-const eyeMovement = (e) => {
-  let pageX = $q.screen.width;
-  let pageY = $q.screen.height;
-  let mouseY
-  let mouseX
-  mouseY = e.pageY;
-  let yAxis = (pageY/3-mouseY)/pageY*300;
-  mouseX = e.pageX / -pageX;
-  let xAxis = -mouseX * 100 - 100;
-  style.value=`transform:translate(${xAxis}%,${yAxis*-1}%)`;
-}
+const eyeMovement = (e:ElementCoords): void => {
+  const pageX = $q.screen.width;
+  const pageY = $q.screen.height;
+  const mouseY = e.pageY;
+  const mouseX = e.pageX / -pageX;
+  const yAxis = (pageY/3-mouseY)/pageY*300;
+  const xAxis = -mouseX * 100 - 100;
+  style.value = `transform:translate(${xAxis}%, ${yAxis*-1}%)`;
+};
 
 const metaData = {
   title: `404 | ${t('titleMeta')}`,
@@ -71,9 +70,9 @@ const metaData = {
       content: t('error404')
     }
   }
-}
+};
 
-useMeta(metaData)
+useMeta(metaData);
 </script>
 
 <style lang="scss">

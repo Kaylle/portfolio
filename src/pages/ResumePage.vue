@@ -102,8 +102,8 @@
           </h2>
           <div class="column q-gutter-y-lg">
             <q-card
-              v-for="job in resume.experience"
-              :key="job"
+              v-for="(job, i) in resume.experience"
+              :key="i"
               class="q-pa-md q-mb-lg text-black"
             >
               <q-card-section>
@@ -161,34 +161,38 @@
   </q-page>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
-import { useMeta } from "quasar"
-import HeroSection from "components/HeroSection.vue"
-import { useI18n } from "vue-i18n"
+import { useMeta } from "quasar";
+import HeroSection from "components/HeroSection.vue";
+import { useI18n } from "vue-i18n";
+import type { ResumeItem } from 'components/models';
 
-const currentJobExperience = ref('')
-const { t, messages, locale } = useI18n()
+const currentJobExperience = ref<string>('');
+const { t, messages, locale } = useI18n();
 
-const resume = computed(() =>
-  messages.value[locale.value].resumeData
-)
+const resume = computed<ResumeItem>(() =>
+  (messages.value[locale.value]?.resumeData ?? null) as ResumeItem
+);
 
 const getExperience = () => {
-  const currentDate = new Date()
-  const currentJobDate = new Date('05.12.2022')
-  let months = (currentDate.getFullYear() - currentJobDate.getFullYear()) * 12
-  months -= currentJobDate.getMonth()
-  months += currentDate.getMonth()
-  const currentJobYears = Math.floor(months / 12)
-  const currentJobMonths = months - currentJobYears * 12
-  currentJobExperience.value = `${currentJobYears} ${t('year')} ${currentJobMonths} ${t('months')}`
-}
+  const currentDate = new Date();
+  const currentJobDate = new Date('2022-12-05');
+  let months =
+    (currentDate.getFullYear() - currentJobDate.getFullYear()) * 12;
+  months -= currentJobDate.getMonth();
+  months += currentDate.getMonth();
 
-const getAge = () => {
-  let year = Number(new Date().getFullYear())-2000
-  return `${year}`
-}
+  const currentJobYears = Math.floor(months / 12);
+  const currentJobMonths = months - currentJobYears * 12;
+
+  currentJobExperience.value = `${currentJobYears} ${t('year')} ${currentJobMonths} ${t('months')}`
+};
+
+const getAge = (): string => {
+  const year = Number(new Date().getFullYear())-2000;
+  return `${year}`;
+};
 
 const metaData = {
   title: `${t('resume')} | ${t('titleMeta')}`,
@@ -198,11 +202,11 @@ const metaData = {
       content: t('descriptionMeta')
     }
   }
-}
+};
 
-useMeta(metaData)
+useMeta(metaData);
 
 onMounted(()=>{
-  getExperience()
+  getExperience();
 })
 </script>

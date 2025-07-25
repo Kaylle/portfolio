@@ -4,7 +4,7 @@
       <div class="tag-section">
         <q-chip
           v-for="n in tags"
-          :key="n"
+          :key="n.label"
           :label="n.label"
           no-caps
           unelevated
@@ -40,7 +40,7 @@
         <div
           class="col-md-4 col-sm-6 col-12"
           v-for="card in projects"
-          :key="card"
+          :key="card.id"
         >
           <ProjectPreviewCard
             :card="card"
@@ -63,41 +63,30 @@
   </q-page>
 </template>
 
-<script setup>
-import { computed } from "vue"
-import { useMeta } from "quasar"
+<script setup lang="ts">
+import { computed } from "vue";
+import { useMeta } from "quasar";
 import ContactSection from "components/ContactSection.vue"
 import HeroSection from "components/HeroSection.vue"
 import ProjectPreviewCard from "components/ProjectPreviewCard.vue"
-import { useI18n } from "vue-i18n"
+import { useI18n } from "vue-i18n";
+import type { Tag, Project } from 'components/models';
 
-const { t, messages, locale} = useI18n()
+const { t, messages, locale} = useI18n();
 
-const tags = [
-  {
-    label: '#front-end'
-  },
-  {
-    label: '#design'
-  },
-  {
-    label: '#vue'
-  },
-  {
-    label: '#js'
-  },
-  {
-    label: '#quasar'
-  },
-  {
-    label: '#figma'
-  }
-]
+const tags: Tag[] = [
+  { label: '#front-end' },
+  { label: '#design' },
+  { label: '#vue' },
+  { label: '#js' },
+  { label: '#quasar' },
+  { label: '#figma' }
+];
 
-const projects = computed(() => {
-  const data = [...messages.value[locale.value].projectsData]
-  return data.slice(0,3)
-})
+const projects = computed<Project[]>(() => {
+  const data = [...(messages.value[locale.value]?.projectsData ?? []) as Project[]];
+  return data.slice(0,3);
+});
 
 const metaData = {
   title: `${t('home')} | ${t('titleMeta')}`,
@@ -107,7 +96,7 @@ const metaData = {
       content: t('descriptionMeta')
     }
   }
-}
+};
 
-useMeta(metaData)
+useMeta(metaData);
 </script>
