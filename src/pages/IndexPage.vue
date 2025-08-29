@@ -71,6 +71,7 @@ import HeroSection from "components/HeroSection.vue"
 import ProjectPreviewCard from "components/ProjectPreviewCard.vue"
 import { useI18n } from "vue-i18n";
 import type { Tag, Project } from 'components/models';
+import { makeMeta } from "src/utils/functions";
 
 const { t, messages, locale} = useI18n();
 
@@ -88,15 +89,10 @@ const projects = computed<Project[]>(() => {
   return data.slice(0,3);
 });
 
-const metaData = {
-  title: `${t('home')} | ${t('titleMeta')}`,
-  meta: {
-    description: {
-      name: 'description',
-      content: t('descriptionMeta')
-    }
-  }
-};
 
-useMeta(metaData);
+useMeta(
+  makeMeta(
+    `${t('home')} | ${t('titleMeta')}`,
+    t('descriptionMeta')
+  ));
 </script>

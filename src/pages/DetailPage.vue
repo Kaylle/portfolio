@@ -112,7 +112,7 @@ import ContactSection from "components/ContactSection.vue";
 import CarouselSection from "components/CarouselSection.vue";
 import { useI18n } from "vue-i18n";
 import type { Project } from 'components/models';
-import { checkDisabled } from 'src/utils/functions';
+import { checkDisabled, makeMeta } from "src/utils/functions";
 
 const { t, messages, locale } = useI18n();
 const $q = useQuasar();
@@ -168,15 +168,9 @@ const share = async () => {
   }
 };
 
-useMeta(() => {
-  return  {
-    title: `${card.value?.title} | ${t('titleMeta')}`,
-    meta: {
-      description: {
-        name: 'description',
-        content: card.value?.description
-      }
-    }
-  }
-})
+useMeta(
+  makeMeta(
+    `${card.value?.title} | ${t('titleMeta')}`,
+    card.value?.description
+  ));
 </script>

@@ -3,7 +3,7 @@
     <q-card-section class="column full-height text-black">
       <q-img
         position="left"
-        @click="$router.push('/project/' + card.slug)"
+        @click="$router.push(`/project/${card.slug}`)"
         :ratio="16 / 9"
         class="hover"
         :src="card.image"
@@ -48,7 +48,7 @@
           padding="14px 32px"
           color="dark"
           no-caps
-          :to="'/project/' + card.slug"
+          :to="`/project/${card.slug}`"
           icon-right="eva-chevron-right-outline"
           :label="$t('moreInfo')"
         />

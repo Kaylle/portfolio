@@ -167,6 +167,7 @@ import { useMeta } from "quasar";
 import HeroSection from "components/HeroSection.vue";
 import { useI18n } from "vue-i18n";
 import type { ResumeItem } from 'components/models';
+import { makeMeta } from "src/utils/functions";
 
 const currentJobExperience = ref<string>('');
 const { t, messages, locale } = useI18n();
@@ -194,17 +195,11 @@ const getAge = (): string => {
   return `${year}`;
 };
 
-const metaData = {
-  title: `${t('resume')} | ${t('titleMeta')}`,
-  meta: {
-    description: {
-      name: 'description',
-      content: t('descriptionMeta')
-    }
-  }
-};
-
-useMeta(metaData);
+useMeta(
+  makeMeta(
+    `${t('resume')} | ${t('titleMeta')}`,
+    t('descriptionMeta')
+  ));
 
 onMounted(()=>{
   getExperience();

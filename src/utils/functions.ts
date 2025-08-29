@@ -21,3 +21,13 @@ export const checkDisabled = (type: 'prev' | 'next', projects:Project[], id:numb
   const searchId = type === 'prev' ? -1 : 1;
   return !projects.find(e=>e.id === id + searchId);
 };
+
+export const makeMeta = (title: string, description: string) => ({
+  title,
+  meta: {
+    description: {
+      name: 'description',
+      content: description
+    }
+  },
+});

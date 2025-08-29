@@ -49,6 +49,7 @@ import HeroSection from "components/HeroSection.vue";
 import ProjectPreviewCard from "components/ProjectPreviewCard.vue";
 import { useI18n } from "vue-i18n";
 import type { Options, Project } from 'components/models';
+import { makeMeta } from "src/utils/functions";
 
 const sort = ref<number>(0);
 const { t, messages, locale } = useI18n();
@@ -79,15 +80,9 @@ const projects = computed<Project[]>(() => {
   return sort.value === 1 ? data.sort(sortByTitle) : data.sort(sortByID);
 });
 
-const metaData = {
-  title: `${t('portfolio')} | ${t('titleMeta')}`,
-  meta: {
-    description: {
-      name: 'description',
-      content: t('descriptionMeta')
-    }
-  }
-};
-
-useMeta(metaData);
+useMeta(
+  makeMeta(
+    `${t('portfolio')} | ${t('titleMeta')}`,
+    t('descriptionMeta')
+  ));
 </script>

@@ -47,6 +47,7 @@ import { ref } from "vue";
 import { useMeta, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import type { ElementCoords } from 'components/models';
+import { makeMeta } from "src/utils/functions";
 
 const style = ref<string>('');
 const $q = useQuasar();
@@ -62,17 +63,11 @@ const eyeMovement = (e:ElementCoords): void => {
   style.value = `transform:translate(${xAxis}%, ${yAxis*-1}%)`;
 };
 
-const metaData = {
-  title: `404 | ${t('titleMeta')}`,
-  meta: {
-    description: {
-      name: 'description',
-      content: t('error404')
-    }
-  }
-};
-
-useMeta(metaData);
+useMeta(
+  makeMeta(
+    `${t('404')} | ${t('titleMeta')}`,
+    t('error404')
+  ));
 </script>
 
 <style lang="scss">
