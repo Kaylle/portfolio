@@ -5,11 +5,7 @@ import messages from 'src/i18n';
 export type MessageLanguages = keyof typeof messages;
 export type MessageSchema = typeof messages['en'];
 
-declare module 'vue-i18n' {
-  // export interface DefineLocaleMessage extends MessageSchema {}
-  // export interface DefineDateTimeFormat {}
-  // export interface DefineNumberFormat {}
-}
+declare module 'vue-i18n' {}
 
 export default defineBoot(({ app }) => {
   const lang = localStorage.getItem('lang') || 'en';

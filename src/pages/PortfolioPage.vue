@@ -70,8 +70,8 @@ const sortByTitle = (a: Project, b: Project) => {
 };
 
 const sortByID = (a: Project, b: Project) => {
-  if(a.id > b.id) return 1;
-  else if(a.id < b.id) return -1;
+  if(a.id < b.id) return 1;
+  else if(a.id > b.id) return -1;
   return 0;
 };
 

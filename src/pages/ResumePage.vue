@@ -25,7 +25,7 @@
                 class="rounded-borders bg-primary q-mb-lg"
               />
               <p class="text-bold">
-                Female, {{ getAge() }}, born {{ resume.birthday }}
+                {{ resume.sex }}, {{ getAge() }}, {{ resume.born }} {{ resume.birthday }}
               </p>
               <p
                 class="q-ma-none"

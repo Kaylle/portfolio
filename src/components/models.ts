@@ -27,6 +27,8 @@ export interface Project {
 }
 
 export interface ResumeItem {
+  sex: string;
+  born: string;
   fio: string;
   position: string;
   city: string;

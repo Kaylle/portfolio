@@ -86,9 +86,14 @@ const tags: Tag[] = [
 
 const projects = computed<Project[]>(() => {
   const data = [...(messages.value[locale.value]?.projectsData ?? []) as Project[]];
-  return data.slice(0,3);
+  return data.sort(sortByID).slice(0,3);
 });
 
+const sortByID = (a: Project, b: Project) => {
+  if(a.id < b.id) return 1;
+  else if(a.id > b.id) return -1;
+  return 0;
+};
 
 useMeta(
   makeMeta(

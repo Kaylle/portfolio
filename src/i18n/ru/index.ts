@@ -273,9 +273,38 @@ export default {
         'SCCS',
         'JS'
       ]
+    },
+    {
+      id: 9,
+      title: 'Панель управления пользователями',
+      slug: 'user-dashboard',
+      description: 'Современная панель управления пользователями, созданная с ' +
+        'использованием Vue 3, TypeScript, Vite и shadcn/ui. Этот проект ' +
+        'предоставляет адаптивный интерфейс администратора для управления ' +
+        'пользователями, настройки тем и визуализации статистики ' +
+        'пользователей.',
+      image: '/images/projects/user-dashboard/2.png',
+      images: [
+        '/images/projects/user-dashboard/2.png',
+        '/images/projects/user-dashboard/1.png',
+        '/images/projects/user-dashboard/3.png',
+        '/images/projects/user-dashboard/4.png',
+        '/images/projects/user-dashboard/5.png'
+      ],
+      link: ['Pet project'],
+      linkToSite: 'https://user-dashboard-hojuvuq8e-kates-projects-39e03fd1.vercel.app',
+      badges: [
+        'Vue3',
+        'Shadcn/ui',
+        'Vue-router',
+        'CCS',
+        'TS'
+      ]
     }
   ],
   resumeData: {
+    sex: 'Женщина',
+    born: 'дата рождения',
     fio: 'Куркина Екатерина Евгеньевна',
     position: 'Фронт-енд разработчик',
     city: 'Санкт-Петербург, Россия | Готова к переезду | Удаленная работа',

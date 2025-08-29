@@ -261,9 +261,37 @@ export default {
         'SCCS',
         'JS'
       ]
+    },
+    {
+      id: 9,
+      title: 'User Dashboard',
+      slug: 'user-dashboard',
+      description: 'A modern User Dashboard built with Vue 3, TypeScript, ' +
+        'Vite, and shadcn/ui. This project provides a responsive admin ' +
+        'interface to manage users, customize themes, and visualize user ' +
+        'statistics.',
+      image: '/images/projects/user-dashboard/2.png',
+      images: [
+        '/images/projects/user-dashboard/2.png',
+        '/images/projects/user-dashboard/1.png',
+        '/images/projects/user-dashboard/3.png',
+        '/images/projects/user-dashboard/4.png',
+        '/images/projects/user-dashboard/5.png'
+      ],
+      link: ['Pet project'],
+      linkToSite: 'https://user-dashboard-hojuvuq8e-kates-projects-39e03fd1.vercel.app',
+      badges: [
+        'Vue3',
+        'Shadcn/ui',
+        'Vue-router',
+        'CCS',
+        'TS'
+      ]
     }
   ],
   resumeData: {
+    sex: 'Female',
+    born: 'born',
     fio: 'Kurkina Ekaterina',
     position: 'Front-end developer',
     city: 'Saint-Petersburg, Russia | Open to relocation | Available for remote work',
