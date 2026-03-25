@@ -31,6 +31,7 @@ export default {
   byDefault: "By default",
   byName: "By name",
   resumeFile: "Resume file",
+  testResults: "Duolingo english test certificate",
   profile: "Profile",
   experience: "Experience",
   education: "Education",

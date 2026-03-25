@@ -31,6 +31,7 @@ export default {
   byDefault: "По умолчанию",
   byName: "По имени",
   resumeFile: "Файл резюме",
+  testResults: "Duolingo english test сертификат",
   profile: "Обо мне",
   experience: "Опыт работы",
   education: "Образование",

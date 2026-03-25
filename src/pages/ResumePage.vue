@@ -1,15 +1,24 @@
 <template>
   <q-page>
     <HeroSection :title="resume.fio">
-      <q-btn
-        class="self-start q-mb-lg"
-        :label="$t('resumeFile')"
-        no-caps
-        color="dark"
-        text-color="white"
-        target="_blank"
-      />
-      <!--file-->
+      <div class="flex items-center q-mb-lg q-gutter-sm">
+        <q-btn
+          :label="$t('resumeFile')"
+          no-caps
+          color="dark"
+          text-color="white"
+          target="_blank"
+          href="/resume.pdf"
+        />
+        <q-btn
+          :label="$t('testResults')"
+          no-caps
+          color="primary"
+          text-color="white"
+          target="_blank"
+          href="https://certs.duolingo.com/zi73vm1krker73sc"
+        />
+      </div>
     </HeroSection>
     <div class="container text-black">
       <div class="row q-col-gutter-lg">
